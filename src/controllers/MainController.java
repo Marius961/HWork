@@ -22,9 +22,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import content.Subject;
+
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
-public class Controller {
+public class MainController {
 	
 	private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
@@ -42,32 +46,29 @@ public class Controller {
     @FXML
     private TableColumn<Subject,String> colLecture;
     
-    private void initialize() {
-        initData();
-
-        colN.setCellValueFactory(new PropertyValueFactory<Subject, Integer>("id"));
-        colSubject.setCellValueFactory(new PropertyValueFactory<Subject, String>("name"));
-        colLecture.setCellValueFactory(new PropertyValueFactory<Subject, String>("lect"));
-
-        subjTable.setItems(subjectsList);
-    }
- 
-
     private void initData() {
     	subjectsList.add(new Subject(1, "Організація комп'ютерних мереж", "Солонець Д.М."));
     	subjectsList.add(new Subject(2, "Основи електротехніки та електроніки", "к.т.п. доц. Ващищак С.П."));
     	subjectsList.get(1).setHomework("Test Homework");
     }
-    @FXML
-    public void addClickMethod(){
-    	initialize();
+ 
+    private void initialize() {
+        initData();
+
+        colN.setCellValueFactory(new PropertyValueFactory<Subject, Integer>("id"));
+        
+        colSubject.setCellValueFactory(new PropertyValueFactory<Subject, String>("name"));
+        colLecture.setCellValueFactory(new PropertyValueFactory<Subject, String>("lect"));
+        
+        subjTable.setItems(subjectsList);
     }
+    
     
     public void deleteClickMethod(){
         
     }
     
-    public void insertClickMethod(){
+    public void editClickMethod(){
         
     }
     
@@ -78,4 +79,12 @@ public class Controller {
     public void on2ndClick(){
         
     }
+    
+    public void addClickMethod() {
+        
+    }
+    
+    
+    
+    
 }

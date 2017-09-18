@@ -13,8 +13,6 @@ public class Subject  {
         this.lect = lect;
     }
     
-    
- 
     public Subject() {
     }
  
