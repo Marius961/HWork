@@ -13,9 +13,9 @@
    <children>
       <ToolBar layoutY="349.0" prefHeight="40.0" prefWidth="600.0">
         <items>
-          <Button fx:id="add" mnemonicParsing="false" onAction="#addClickMethod" text="Add" />
-            <Button fx:id="remove" mnemonicParsing="false" onAction="#deleteClickMethod" text="Remove" translateX="10.0" />
-            <Button fx:id="insert" mnemonicParsing="false" onAction="#editClickMethod" text="Insert" translateX="20.0" />
+          <Button mnemonicParsing="false" onAction="#handleNewSubject" text="Add" />
+            <Button mnemonicParsing="false" onAction="#handleEditSubject" text="Edit" translateX="10.0" />
+            <Button mnemonicParsing="false" onAction="#handleDeleteSubject" text="Delete" translateX="20.0" />
             <RadioButton fx:id="1stWeek" mnemonicParsing="false" onMouseClicked="#on1stClick" text="1 week" translateX="160.0" />
             <RadioButton fx:id="2ndWeek" mnemonicParsing="false" onMouseClicked="#on2ndClick" text="2 week" translateX="160.0" />
         </items>
@@ -24,12 +24,15 @@
         <tabs>
           <Tab text="Mon">
                <content>
-                  <TableView fx:id="subjTable" maxWidth="600.0" prefHeight="307.0" prefWidth="350.0">
+                  <TableView fx:id="subjectTable" maxWidth="600.0" prefHeight="307.0" prefWidth="350.0">
                      <columns>
                         <TableColumn fx:id="colN" prefWidth="40.0" text="№" />
-                        <TableColumn fx:id="colSubject" prefWidth="360.0" text="Subjeect" />
-                        <TableColumn fx:id="colLecture" prefWidth="200.0" text="Lecture" />
+                        <TableColumn fx:id="subjectNameColumn" prefWidth="360.0" text="Subjeect" />
+                        <TableColumn fx:id="lectureColumn" prefWidth="200.0" text="Lecture" />
                      </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                </content>
             </Tab>

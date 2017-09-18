@@ -1,52 +1,59 @@
 package HW.model;
 
-public class Subject  {
- 
-    private int id;
-    private String name;
-    private String lect;
-    private String homework = " ";
- 
-    public Subject(int id, String name, String lect) {
-        this.id = id;
-        this.name = name;
-        this.lect = lect;
-    }
-    
-    
- 
-    public Subject() {
-    }
- 
-    public int getId() {
-        return id;
-    }
- 
-    public void setId(int id) {
-        this.id = id;
-    }
- 
-    public String getName() {
-        return name;
-    }
- 
-    public void setName(String name) {
-        this.name = name;
-    }
- 
-    public String getLect() {
-        return lect;
-    }
- 
-    public void setLect(String lect) {
-        this.lect = lect;
-    }
- 
-    public String getHomework() {
-        return homework;
-    }
- 
-    public void setHomework(String homework) {
-        this.homework = homework;
-    }
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+public class Subject {
+
+	private final StringProperty subjectName;
+	private final StringProperty lectorer;
+	private final StringProperty homeWork;
+
+	public Subject() {
+		this(null, null);
+	}
+
+	public Subject(String subjectName, String lectorer) {
+		this.subjectName = new SimpleStringProperty(subjectName);
+		this.lectorer = new SimpleStringProperty(lectorer);
+
+		this.homeWork = new SimpleStringProperty("Тест");
+	}
+
+	public String getSubjectName() {
+		return subjectName.get();
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName.set(subjectName);
+	}
+
+	public StringProperty subjectNameProperty() {
+		return subjectName;
+	}
+
+	public String getLectorer() {
+		return lectorer.get();
+	}
+
+	public void setLectorer(String lectorer) {
+		this.lectorer.set(lectorer);
+	}
+
+	public StringProperty lectorerProperty() {
+		return lectorer;
+	}
+
+	public String getHomeWork() {
+		return homeWork.get();
+	}
+
+	public void setHomeWork(String homeWork) {
+		this.homeWork.set(homeWork);
+	}
+
+	public StringProperty homeWorkProperty() {
+		return homeWork;
+	}
+
 }
