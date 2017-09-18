@@ -1,8 +1,8 @@
 package controllers;
 
 import javafx.scene.input.MouseEvent;
-import HomeWork.Main;
-import content.Subject;
+import HW.MainApp;
+import HW.model.Subject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -21,7 +21,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import content.Subject;
+
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;

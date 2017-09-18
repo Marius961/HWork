@@ -1,4 +1,4 @@
-package content;
+package HW.model;
 
 public class Subject  {
  
@@ -13,6 +13,8 @@ public class Subject  {
         this.lect = lect;
     }
     
+    
+ 
     public Subject() {
     }
  
