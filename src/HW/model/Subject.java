@@ -1,4 +1,4 @@
-package content;
+package HW.model;
 
 public class Subject  {
  

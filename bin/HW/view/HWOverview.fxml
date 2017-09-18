@@ -9,13 +9,13 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.view.HWOverviewController">
    <children>
       <ToolBar layoutY="349.0" prefHeight="40.0" prefWidth="600.0">
         <items>
           <Button fx:id="add" mnemonicParsing="false" onAction="#addClickMethod" text="Add" />
             <Button fx:id="remove" mnemonicParsing="false" onAction="#deleteClickMethod" text="Remove" translateX="10.0" />
-            <Button fx:id="insert" mnemonicParsing="false" onAction="#insertClickMethod" text="Insert" translateX="20.0" />
+            <Button fx:id="insert" mnemonicParsing="false" onAction="#editClickMethod" text="Insert" translateX="20.0" />
             <RadioButton fx:id="1stWeek" mnemonicParsing="false" onMouseClicked="#on1stClick" text="1 week" translateX="160.0" />
             <RadioButton fx:id="2ndWeek" mnemonicParsing="false" onMouseClicked="#on2ndClick" text="2 week" translateX="160.0" />
         </items>
