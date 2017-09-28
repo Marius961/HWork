@@ -16,7 +16,6 @@ public class Subject {
 	public Subject(String subjectName, String lectorer) {
 		this.subjectName = new SimpleStringProperty(subjectName);
 		this.lectorer = new SimpleStringProperty(lectorer);
-
 		this.homeWork = new SimpleStringProperty("Тест");
 	}
 
