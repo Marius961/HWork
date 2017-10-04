@@ -63,7 +63,7 @@ public class Main extends Application {
 	public boolean showHWEditDialog(Subject1 subject) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("views/AddDialog.fxml"));
+			loader.setLocation(Main.class.getResource("views/inputDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 
 			Stage dialogStage = new Stage();

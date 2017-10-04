@@ -90,10 +90,9 @@ public class MainViewController {
 	public void InsButtonClickMethod() throws IOException  {
 		Subject1 selectedSubject = subjTable.getSelectionModel().getSelectedItem();
 		if (selectedSubject != null) {
-			main.showHWEditDialog(selectedSubject);
-			week1.getDay(dayCounter).setSubject(subjTable.getSelectionModel().getSelectedIndex(), selectedSubject);
+			main.showHWEditDialog(selectedSubject);		
 		}
-
+		
 	}
 
 	public void SetButtonClickMethod() {

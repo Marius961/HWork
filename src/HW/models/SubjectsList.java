@@ -37,9 +37,7 @@ public class SubjectsList {
 		return null;
 	}
 	
-	public void setSubject(int ind, Subject1 subject) {
-		subjects.set(0, subject);
-	}
+	
 	
 	public Subject1 getSubject(int ind) {
 		return subjects.get(ind);

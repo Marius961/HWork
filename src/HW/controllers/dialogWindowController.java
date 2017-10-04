@@ -27,6 +27,7 @@ public class dialogWindowController {
 		subjField.setText(subject.getName());
 		lectField.setText(subject.getLect());
 	}
+	
 	@FXML
 	private void handleOk() {
 		if (isInputValid()) {
