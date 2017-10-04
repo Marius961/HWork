@@ -24,16 +24,17 @@ public class dialogWindowController {
 
 	public void setSubject(Subject1 subject) {
 		this.subject = subject;
+		subjField.setText(subject.getName());
+		lectField.setText(subject.getLect());
 	}
 	@FXML
 	private void handleOk() {
 		if (isInputValid()) {
 			subject.setName(subjField.getText());
 			subject.setLect(lectField.getText());
-
-				okClicked = true;
-				dialogStage.close();
-			}
+			okClicked = true;
+			dialogStage.close();
+		}
 	}
 	
 	public boolean isOkClicked() {

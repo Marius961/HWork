@@ -23,9 +23,11 @@ public class SubjectsList {
 	public void removeSubject(int ind) {
 		subjects.remove(ind);
 	}
+	
 	public int getSize() {
 		return subjects.size();
 	}
+	
 	public Subject1 getSubject(String name) {
 		for (Subject1 o : subjects) {
 			if (o.getName() == name) 
@@ -34,6 +36,11 @@ public class SubjectsList {
 		
 		return null;
 	}
+	
+	public void setSubject(int ind, Subject1 subject) {
+		subjects.set(0, subject);
+	}
+	
 	public Subject1 getSubject(int ind) {
 		return subjects.get(ind);
 	}

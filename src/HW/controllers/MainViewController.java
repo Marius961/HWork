@@ -7,6 +7,7 @@ import HW.Main;
 import HW.models.Subject1;
 import HW.models.Week;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -87,7 +88,12 @@ public class MainViewController {
 	
 	@FXML
 	public void InsButtonClickMethod() throws IOException  {
-		
+		Subject1 selectedSubject = subjTable.getSelectionModel().getSelectedItem();
+		if (selectedSubject != null) {
+			main.showHWEditDialog(selectedSubject);
+			week1.getDay(dayCounter).setSubject(subjTable.getSelectionModel().getSelectedIndex(), selectedSubject);
+		}
+
 	}
 
 	public void SetButtonClickMethod() {
