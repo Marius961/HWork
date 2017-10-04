@@ -18,7 +18,9 @@ public class Day {
 	public void add(Subject1 subject) {
 		subjects.addSubject(subject);
 	}
-	
+	public void swapSubject(int ind, Subject1 other) {
+		subjects.swapSubject(ind, other);
+	}
 	public ObservableList<Subject1> getSubjects() {
 		return subjects.getSubjects();
 	}
