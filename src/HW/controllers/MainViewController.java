@@ -6,7 +6,7 @@ import HW.Main;
 import HW.models.Subject1;
 import HW.models.Week;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,8 +25,8 @@ public class MainViewController {
 	@FXML
 	private TableColumn<Subject1, String> colLecture;
 
-	@FXML
-	private Label day;
+
+	
 
 	private int dayCounter = 0;
 	private Week week1 = new Week();
@@ -38,7 +38,6 @@ public class MainViewController {
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject1, String>("name"));
 		colLecture.setCellValueFactory(new PropertyValueFactory<Subject1, String>("lect"));
 		subjTable.setItems(week1.getDay(0).getSubjects());
-		day.setText(getDay());
 	}
 
 	public void init() {
@@ -69,8 +68,7 @@ public class MainViewController {
 	public void top() {
 		if (dayCounter >= 1) {
 			dayCounter -= 1;
-			subjTable.setItems(week1.getDay(dayCounter).getSubjects());
-			day.setText(getDay());
+			subjTable.setItems(week1.getDay(dayCounter).getSubjects());			
 		} else {
 
 		}
@@ -80,7 +78,6 @@ public class MainViewController {
 		if (dayCounter <= 3) {
 			dayCounter += 1;
 			subjTable.setItems(week1.getDay(dayCounter).getSubjects());
-			day.setText(getDay());
 		} else {
 
 		}
