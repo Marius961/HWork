@@ -90,8 +90,11 @@ public class MainViewController {
 	public void InsButtonClickMethod() throws IOException  {
 		Subject1 selectedSubject = subjTable.getSelectionModel().getSelectedItem();
 		if (selectedSubject != null) {
-			main.showHWEditDialog(selectedSubject);		
+			main.showHWEditDialog(selectedSubject);	
 		}
+		subjTable.getSelectionModel().getSelectedItem().setName(selectedSubject.getName());
+		subjTable.getSelectionModel().getSelectedItem().setLect(selectedSubject.getLect());
+		subjTable.refresh();
 		
 	}
 

@@ -15,6 +15,11 @@ public class SubjectsList {
 		Subject1 temp = new Subject1(name , lect);
 		subjects.add(temp);
 	}
+	public void swapSubject(int ind, Subject1 other) {
+		subjects.remove(ind);
+		subjects.add(ind, other);
+	}
+	
 	
 	public void addSubject(Subject1 subject) {
 		subjects.add(subject);
