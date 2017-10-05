@@ -6,6 +6,8 @@ import HW.Main;
 import HW.models.Subject1;
 import HW.models.Week;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,10 +25,16 @@ public class MainViewController {
 
 	@FXML
 	private TableColumn<Subject1, String> colLecture;
-	
+	@FXML
+	private Button topButton;
+	@FXML
+	private Button bottomButton;
+	@FXML
+	private Label day;
+
 	private int dayCounter = 0;
 	private Week week1 = new Week();
-	
+
 	Main main = new Main();
 
 	@FXML
@@ -35,6 +43,7 @@ public class MainViewController {
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject1, String>("name"));
 		colLecture.setCellValueFactory(new PropertyValueFactory<Subject1, String>("lect"));
 		subjTable.setItems(week1.getDay(0).getSubjects());
+		setButtonsNames();
 	}
 
 	@FXML
@@ -55,16 +64,16 @@ public class MainViewController {
 			subjTable.getSelectionModel().getSelectedItem().setLect(selectedSubject.getLect());
 			subjTable.refresh();
 		}
-				
+
 	}
 
 	public void delButtonClickMethod() {
 		int selectedIndex = subjTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			subjTable.getItems().remove(selectedIndex);
-		} 
+		}
 	}
-	
+
 	public void init() {
 		week1.getDay(0).add("Test subject Day0", "Test lect day0");
 		week1.getDay(1).add("Test subject Day1", "Test lect day1");
@@ -72,26 +81,45 @@ public class MainViewController {
 		week1.getDay(3).add("Test subject Day3", "Test lect day3");
 		week1.getDay(4).add("Test subject Day4", "Test lect day4");
 	}
-	
+
 	public void top() {
 		if (dayCounter >= 1) {
 			dayCounter--;
-			subjTable.setItems(week1.getDay(dayCounter).getSubjects());				
-		} 
+			subjTable.setItems(week1.getDay(dayCounter).getSubjects());
+			setButtonsNames();
+		}
+
 	}
 
 	public void down() {
 		if (dayCounter <= 3) {
 			dayCounter++;
 			subjTable.setItems(week1.getDay(dayCounter).getSubjects());
-		} 	
+			setButtonsNames();
+		}
+
 	}
-	
+
+	public void setButtonsNames() {
+		if (dayCounter == 0) {
+			topButton.setText("***");
+		} else {
+			int topName = dayCounter - 1;
+			topButton.setText(getDay(topName));
+		}
+		if (dayCounter == 4) {
+			bottomButton.setText("***");
+		} else {
+			int bottomName = dayCounter + 1;
+			bottomButton.setText(getDay(bottomName));
+		}
+	}
+
 	public Week getWeek1() {
 		return week1;
 	}
-	
-	public String getDay() {
-		return week1.getDay(dayCounter).getName();
+
+	public String getDay(int count) {
+		return week1.getDay(count).getName();
 	}
 }
