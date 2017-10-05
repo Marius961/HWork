@@ -9,7 +9,7 @@
    <children>
       <TableView fx:id="subjTable" layoutX="84.0" layoutY="29.0" prefHeight="156.0" prefWidth="440.0">
         <columns>
-          <TableColumn fx:id="colSubject" prefWidth="244.0" text="Subject" />
+          <TableColumn fx:id="colSubject" prefWidth="244.0"  text="Subject" />
           <TableColumn fx:id="colLecture" prefWidth="178.0" text="Lecture" />
         </columns>
          <columnResizePolicy>
@@ -21,5 +21,6 @@
       <Button layoutX="265.0" layoutY="194.0" mnemonicParsing="false" onAction="#addButtonClickMethod" prefHeight="50.0" prefWidth="79.0" text="Add" />
       <Button layoutX="9.0" layoutY="29.0" mnemonicParsing="false" onAction="#top" prefHeight="38.0" prefWidth="72.0" text="Вверх" />
       <Button layoutX="5.0" layoutY="147.0" mnemonicParsing="false" onAction="#down" prefHeight="38.0" prefWidth="79.0" text="Вниз" />
+      <Button layoutX="7.0" layoutY="200.0" mnemonicParsing="false" onAction="#refresh" text="Button" />
    </children>
 </AnchorPane>

@@ -14,7 +14,7 @@ public class MainViewController {
 
 	@FXML
 	private TableView<Subject1> subjTable;
-
+	
 	@FXML
 	private TableColumn<Subject1, Integer> colTime;
 
@@ -30,11 +30,13 @@ public class MainViewController {
 	Main main = new Main();
 
 	@FXML
-	private void initialize() {
+	private void initialize()  {
 		init();
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject1, String>("name"));
 		colLecture.setCellValueFactory(new PropertyValueFactory<Subject1, String>("lect"));
 		subjTable.setItems(week1.getDay(0).getSubjects());
+		subjTable.setEditable(false);
+		listener();
 	}
 
 	@FXML
@@ -55,7 +57,17 @@ public class MainViewController {
 			subjTable.getSelectionModel().getSelectedItem().setLect(selectedSubject.getLect());
 			subjTable.refresh();
 		}
-				
+	}
+	
+	public void listener() {
+		subjTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			try {
+				clickOnSubject(newValue);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 	}
 
 	public void delButtonClickMethod() {
@@ -94,4 +106,18 @@ public class MainViewController {
 	public String getDay() {
 		return week1.getDay(dayCounter).getName();
 	}
+	
+	public void clickOnSubject(Subject1 subject) throws IOException {
+		if (subject != null) {
+			main.showHomeworkView(subject);
+			subjTable.getSelectionModel().getSelectedItem().setHomework(subject.getHomework());
+		}
+	}
+	
+	public void refresh() {
+		subjTable.refresh();
+	}
+	
+	
+	
 }

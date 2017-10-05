@@ -3,6 +3,7 @@ package HW;
 import java.io.IOException;
 
 import HW.controllers.dialogWindowController;
+import HW.controllers.homeworkViewController;
 import HW.models.Subject1;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ public class Main extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	private BorderPane homeworkRootLayout;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -40,17 +42,7 @@ public class Main extends Application {
 		}
 	}
 
-	public void showHWOverview() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("views/MainView.fxml"));
-			AnchorPane hwOverview = (AnchorPane) loader.load();
-			rootLayout.setCenter(hwOverview);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	
 	
 	public boolean showHWEditDialog(Subject1 subject) throws IOException {
 		try {
@@ -75,6 +67,56 @@ public class Main extends Application {
 			return false;
 		}
 	}
+	
+	public void initHomeworkRootLayout() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("views/homeworkRootLayout.fxml"));
+			homeworkRootLayout = (BorderPane) loader.load();
+
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void showHWOverview() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("views/MainView.fxml"));
+			AnchorPane hwOverview = (AnchorPane) loader.load();
+			rootLayout.setCenter(hwOverview);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean showHomeworkView(Subject1 subject) throws IOException {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("views/homeworkView.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Add Subject");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			homeworkViewController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setSubject(subject);
+			dialogStage.showAndWait();
+			return controller.isSaveClicked();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		launch(args);
