@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="252.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.MainViewController">
    <children>
@@ -21,5 +23,10 @@
       <Button layoutX="265.0" layoutY="194.0" mnemonicParsing="false" onAction="#addButtonClickMethod" prefHeight="50.0" prefWidth="79.0" text="Add" />
       <Button fx:id="topButton" layoutX="9.0" layoutY="29.0" mnemonicParsing="false" onAction="#top" prefHeight="38.0" prefWidth="72.0" text="Вверх" />
       <Button fx:id="bottomButton" layoutX="5.0" layoutY="147.0" mnemonicParsing="false" onAction="#down" prefHeight="38.0" prefWidth="79.0" text="Вниз" />
+      <Label fx:id="dayName" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="4.0" text="Label">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package HW.controllers;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import HW.Main;
 import HW.models.Subject1;
@@ -14,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MainViewController {
 
+	Calendar calendar = Calendar.getInstance();
 	@FXML
 	private TableView<Subject1> subjTable;
 
@@ -30,9 +32,8 @@ public class MainViewController {
 	@FXML
 	private Button bottomButton;
 	@FXML
-	private Label day;
-
-	private int dayCounter = 0;
+	private Label dayName;
+	private int dayCounter = getCurrentDay();
 	private Week week1 = new Week();
 
 	Main main = new Main();
@@ -42,8 +43,9 @@ public class MainViewController {
 		init();
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject1, String>("name"));
 		colLecture.setCellValueFactory(new PropertyValueFactory<Subject1, String>("lect"));
-		subjTable.setItems(week1.getDay(0).getSubjects());
+		subjTable.setItems(week1.getDay(dayCounter).getSubjects());
 		setButtonsNames();
+		dayName.setText(getDay(dayCounter));
 	}
 
 	@FXML
@@ -75,11 +77,11 @@ public class MainViewController {
 	}
 
 	public void init() {
-		week1.getDay(0).add("Test subject Day0", "Test lect day0");
-		week1.getDay(1).add("Test subject Day1", "Test lect day1");
-		week1.getDay(2).add("Test subject Day2", "Test lect day2");
-		week1.getDay(3).add("Test subject Day3", "Test lect day3");
-		week1.getDay(4).add("Test subject Day4", "Test lect day4");
+		week1.getDay(0).add("Test subject Mon", "Test lect Mon");
+		week1.getDay(1).add("Test subject Tue", "Test lect Tue");
+		week1.getDay(2).add("Test subject Wed", "Test lect Wed");
+		week1.getDay(3).add("Test subject Thu", "Test lect Thu");
+		week1.getDay(4).add("Test subject Fri", "Test lect Fri");
 	}
 
 	public void top() {
@@ -87,8 +89,8 @@ public class MainViewController {
 			dayCounter--;
 			subjTable.setItems(week1.getDay(dayCounter).getSubjects());
 			setButtonsNames();
+			dayName.setText(getDay(dayCounter));
 		}
-
 	}
 
 	public void down() {
@@ -96,8 +98,8 @@ public class MainViewController {
 			dayCounter++;
 			subjTable.setItems(week1.getDay(dayCounter).getSubjects());
 			setButtonsNames();
+			dayName.setText(getDay(dayCounter));
 		}
-
 	}
 
 	public void setButtonsNames() {
@@ -113,6 +115,13 @@ public class MainViewController {
 			int bottomName = dayCounter + 1;
 			bottomButton.setText(getDay(bottomName));
 		}
+	}
+
+	public int getCurrentDay() {
+		if ((calendar.get(Calendar.DAY_OF_WEEK) - 2) < 0) {
+			return 0;
+		} else
+			return calendar.get(Calendar.DAY_OF_WEEK) - 2;
 	}
 
 	public Week getWeek1() {
