@@ -11,22 +11,13 @@ public class dialogWindowController {
 	
 	@FXML
 	private TextField subjField;	
+	
 	@FXML
 	private TextField lectField;
 	
 	private Stage dialogStage;
 	private Subject1 subject;
 	private boolean okClicked = false;
-
-	public void setDialogStage(Stage dialogStage) {
-		this.dialogStage = dialogStage;
-	}
-
-	public void setSubject(Subject1 subject) {
-		this.subject = subject;
-		subjField.setText(subject.getName());
-		lectField.setText(subject.getLect());
-	}
 	
 	@FXML
 	private void handleOk() {
@@ -38,14 +29,25 @@ public class dialogWindowController {
 		}
 	}
 	
-	public boolean isOkClicked() {
-		return okClicked;
-	}
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
 	}
+	
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
+	}
 
+	public void setSubject(Subject1 subject) {
+		this.subject = subject;
+		subjField.setText(subject.getName());
+		lectField.setText(subject.getLect());
+	}
+
+	public boolean isOkClicked() {
+		return okClicked;
+	}
+	
 	private boolean isInputValid() {
 		String errorMessage = "";
 
@@ -63,11 +65,8 @@ public class dialogWindowController {
 			alert.setTitle("Invalid Fields");
 			alert.setHeaderText("Please correct invalid fields");
 			alert.setContentText(errorMessage);
-
 			alert.showAndWait();
-
 			return false;
 		}
-
 	}
 }

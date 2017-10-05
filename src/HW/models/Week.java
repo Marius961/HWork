@@ -1,19 +1,16 @@
 package HW.models;
 
-import java.util.Iterator;
-import java.util.Observable;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Week {
 	
 	private ObservableList<Day> week = FXCollections.observableArrayList();
-	private Day Monday = new Day("Mo");
-	private Day Tuesday = new Day("Tu");
-	private Day Wednesday = new Day("We");
-	private Day Thursday = new Day("Th");
-	private Day Friday = new Day("Fr");
+	private Day Monday = new Day("Monday");
+	private Day Tuesday = new Day("Tuesday");
+	private Day Wednesday = new Day("Wednesday");
+	private Day Thursday = new Day("Thursday");
+	private Day Friday = new Day("Friday");
 	
 	public Week() {
 		week.add(Monday);
@@ -33,23 +30,5 @@ public class Week {
 	public Day getDay(int ind) {
 		return week.get(ind);
 	}
-	
-	
-//   Провірочний метод
-	
-	public String print() {
-		String result = "";
-		for (int a = 0; a < 5; a++) {
-			for (int i = 0; i<5; i++) {
-				result += week.get(i).getName() + ":\n";
-				for(int j = 0; j < week.get(i).getSize(); j++) {
-					result += week.get(i).getSubject(j).getName() + "\n"; 
-				}
-			}
-			return result;
-		}
-		return result;
-	}
-	
-	
+
 }

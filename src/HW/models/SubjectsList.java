@@ -9,18 +9,12 @@ public class SubjectsList {
 	public ObservableList<Subject1> getSubjects() {
 		return subjects;
 	}
-	
-	
+
 	public void addSubject(String name, String lect) {
 		Subject1 temp = new Subject1(name , lect);
 		subjects.add(temp);
 	}
-	public void swapSubject(int ind, Subject1 other) {
-		subjects.remove(ind);
-		subjects.add(ind, other);
-	}
-	
-	
+
 	public void addSubject(Subject1 subject) {
 		subjects.add(subject);
 	}
@@ -33,23 +27,8 @@ public class SubjectsList {
 		return subjects.size();
 	}
 	
-	public Subject1 getSubject(String name) {
-		for (Subject1 o : subjects) {
-			if (o.getName() == name) 
-				o.getClass();
-		}
-		
-		return null;
-	}
-	
-	
-	
 	public Subject1 getSubject(int ind) {
 		return subjects.get(ind);
 	}
 	
-	
-	public String printSubject(int ind) {
-		return subjects.get(ind).toString();
-	}
 }

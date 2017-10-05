@@ -2,18 +2,12 @@ package HW;
 	
 import java.io.IOException;
 
-import javax.security.auth.Subject;
-
-import HW.controllers.MainViewController;
 import HW.controllers.dialogWindowController;
 import HW.models.Subject1;
-import HW.models.Week;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -84,19 +78,5 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-		
-		
-		
-//      Провірочний код
-		
-//		Week Week1 = new Week();
-//		Week Week2 = new Week();
-		
-//		Week1.getDay(0).add("Test subject 0", "Lect 0");
-//		Week1.getDay(1).add("Test subject 1", "Lect 1");
-//		Week1.getDay(2).add("Test subject 2", "Lect 2");
-//		Week1.getDay(3).add("Test subject 3", "Lect 3");
-//		Week1.getDay(4).add("Test subject 4", "Lect 4");	
-//		System.out.println(Week1.print());
 	}
 }
