@@ -43,12 +43,15 @@ public class MainViewController {
 		init();
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject1, String>("name"));
 		colLecture.setCellValueFactory(new PropertyValueFactory<Subject1, String>("lect"));
+<<<<<<< HEAD
 		subjTable.setItems(week1.getDay(0).getSubjects());
 		subjTable.setEditable(false);
 		listener();
+=======
 		subjTable.setItems(week1.getDay(dayCounter).getSubjects());
 		setButtonsNames();
 		dayName.setText(getDay(dayCounter));
+>>>>>>> dev
 	}
 
 	@FXML
@@ -69,6 +72,7 @@ public class MainViewController {
 			subjTable.getSelectionModel().getSelectedItem().setLect(selectedSubject.getLect());
 			subjTable.refresh();
 		}
+<<<<<<< HEAD
 	}
 	
 	public void listener() {
@@ -76,9 +80,13 @@ public class MainViewController {
 			try {
 				clickOnSubject(newValue);
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
+=======
+
+>>>>>>> dev
 	}
 
 	public void delButtonClickMethod() {

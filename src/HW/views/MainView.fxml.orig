@@ -21,13 +21,18 @@
       <Button layoutX="176.0" layoutY="194.0" maxWidth="79.0" mnemonicParsing="false" onAction="#editButtonClickMethod" prefHeight="50.0" prefWidth="79.0" text="Edit" />
       <Button layoutX="91.0" layoutY="194.0" mnemonicParsing="false" onAction="#delButtonClickMethod" prefHeight="50.0" prefWidth="79.0" text="Del" />
       <Button layoutX="265.0" layoutY="194.0" mnemonicParsing="false" onAction="#addButtonClickMethod" prefHeight="50.0" prefWidth="79.0" text="Add" />
+<<<<<<< HEAD
+      <Button layoutX="9.0" layoutY="29.0" mnemonicParsing="false" onAction="#top" prefHeight="38.0" prefWidth="72.0" text="Вверх" />
+      <Button layoutX="5.0" layoutY="147.0" mnemonicParsing="false" onAction="#down" prefHeight="38.0" prefWidth="79.0" text="Вниз" />
+      <Button layoutX="7.0" layoutY="200.0" mnemonicParsing="false" onAction="#refresh" text="Button" />
+=======
       <Button fx:id="topButton" layoutX="9.0" layoutY="29.0" mnemonicParsing="false" onAction="#top" prefHeight="38.0" prefWidth="72.0" text="Вверх" />
       <Button fx:id="bottomButton" layoutX="5.0" layoutY="147.0" mnemonicParsing="false" onAction="#down" prefHeight="38.0" prefWidth="79.0" text="Вниз" />
-      <Button layoutX="7.0" layoutY="200.0" mnemonicParsing="false" onAction="#refresh" text="Button" />
-       <Label fx:id="dayName" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="4.0" text="Label">
+      <Label fx:id="dayName" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="4.0" text="Label">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+>>>>>>> dev
    </children>
 </AnchorPane>
