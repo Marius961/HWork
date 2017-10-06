@@ -63,12 +63,7 @@ public class MainViewController {
 	@FXML
 	private void initialize() {
 		init();
-		colSubject.setCellValueFactory(new PropertyValueFactory<Subject1, String>("name"));
-		colLecture.setCellValueFactory(new PropertyValueFactory<Subject1, String>("lect"));
-		subjTable.setEditable(false);
-		subjTable.setItems(week1.getDay(dayCounter).getSubjects());
-		firstWeek.setToggleGroup(rBWeeks);
-		secWeek.setToggleGroup(rBWeeks);
+		setToggleGroup();
 		firstWeek.setSelected(true);
 		setTableProperty();
 		addClickListener();
@@ -214,6 +209,11 @@ public class MainViewController {
 		weekCount = true;
 		subjTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 
+	}
+	
+	public void setToggleGroup() {
+		firstWeek.setToggleGroup(rBWeeks);
+		secWeek.setToggleGroup(rBWeeks);
 	}
 
 }
