@@ -18,7 +18,6 @@ public class Main extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
-	private BorderPane homeworkRootLayout;
 	
 	@Override
 	public void start(Stage primaryStage) {
