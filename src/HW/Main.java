@@ -68,19 +68,6 @@ public class Main extends Application {
 		}
 	}
 	
-	public void initHomeworkRootLayout() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("views/homeworkRootLayout.fxml"));
-			homeworkRootLayout = (BorderPane) loader.load();
-
-			Scene scene = new Scene(rootLayout);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	public void showHWOverview() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -100,7 +87,7 @@ public class Main extends Application {
 			AnchorPane page = (AnchorPane) loader.load();
 
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Add Subject");
+			dialogStage.setTitle(subject.getName());
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);

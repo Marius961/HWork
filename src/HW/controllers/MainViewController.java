@@ -40,14 +40,10 @@ public class MainViewController {
 
 	@FXML
 	private void initialize()  {
+		setTableProperty();
 		init();
-		colSubject.setCellValueFactory(new PropertyValueFactory<Subject1, String>("name"));
-		colLecture.setCellValueFactory(new PropertyValueFactory<Subject1, String>("lect"));
-		subjTable.setItems(week1.getDay(0).getSubjects());
-		subjTable.setEditable(false);
-		listener();
-		subjTable.setItems(week1.getDay(dayCounter).getSubjects());
 		setButtonsNames();
+		addClickListener();
 		dayName.setText(getDay(dayCounter));
 	}
 
@@ -71,7 +67,7 @@ public class MainViewController {
 		}
 	}
 	
-	public void listener() {
+	public void addClickListener() {
 		subjTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			try {
 				clickOnSubject(newValue);
@@ -153,6 +149,12 @@ public class MainViewController {
 	
 	public void refresh() {
 		subjTable.refresh();
+	}
+	
+	private void setTableProperty() {
+		colSubject.setCellValueFactory(new PropertyValueFactory<Subject1, String>("name"));
+		colLecture.setCellValueFactory(new PropertyValueFactory<Subject1, String>("lect"));
+		subjTable.setItems(week1.getDay(dayCounter).getSubjects());
 	}
 	
 	
