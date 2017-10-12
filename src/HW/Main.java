@@ -1,5 +1,5 @@
 package HW;
-	
+
 import java.io.IOException;
 
 import HW.controllers.dialogWindowController;
@@ -7,18 +7,17 @@ import HW.controllers.homeworkViewController;
 import HW.models.Subject1;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -41,8 +40,6 @@ public class Main extends Application {
 		}
 	}
 
-	
-	
 	public boolean showHWEditDialog(Subject1 subject) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -66,7 +63,7 @@ public class Main extends Application {
 			return false;
 		}
 	}
-	
+
 	public void showHWOverview() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -78,7 +75,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean showHomeworkView(Subject1 subject) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -102,8 +99,7 @@ public class Main extends Application {
 			return false;
 		}
 	}
-	
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

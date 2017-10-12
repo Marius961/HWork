@@ -1,7 +1,10 @@
 package HW.controllers;
 
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.Calendar;
+
+import com.jfoenix.controls.JFXTimePicker;
 
 import HW.Main;
 import HW.models.Subject1;
@@ -14,6 +17,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class MainViewController {
 
@@ -27,34 +32,42 @@ public class MainViewController {
 	@FXML
 	private TableColumn<Subject1, String> colLecture;
 	@FXML
-	private Label firstLessonTime;
-	@FXML
-	private Label secondLessonTime;
-	@FXML
-	private Label thirdLessonTime;
-	@FXML
-	private Label fourthLessonTime;
-	@FXML
-	private Label fifthLessonTime;
-	@FXML
 	private Button topButton;
-
 	@FXML
 	private Button bottomButton;
-
 	@FXML
 	private Label dayName;
-
 	@FXML
 	RadioButton secWeek;
-
 	@FXML
 	RadioButton firstWeek;
-
+	@FXML
+	public Label firstLabelTime;
+	@FXML
+	public Label secondLabelTime;
+	@FXML
+	public Label thirdLabelTime;
+	@FXML
+	public Label fourthLabelTime;
+	@FXML
+	public Label fifthLabelTime;
+	@FXML
+	private JFXTimePicker firstTimePicker;
+	@FXML
+	private JFXTimePicker secondTimePicker;
+	@FXML
+	private JFXTimePicker thirdTimePicker;
+	@FXML
+	private JFXTimePicker fourthTimePicker;
+	@FXML
+	private JFXTimePicker fifthTimePicker;
+	@FXML
 	private int dayCounter = getCurrentDay();
 	private boolean weekCount = false;
 	private Week week1 = new Week();
 	private Week week2 = new Week();
+	private Label tempLabelTime;
+	private int enterPressCounter = 0;
 
 	Main main = new Main();
 	// RB = RadioButton
@@ -69,6 +82,7 @@ public class MainViewController {
 		addClickListener();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
+
 	}
 
 	@FXML
@@ -88,7 +102,6 @@ public class MainViewController {
 			subjTable.getSelectionModel().getSelectedItem().setName(selectedSubject.getName());
 			subjTable.getSelectionModel().getSelectedItem().setLect(selectedSubject.getLect());
 			subjTable.refresh();
-
 		}
 	}
 
@@ -115,11 +128,11 @@ public class MainViewController {
 		week1.getDay(2).add("Test subject Wed week 1", "Test lect Wed");
 		week1.getDay(3).add("Test subject Thu week 1", "Test lect Thu");
 		week1.getDay(4).add("Test subject Fri week 1", "Test lect Fri");
-		week2.getDay(0).add("Test subject Mon week 2", "Test lect Mon");
-		week2.getDay(1).add("Test subject Tue week 2", "Test lect Tue");
-		week2.getDay(2).add("Test subject Wed week 2", "Test lect Wed");
-		week2.getDay(3).add("Test subject Thu week 2", "Test lect Thu");
-		week2.getDay(4).add("Test subject Fri week 2", "Test lect Fri");
+		week2.getDay(0).add("Test subject Mon week 2", "Test lect Mon 2");
+		week2.getDay(1).add("Test subject Tue week 2", "Test lect Tue 2");
+		week2.getDay(2).add("Test subject Wed week 2", "Test lect Wed 2");
+		week2.getDay(3).add("Test subject Thu week 2", "Test lect Thu 2");
+		week2.getDay(4).add("Test subject Fri week 2", "Test lect Fri 2");
 	}
 
 	public void top() {
@@ -214,6 +227,95 @@ public class MainViewController {
 	public void setToggleGroup() {
 		firstWeek.setToggleGroup(rBWeeks);
 		secWeek.setToggleGroup(rBWeeks);
+	}
+
+	@FXML
+	private void openTimePicker() {
+		tempLabelTime.setVisible(false);
+		getTimePicker().setVisible(true);
+		closeOtherTimePickers();
+	}
+
+	@FXML
+	private void inputLabelTime(KeyEvent event) {
+		enterPressCounter++;
+		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 1) {
+			LocalTime time = getTimePicker().getValue();
+			tempLabelTime.setText(time + "-");
+		}
+		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 2) {
+			LocalTime time = getTimePicker().getValue();
+			tempLabelTime.setText(tempLabelTime.getText() + time);
+			getTimePicker().setVisible(false);
+			tempLabelTime.setVisible(true);
+			enterPressCounter = 0;
+		}
+	}
+
+	@FXML
+	private void setFirstLabelTime() {
+		tempLabelTime = firstLabelTime;
+		openTimePicker();
+	}
+
+	@FXML
+	private void setSecondLabelTime() {
+		tempLabelTime = secondLabelTime;
+		openTimePicker();
+	}
+
+	@FXML
+	private void setThirdLabelTime() {
+		tempLabelTime = thirdLabelTime;
+		openTimePicker();
+	}
+
+	@FXML
+	private void setFourthLabelTime() {
+		tempLabelTime = fourthLabelTime;
+		openTimePicker();
+	}
+
+	@FXML
+	private void setFifthLabelTime() {
+		tempLabelTime = fifthLabelTime;
+		openTimePicker();
+	}
+
+	public JFXTimePicker getTimePicker() {
+		if (tempLabelTime == firstLabelTime) {
+			return firstTimePicker;
+		} else if (tempLabelTime == secondLabelTime) {
+			return secondTimePicker;
+		} else if (tempLabelTime == thirdLabelTime) {
+			return thirdTimePicker;
+		} else if (tempLabelTime == fourthLabelTime) {
+			return fourthTimePicker;
+		} else
+			return fifthTimePicker;
+	}
+
+	private void closeOtherTimePickers() {
+		if (getTimePicker() != firstTimePicker) {
+			firstTimePicker.setVisible(false);
+			firstLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != secondTimePicker) {
+			secondTimePicker.setVisible(false);
+			secondLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != thirdTimePicker) {
+			thirdTimePicker.setVisible(false);
+			thirdLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != fourthTimePicker) {
+			fourthTimePicker.setVisible(false);
+			fourthLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != fifthTimePicker) {
+			fifthTimePicker.setVisible(false);
+			fifthLabelTime.setVisible(true);
+		}
 	}
 
 }
