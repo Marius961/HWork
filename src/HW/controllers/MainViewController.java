@@ -318,4 +318,93 @@ public class MainViewController {
 		}
 	}
 
+	@FXML
+	private void openTimePicker() {
+		tempLabelTime.setVisible(false);
+		getTimePicker().setVisible(true);
+		closeOtherTimePickers();
+	}
+
+	@FXML
+	private void inputLabelTime(KeyEvent event) {
+		enterPressCounter++;
+		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 1) {
+			LocalTime time = getTimePicker().getValue();
+			tempLabelTime.setText(time + "-");
+		}
+		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 2) {
+			LocalTime time = getTimePicker().getValue();
+			tempLabelTime.setText(tempLabelTime.getText() + time);
+			getTimePicker().setVisible(false);
+			tempLabelTime.setVisible(true);
+			enterPressCounter = 0;
+		}
+	}
+
+	@FXML
+	private void setFirstLabelTime() {
+		tempLabelTime = firstLabelTime;
+		openTimePicker();
+	}
+
+	@FXML
+	private void setSecondLabelTime() {
+		tempLabelTime = secondLabelTime;
+		openTimePicker();
+	}
+
+	@FXML
+	private void setThirdLabelTime() {
+		tempLabelTime = thirdLabelTime;
+		openTimePicker();
+	}
+
+	@FXML
+	private void setFourthLabelTime() {
+		tempLabelTime = fourthLabelTime;
+		openTimePicker();
+	}
+
+	@FXML
+	private void setFifthLabelTime() {
+		tempLabelTime = fifthLabelTime;
+		openTimePicker();
+	}
+
+	public JFXTimePicker getTimePicker() {
+		if (tempLabelTime == firstLabelTime) {
+			return firstTimePicker;
+		} else if (tempLabelTime == secondLabelTime) {
+			return secondTimePicker;
+		} else if (tempLabelTime == thirdLabelTime) {
+			return thirdTimePicker;
+		} else if (tempLabelTime == fourthLabelTime) {
+			return fourthTimePicker;
+		} else
+			return fifthTimePicker;
+	}
+
+	private void closeOtherTimePickers() {
+		if (getTimePicker() != firstTimePicker) {
+			firstTimePicker.setVisible(false);
+			firstLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != secondTimePicker) {
+			secondTimePicker.setVisible(false);
+			secondLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != thirdTimePicker) {
+			thirdTimePicker.setVisible(false);
+			thirdLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != fourthTimePicker) {
+			fourthTimePicker.setVisible(false);
+			fourthLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != fifthTimePicker) {
+			fifthTimePicker.setVisible(false);
+			fifthLabelTime.setVisible(true);
+		}
+	}
+
 }
