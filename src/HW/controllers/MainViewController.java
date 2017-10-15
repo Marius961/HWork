@@ -21,26 +21,43 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class MainViewController {
-
+	
 	Calendar calendar = Calendar.getInstance();
+	
+	private Week week1 = new Week();
+	private Week week2 = new Week();
+
+	private int enterPressCounter = 0;
+	private int dayCounter = getCurrentDay();
+	
+	private boolean weekCount = false;
+
+	ToggleGroup rBWeeks = new ToggleGroup();
+	
+	Main main = new Main();
+	
 	@FXML
 	private TableView<Subject1> subjTable;
+	
 	@FXML
 	private TableColumn<Subject1, Integer> colTime;
 	@FXML
 	private TableColumn<Subject1, String> colSubject;
 	@FXML
 	private TableColumn<Subject1, String> colLecture;
-	@FXML
-	private Button topButton;
-	@FXML
-	private Button bottomButton;
-	@FXML
-	private Label dayName;
+	
 	@FXML
 	RadioButton secWeek;
 	@FXML
 	RadioButton firstWeek;
+	
+	@FXML
+	private Label dayName;
+	@FXML
+	private Button topButton;
+	@FXML
+	private Button bottomButton;
+		
 	@FXML
 	public Label firstLabelTime;
 	@FXML
@@ -52,6 +69,9 @@ public class MainViewController {
 	@FXML
 	public Label fifthLabelTime;
 	@FXML
+	private Label tempLabelTime;
+	
+	@FXML
 	private JFXTimePicker firstTimePicker;
 	@FXML
 	private JFXTimePicker secondTimePicker;
@@ -61,17 +81,9 @@ public class MainViewController {
 	private JFXTimePicker fourthTimePicker;
 	@FXML
 	private JFXTimePicker fifthTimePicker;
-	@FXML
-	private int dayCounter = getCurrentDay();
-	private boolean weekCount = false;
-	private Week week1 = new Week();
-	private Week week2 = new Week();
-	private Label tempLabelTime;
-	private int enterPressCounter = 0;
-
-	Main main = new Main();
-	// RB = RadioButton
-	ToggleGroup rBWeeks = new ToggleGroup();
+	
+	
+	
 
 	@FXML
 	private void initialize() {
@@ -104,7 +116,8 @@ public class MainViewController {
 			subjTable.refresh();
 		}
 	}
-
+	
+	@FXML
 	public void addClickListener() {
 		subjTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			try {
@@ -318,93 +331,5 @@ public class MainViewController {
 		}
 	}
 
-	@FXML
-	private void openTimePicker() {
-		tempLabelTime.setVisible(false);
-		getTimePicker().setVisible(true);
-		closeOtherTimePickers();
-	}
-
-	@FXML
-	private void inputLabelTime(KeyEvent event) {
-		enterPressCounter++;
-		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 1) {
-			LocalTime time = getTimePicker().getValue();
-			tempLabelTime.setText(time + "-");
-		}
-		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 2) {
-			LocalTime time = getTimePicker().getValue();
-			tempLabelTime.setText(tempLabelTime.getText() + time);
-			getTimePicker().setVisible(false);
-			tempLabelTime.setVisible(true);
-			enterPressCounter = 0;
-		}
-	}
-
-	@FXML
-	private void setFirstLabelTime() {
-		tempLabelTime = firstLabelTime;
-		openTimePicker();
-	}
-
-	@FXML
-	private void setSecondLabelTime() {
-		tempLabelTime = secondLabelTime;
-		openTimePicker();
-	}
-
-	@FXML
-	private void setThirdLabelTime() {
-		tempLabelTime = thirdLabelTime;
-		openTimePicker();
-	}
-
-	@FXML
-	private void setFourthLabelTime() {
-		tempLabelTime = fourthLabelTime;
-		openTimePicker();
-	}
-
-	@FXML
-	private void setFifthLabelTime() {
-		tempLabelTime = fifthLabelTime;
-		openTimePicker();
-	}
-
-	public JFXTimePicker getTimePicker() {
-		if (tempLabelTime == firstLabelTime) {
-			return firstTimePicker;
-		} else if (tempLabelTime == secondLabelTime) {
-			return secondTimePicker;
-		} else if (tempLabelTime == thirdLabelTime) {
-			return thirdTimePicker;
-		} else if (tempLabelTime == fourthLabelTime) {
-			return fourthTimePicker;
-		} else
-			return fifthTimePicker;
-	}
-
-	private void closeOtherTimePickers() {
-		if (getTimePicker() != firstTimePicker) {
-			firstTimePicker.setVisible(false);
-			firstLabelTime.setVisible(true);
-		}
-		if (getTimePicker() != secondTimePicker) {
-			secondTimePicker.setVisible(false);
-			secondLabelTime.setVisible(true);
-		}
-		if (getTimePicker() != thirdTimePicker) {
-			thirdTimePicker.setVisible(false);
-			thirdLabelTime.setVisible(true);
-		}
-		if (getTimePicker() != fourthTimePicker) {
-			fourthTimePicker.setVisible(false);
-			fourthLabelTime.setVisible(true);
-		}
-		if (getTimePicker() != fifthTimePicker) {
-			fifthTimePicker.setVisible(false);
-			fifthLabelTime.setVisible(true);
-		}
-	}
 
 }
