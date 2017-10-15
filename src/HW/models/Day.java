@@ -6,11 +6,12 @@ public class Day {
 	
 	private String name;
 	
+	private SubjectsList subjects = new SubjectsList();
+	
 	public Day (String name) {
 		this.name = name;
 	}
 
-	private SubjectsList subjects = new SubjectsList();
 	public void add(String name, String lect) {
 		subjects.addSubject(name, lect);
 	}

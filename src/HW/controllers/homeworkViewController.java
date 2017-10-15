@@ -3,12 +3,7 @@ package HW.controllers;
 
 import HW.models.Subject1;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class homeworkViewController {
@@ -33,11 +28,6 @@ public class homeworkViewController {
 	}
 	
 	@FXML
-	public void handleClean() {
-		homeworkField.setText("");
-	}
-	
-	@FXML
 	private void handleCancel() {
 		dialogStage.close();
 	}
@@ -45,7 +35,12 @@ public class homeworkViewController {
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
-
+	
+	@FXML
+	public void handleClean() {
+		homeworkField.setText("");
+	}
+	
 	public void setSubject(Subject1 subject) {
 		this.subject = subject;
 		homeworkField.setText(subject.getHomework());

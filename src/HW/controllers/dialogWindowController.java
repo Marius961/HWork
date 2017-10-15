@@ -10,13 +10,14 @@ import javafx.stage.Stage;
 public class dialogWindowController {
 	
 	@FXML
-	private TextField subjField;	
-	
+	private TextField subjField;		
 	@FXML
 	private TextField lectField;
 	
 	private Stage dialogStage;
+	
 	private Subject1 subject;
+	
 	private boolean okClicked = false;
 	
 	@FXML
@@ -32,20 +33,6 @@ public class dialogWindowController {
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
-	}
-	
-	public void setDialogStage(Stage dialogStage) {
-		this.dialogStage = dialogStage;
-	}
-
-	public void setSubject(Subject1 subject) {
-		this.subject = subject;
-		subjField.setText(subject.getName());
-		lectField.setText(subject.getLect());
-	}
-
-	public boolean isOkClicked() {
-		return okClicked;
 	}
 	
 	private boolean isInputValid() {
@@ -68,5 +55,19 @@ public class dialogWindowController {
 			alert.showAndWait();
 			return false;
 		}
+	}
+	
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
+	}
+
+	public void setSubject(Subject1 subject) {
+		this.subject = subject;
+		subjField.setText(subject.getName());
+		lectField.setText(subject.getLect());
+	}
+
+	public boolean isOkClicked() {
+		return okClicked;
 	}
 }

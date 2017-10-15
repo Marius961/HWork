@@ -6,18 +6,13 @@ import javafx.collections.ObservableList;
 public class Week {
 	
 	private ObservableList<Day> week = FXCollections.observableArrayList();
-	private Day Monday = new Day("Monday");
-	private Day Tuesday = new Day("Tuesday");
-	private Day Wednesday = new Day("Wednesday");
-	private Day Thursday = new Day("Thursday");
-	private Day Friday = new Day("Friday");
 	
 	public Week() {
-		week.add(Monday);
-		week.add(Tuesday);
-		week.add(Wednesday);
-		week.add(Thursday);
-		week.add(Friday);
+		week.add(new Day("Monday"));
+		week.add(new Day("Tuesday"));
+		week.add(new Day("Wednesday"));
+		week.add(new Day("Thursday"));
+		week.add(new Day("Friday"));
 	}
 	public String getHomework(int day,int subject) {
 		return getDay(day).getSubject(subject).getHomework();

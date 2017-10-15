@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class SubjectsList {
+	
 	private ObservableList<Subject1> subjects = FXCollections.observableArrayList();
 	
 	public ObservableList<Subject1> getSubjects() {

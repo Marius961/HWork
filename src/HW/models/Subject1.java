@@ -7,7 +7,6 @@ public class Subject1 {
 	private String homework;
 	
 	public Subject1() {
-		
 	}
 	
 	public Subject1(String name, String lect) {
