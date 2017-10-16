@@ -7,13 +7,14 @@ public class Week {
 	
 	private ObservableList<Day> week = FXCollections.observableArrayList();
 	
-	public Week() {
+	public Week() {		
 		week.add(new Day("Monday"));
 		week.add(new Day("Tuesday"));
 		week.add(new Day("Wednesday"));
 		week.add(new Day("Thursday"));
 		week.add(new Day("Friday"));
 	}
+	
 	public String getHomework(int day,int subject) {
 		return getDay(day).getSubject(subject).getHomework();
 	}

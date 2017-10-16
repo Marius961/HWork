@@ -1,15 +1,15 @@
 package HW.models;
 
-public class Subject1 {
+public class Subject {
 	
 	private String name;
 	private String lect;
 	private String homework;
 	
-	public Subject1() {
+	public Subject() {
 	}
 	
-	public Subject1(String name, String lect) {
+	public Subject(String name, String lect) {
 		this.name = name;
 		this.lect = lect;
 	}

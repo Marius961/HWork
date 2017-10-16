@@ -8,28 +8,28 @@ public class Day {
 	
 	private SubjectsList subjects = new SubjectsList();
 	
-	public Day (String name) {
+	public Day(String name) {
 		this.name = name;
 	}
 
-	public void add(String name, String lect) {
-		subjects.addSubject(name, lect);
+	public void addSubject(String name, String lect) {
+		subjects.add(name, lect);
 	}
 	
-	public void add(Subject1 subject) {
-		subjects.addSubject(subject);
+	public void addSubject(Subject subject) {
+		subjects.add(subject);
 	}
 
-	public ObservableList<Subject1> getSubjects() {
+	public ObservableList<Subject> getSubjects() {
 		return subjects.getSubjects();
 	}
 	
-	public Subject1 getSubject(int ind) {
-		return subjects.getSubject(ind);
+	public Subject getSubject(int ind) {
+		return subjects.get(ind);
 	}	
 	
 	public void removeSubject(int ind) {
-		subjects.removeSubject(ind);
+		subjects.remove(ind);
 	}
 	
 	public int getSize() {

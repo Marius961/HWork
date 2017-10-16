@@ -1,18 +1,19 @@
 package HW.controllers;
 
-
-import HW.models.Subject1;
+import HW.models.Subject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-public class homeworkViewController {
+public class HomeworkEditDialogController {
 	
 	@FXML
 	private TextArea homeworkField;	
 		
 	private Stage dialogStage;
-	private Subject1 subject;
+	
+	private Subject subject;
+	
 	private boolean saveClicked = false;
 	
 	@FXML
@@ -41,7 +42,7 @@ public class homeworkViewController {
 		homeworkField.setText("");
 	}
 	
-	public void setSubject(Subject1 subject) {
+	public void setSubject(Subject subject) {
 		this.subject = subject;
 		homeworkField.setText(subject.getHomework());
 	}

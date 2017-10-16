@@ -3,28 +3,28 @@ package HW.controllers;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
-import HW.models.Subject1;
+import HW.models.Subject;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
-public class dialogWindowController {
+public class EditDialogController {
 	
 	@FXML
-	private TextField subjField;		
+	private TextField subjectField;		
 	@FXML
-	private TextField lectField;
+	private TextField lectureField;
 	
 	private Stage dialogStage;
 	
-	private Subject1 subject;
+	private Subject subject;
 	
 	private boolean okClicked = false;
 	
 	@FXML
 	private void handleOk() {
 		if (isInputValid()) {
-			subject.setName(subjField.getText());
-			subject.setLect(lectField.getText());
+			subject.setName(subjectField.getText());
+			subject.setLect(lectureField.getText());
 			okClicked = true;
 			dialogStage.close();
 		}
@@ -38,10 +38,10 @@ public class dialogWindowController {
 	private boolean isInputValid() {
 		String errorMessage = "";
 
-		if (subjField.getText() == null || subjField.getText().length() == 0) {
+		if (subjectField.getText() == null || subjectField.getText().length() == 0) {
 			errorMessage += "No valid Subject!\n";
 		}
-		if (lectField.getText() == null || lectField.getText().length() == 0) {
+		if (lectureField.getText() == null || lectureField.getText().length() == 0) {
 			errorMessage += "No valid Lecturer!\n";
 		}
 		if (errorMessage.length() == 0) {
@@ -61,10 +61,10 @@ public class dialogWindowController {
 		this.dialogStage = dialogStage;
 	}
 
-	public void setSubject(Subject1 subject) {
+	public void setSubject(Subject subject) {
 		this.subject = subject;
-		subjField.setText(subject.getName());
-		lectField.setText(subject.getLect());
+		subjectField.setText(subject.getName());
+		lectureField.setText(subject.getLect());
 	}
 
 	public boolean isOkClicked() {

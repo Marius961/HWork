@@ -5,22 +5,22 @@ import javafx.collections.ObservableList;
 
 public class SubjectsList {
 	
-	private ObservableList<Subject1> subjects = FXCollections.observableArrayList();
+	private ObservableList<Subject> subjects = FXCollections.observableArrayList();
 	
-	public ObservableList<Subject1> getSubjects() {
+	public ObservableList<Subject> getSubjects() {
 		return subjects;
 	}
 
-	public void addSubject(String name, String lect) {
-		Subject1 temp = new Subject1(name , lect);
+	public void add(String name, String lect) {
+		Subject temp = new Subject(name , lect);
 		subjects.add(temp);
 	}
 
-	public void addSubject(Subject1 subject) {
+	public void add(Subject subject) {
 		subjects.add(subject);
 	}
 	
-	public void removeSubject(int ind) {
+	public void remove(int ind) {
 		subjects.remove(ind);
 	}
 	
@@ -28,7 +28,7 @@ public class SubjectsList {
 		return subjects.size();
 	}
 	
-	public Subject1 getSubject(int ind) {
+	public Subject get(int ind) {
 		return subjects.get(ind);
 	}
 	

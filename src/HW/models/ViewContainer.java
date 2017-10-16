@@ -3,9 +3,9 @@ package HW.models;
 import java.io.IOException;
 
 import HW.Main;
-import HW.controllers.dialogWindowController;
-import HW.controllers.homeworkViewController;
-import HW.models.Subject1;
+import HW.controllers.EditDialogController;
+import HW.controllers.HomeworkEditDialogController;
+import HW.models.Subject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ViewsContainer {
+public class ViewContainer {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	
@@ -32,10 +32,10 @@ public class ViewsContainer {
 		}
 	}
 	
-	public boolean showHWEditDialog(Subject1 subject) throws IOException {
+	public boolean initEditDialog(Subject subject) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("views/inputDialog.fxml"));
+			loader.setLocation(Main.class.getResource("views/EditDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 
 			Stage dialogStage = new Stage();
@@ -45,7 +45,7 @@ public class ViewsContainer {
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
 
-			dialogWindowController controller = loader.getController();
+			EditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setSubject(subject);
 			dialogStage.showAndWait();
@@ -56,7 +56,7 @@ public class ViewsContainer {
 		}
 	}
 	
-	public void showHWOverview() {
+	public void initMainView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/MainView.fxml"));
@@ -68,10 +68,10 @@ public class ViewsContainer {
 		}
 	}
 	
-	public boolean showHomeworkView(Subject1 subject) throws IOException {
+	public boolean initHomeworkEditDialog(Subject subject) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("views/homeworkView.fxml"));
+			loader.setLocation(Main.class.getResource("views/HomeworkEditDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 
 			Stage dialogStage = new Stage();
@@ -81,7 +81,7 @@ public class ViewsContainer {
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
 
-			homeworkViewController controller = loader.getController();
+			HomeworkEditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setSubject(subject);
 			dialogStage.showAndWait();

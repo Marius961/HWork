@@ -7,7 +7,7 @@ import java.util.Calendar;
 import com.jfoenix.controls.JFXTimePicker;
 
 import HW.Main;
-import HW.models.Subject1;
+import HW.models.Subject;
 import HW.models.Week;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,34 +30,36 @@ public class MainViewController {
 	private int enterPressCounter = 0;
 	private int dayCounter = getCurrentDay();
 	
-	private boolean weekCount = false;
+	private boolean isSecondWeek = false;
 
 	private ToggleGroup rBWeeks = new ToggleGroup();
 	
 	private  Main main = new Main();
 	
 	@FXML
-	private TableView<Subject1> subjTable;
+	private TableView<Subject> subjectTable;
 	
 	@FXML
-	private TableColumn<Subject1, Integer> colTime;
+	private TableColumn<Subject, Integer> colTime;
 	@FXML
-	private TableColumn<Subject1, String> colSubject;
+	private TableColumn<Subject, String> colSubject;
 	@FXML
-	private TableColumn<Subject1, String> colLecture;
+	private TableColumn<Subject, String> colLecture;
 	
 	@FXML
-	private RadioButton secWeek;
+	private RadioButton secondWeek;
 	@FXML
 	private RadioButton firstWeek;
 	
-	@FXML
-	private Label dayName;
+	
+	
 	@FXML
 	private Button topButton;
 	@FXML
 	private Button bottomButton;
-		
+	
+	@FXML
+	private Label dayName;	
 	@FXML
 	private Label firstLabelTime;
 	@FXML
@@ -88,37 +90,37 @@ public class MainViewController {
 		setToggleGroup();
 		firstWeek.setSelected(true);
 		setTableProperty();
-		addClickListener();
+		editHomeworkListener();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
 
 	}
 
 	@FXML
-	private void addButtonClickMethod() throws IOException {
-		Subject1 tempSubject = new Subject1();
-		boolean okClicked = main.showHWEditDialog(tempSubject);
+	private void handleAdd() throws IOException {
+		Subject tempSubject = new Subject();
+		boolean okClicked = main.initEditDialog(tempSubject);
 		if (okClicked) {
-			getWeekNum().getDay(dayCounter).add(tempSubject);
+			getWeekNum().getDay(dayCounter).addSubject(tempSubject);
 		}
 	}
 
 	@FXML
-	private void editButtonClickMethod() throws IOException {
-		Subject1 selectedSubject = subjTable.getSelectionModel().getSelectedItem();
+	private void handleEdit() throws IOException {
+		Subject selectedSubject = subjectTable.getSelectionModel().getSelectedItem();
 		if (selectedSubject != null) {
-			main.showHWEditDialog(selectedSubject);
-			subjTable.getSelectionModel().getSelectedItem().setName(selectedSubject.getName());
-			subjTable.getSelectionModel().getSelectedItem().setLect(selectedSubject.getLect());
-			subjTable.refresh();
+			main.initEditDialog(selectedSubject);
+			subjectTable.getSelectionModel().getSelectedItem().setName(selectedSubject.getName());
+			subjectTable.getSelectionModel().getSelectedItem().setLect(selectedSubject.getLect());
+			subjectTable.refresh();
 		}
 	}
 	
 	@FXML
-	private void addClickListener() {
-		subjTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+	private void editHomeworkListener() {
+		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			try {
-				clickOnSubject(newValue);
+				handleEditHomework(newValue);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -126,48 +128,43 @@ public class MainViewController {
 	}
 	
 	@FXML
-	public void delButtonClickMethod() {
-		int selectedIndex = subjTable.getSelectionModel().getSelectedIndex();
+	public void handleDelete() {
+		int selectedIndex = subjectTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
-			subjTable.getItems().remove(selectedIndex);
+			subjectTable.getItems().remove(selectedIndex);
 		}
 	}
 
 	@FXML
-	private void top() {
+	private void handleTop() {
 		if (dayCounter >= 1) {
 			dayCounter--;
-			subjTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
+			subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 			setButtonsNames();
 			dayName.setText(getDay(dayCounter));
 		}
 	}
 	
 	@FXML
-	private void down() {
+	private void handleDown() {
 		if (dayCounter <= 3) {
 			dayCounter++;
-			subjTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
+			subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 			setButtonsNames();
 			dayName.setText(getDay(dayCounter));
 		}
 	}
 
 	@FXML
-	private void refresh() {
-		subjTable.refresh();
+	private void handleFirstWeekRB() {
+		isSecondWeek = false;
+		subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 	}
 
 	@FXML
-	private void firstRBMethod() {
-		weekCount = false;
-		subjTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
-	}
-
-	@FXML
-	private void secRBMethod() {
-		weekCount = true;
-		subjTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
+	private void handleSecondWeekRB() {
+		isSecondWeek = true;
+		subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 
 	}
 	
@@ -251,36 +248,36 @@ public class MainViewController {
 		
 	private void setToggleGroup() {
 		firstWeek.setToggleGroup(rBWeeks);
-		secWeek.setToggleGroup(rBWeeks);
+		secondWeek.setToggleGroup(rBWeeks);
 	}
 	
 	private void setTableProperty() {
-		colSubject.setCellValueFactory(new PropertyValueFactory<Subject1, String>("name"));
-		colLecture.setCellValueFactory(new PropertyValueFactory<Subject1, String>("lect"));
-		subjTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
+		colSubject.setCellValueFactory(new PropertyValueFactory<Subject, String>("name"));
+		colLecture.setCellValueFactory(new PropertyValueFactory<Subject, String>("lect"));
+		subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 	}
 
 	private Week getWeekNum() {
-		if (weekCount == false) {
+		if (isSecondWeek == false) {
 			return week1;
 		}
-		if (weekCount == true) {
+		if (isSecondWeek == true) {
 			return week2;
 		}
 		return null;
 	}
 	
 	private void init() {
-		week1.getDay(0).add("Test subject Mon week 1", "Test lect Mon");
-		week1.getDay(1).add("Test subject Tue week 1", "Test lect Tue");
-		week1.getDay(2).add("Test subject Wed week 1", "Test lect Wed");
-		week1.getDay(3).add("Test subject Thu week 1", "Test lect Thu");
-		week1.getDay(4).add("Test subject Fri week 1", "Test lect Fri");
-		week2.getDay(0).add("Test subject Mon week 2", "Test lect Mon 2");
-		week2.getDay(1).add("Test subject Tue week 2", "Test lect Tue 2");
-		week2.getDay(2).add("Test subject Wed week 2", "Test lect Wed 2");
-		week2.getDay(3).add("Test subject Thu week 2", "Test lect Thu 2");
-		week2.getDay(4).add("Test subject Fri week 2", "Test lect Fri 2");
+		week1.getDay(0).addSubject("Test subject Mon week 1", "Test lect Mon");
+		week1.getDay(1).addSubject("Test subject Tue week 1", "Test lect Tue");
+		week1.getDay(2).addSubject("Test subject Wed week 1", "Test lect Wed");
+		week1.getDay(3).addSubject("Test subject Thu week 1", "Test lect Thu");
+		week1.getDay(4).addSubject("Test subject Fri week 1", "Test lect Fri");
+		week2.getDay(0).addSubject("Test subject Mon week 2", "Test lect Mon 2");
+		week2.getDay(1).addSubject("Test subject Tue week 2", "Test lect Tue 2");
+		week2.getDay(2).addSubject("Test subject Wed week 2", "Test lect Wed 2");
+		week2.getDay(3).addSubject("Test subject Thu week 2", "Test lect Thu 2");
+		week2.getDay(4).addSubject("Test subject Fri week 2", "Test lect Fri 2");
 	}
 	
 	private void setButtonsNames() {
@@ -306,10 +303,10 @@ public class MainViewController {
 	}
 
 
-	private void clickOnSubject(Subject1 subject) throws IOException {
+	private void handleEditHomework(Subject subject) throws IOException {
 		if (subject != null) {
-			main.showHomeworkView(subject);
-			subjTable.getSelectionModel().getSelectedItem().setHomework(subject.getHomework());
+			main.initHomeworkEditDialog(subject);
+			subjectTable.getSelectionModel().getSelectedItem().setHomework(subject.getHomework());
 		}
 	}
 	
@@ -331,9 +328,4 @@ public class MainViewController {
 	public String getDay(int count) {
 		return getWeekNum().getDay(count).getName();
 	}
-	
-	public Week getWeek1() {
-		return getWeekNum();
-	}
-	
 }
