@@ -1,0 +1,11 @@
+.topButton {
+    -fx-text-fill: blue;
+    -fx-background-color: red;
+}
+
+.pane {
+	-fx-background-color: #5464;
+}
+
+
+

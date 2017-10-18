@@ -19,6 +19,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class MainViewController {
 	
@@ -29,6 +30,8 @@ public class MainViewController {
 	
 	private int enterPressCounter = 0;
 	private int dayCounter = getCurrentDay();
+	
+	
 	
 	private boolean isSecondWeek = false;
 
@@ -51,7 +54,8 @@ public class MainViewController {
 	@FXML
 	private RadioButton firstWeek;
 	
-	
+	@FXML
+	AnchorPane pane;
 	
 	@FXML
 	private Button topButton;
@@ -93,6 +97,8 @@ public class MainViewController {
 		editHomeworkListener();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
+		topButton.getStyleClass().add("topButton");
+		pane.getStyleClass().add("pane");
 
 	}
 
@@ -129,6 +135,7 @@ public class MainViewController {
 	
 	@FXML
 	public void handleDelete() {
+		
 		int selectedIndex = subjectTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			subjectTable.getItems().remove(selectedIndex);

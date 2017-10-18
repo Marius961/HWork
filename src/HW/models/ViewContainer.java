@@ -62,6 +62,7 @@ public class ViewContainer {
 			loader.setLocation(Main.class.getResource("views/MainView.fxml"));
 			AnchorPane hwOverview = (AnchorPane) loader.load();
 			rootLayout.setCenter(hwOverview);
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();
