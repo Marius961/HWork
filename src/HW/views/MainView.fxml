@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="300.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8.0.141" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.MainViewController">
+<AnchorPane fx:id="pane" prefHeight="300.0" prefWidth="600.0" stylesheets="@../styles/MainViewStyles.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.MainViewController">
    <children>
-      <TableView fx:id="subjectTable" layoutX="88.0" layoutY="80.0" prefHeight="156.0" prefWidth="436.0">
+      <TableView fx:id="subjectTable" layoutX="88.0" layoutY="80.0" prefHeight="156.0" prefWidth="436.0" stylesheets="@../styles/MainViewStyles.css">
         <columns>
           <TableColumn fx:id="colSubject" prefWidth="244.0" text="Subject" />
           <TableColumn fx:id="colLecture" prefWidth="178.0" text="Lecture" />
@@ -23,19 +23,19 @@
          </columnResizePolicy>
       </TableView>
       <HBox layoutX="371.0" layoutY="243.0" spacing="5.0" />
-      <Button fx:id="topButton" layoutX="88.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleTop" prefHeight="25.0" prefWidth="408.0" text="Up" />
-      <Button fx:id="bottomButton" layoutX="88.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleDown" prefHeight="25.0" prefWidth="308.0" text="Down" />
-       <Label fx:id="dayName" alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="27.0" text="Day">
+      <Button fx:id="topButton" layoutX="88.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleTop" prefHeight="38.0" prefWidth="80.0" text="Up" />
+      <Button fx:id="bottomButton" layoutX="88.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleDown" prefHeight="38.0" prefWidth="84.0" text="Down" />
+       <Label fx:id="dayName" alignment="CENTER" contentDisplay="CENTER" layoutX="558.0" layoutY="140.0" text="Day">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
       <Button cache="true" graphicTextGap="0.0" layoutX="503.0" layoutY="55.0" mnemonicParsing="false" text="⚙" />
-      <RadioButton fx:id="secondWeek" layoutX="458.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleSecondWeekRB" text="2 week" />
+      <RadioButton fx:id="secondWeek" layoutX="505.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleSecondWeekRB" text="2 week" />
       <RadioButton fx:id="firstWeek" layoutX="393.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleFirstWeekRB" text="1 week" />
-      <Button layoutX="485.0" layoutY="239.0" maxWidth="79.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="10.0" prefWidth="39.0" text="Edit" />
-      <Button layoutX="439.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="25.0" prefWidth="39.0" text="Del" />
-      <Button layoutX="393.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="25.0" prefWidth="39.0" text="Add" />
+      <Button layoutX="524.0" layoutY="239.0" maxWidth="79.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="38.0" prefWidth="68.0" text="Edit" />
+      <Button layoutX="466.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="38.0" prefWidth="61.0" text="Del" />
+      <Button layoutX="393.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="38.0" prefWidth="61.0" text="Add" />
       <VBox layoutX="13.0" layoutY="106.0" prefHeight="117.0" prefWidth="68.0" spacing="8.0">
          <children>
             <Label fx:id="firstLabelTime" onMouseClicked="#setFirstLabelTime" text="Input time" />

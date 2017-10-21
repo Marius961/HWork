@@ -6,7 +6,6 @@ import HW.Main;
 import HW.controllers.EditDialogController;
 import HW.controllers.HomeworkEditDialogController;
 import HW.models.Subject;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;

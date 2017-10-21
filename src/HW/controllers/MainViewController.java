@@ -97,9 +97,6 @@ public class MainViewController {
 		editHomeworkListener();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
-		topButton.getStyleClass().add("topButton");
-		pane.getStyleClass().add("pane");
-
 	}
 
 	@FXML
