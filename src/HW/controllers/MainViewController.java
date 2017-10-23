@@ -7,6 +7,7 @@ import java.util.Calendar;
 import com.jfoenix.controls.JFXTimePicker;
 
 import HW.Main;
+import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.Week;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class MainViewController {
 	
@@ -32,7 +34,7 @@ public class MainViewController {
 	private int dayCounter = getCurrentDay();
 	
 	
-	
+	PropertiesContainer properties = new PropertiesContainer();
 	private boolean isSecondWeek = false;
 
 	private ToggleGroup rBWeeks = new ToggleGroup();
@@ -78,6 +80,10 @@ public class MainViewController {
 	private Label tempLabelTime;
 	
 	@FXML
+	VBox vb1;
+	VBox vb2;
+		
+	@FXML
 	private JFXTimePicker firstTimePicker;
 	@FXML
 	private JFXTimePicker secondTimePicker;
@@ -97,6 +103,7 @@ public class MainViewController {
 		editHomeworkListener();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
+		applyProperties();
 	}
 
 	@FXML
@@ -178,7 +185,23 @@ public class MainViewController {
 		getTimePicker().setVisible(true);
 		closeOtherTimePickers();
 	}
+	
+	@FXML
+	private void openProperties() throws IOException {
+		Boolean saveClicked = main.initPropertiesDialog(properties);
+		if (saveClicked) {
+			
+		}
+		
+	}
+	
+	private void applyProperties() {
+		
+	}
+	
+	private void displayTimePickers(Boolean value) {
 
+	}
 	@FXML
 	private void inputLabelTime(KeyEvent event) {
 		enterPressCounter++;
