@@ -2,12 +2,29 @@ package HW.controllers;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import HW.lang.Language;
+import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 public class EditDialogController {
+	
+	@FXML
+	Button okButton;
+	
+	@FXML
+	Button cancelButton;
+	
+	@FXML
+	Label subjectLabel;
+	
+	@FXML
+	Label lectureLabel;
+	
 	
 	@FXML
 	private TextField subjectField;		
@@ -19,6 +36,13 @@ public class EditDialogController {
 	private Subject subject;
 	
 	private boolean okClicked = false;
+	
+	PropertiesContainer properties;
+	
+	@FXML
+	private void initialize() {
+
+	}
 	
 	@FXML
 	private void handleOk() {
@@ -62,6 +86,7 @@ public class EditDialogController {
 	}
 
 	public void setSubject(Subject subject) {
+		
 		this.subject = subject;
 		subjectField.setText(subject.getName());
 		lectureField.setText(subject.getLect());
@@ -69,5 +94,12 @@ public class EditDialogController {
 
 	public boolean isOkClicked() {
 		return okClicked;
+	}
+	
+	private void setLanguage(Language lang) {
+			cancelButton.setText(lang.getEditDialog().getCancelButton());
+			lectureLabel.setText(lang.getEditDialog().getLectureLabel());
+			okButton.setText(lang.getEditDialog().getOkButton());
+			subjectLabel.setText(lang.getEditDialog().getSubjectLabel());
 	}
 }

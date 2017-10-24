@@ -7,6 +7,7 @@ import java.util.Calendar;
 import com.jfoenix.controls.JFXTimePicker;
 
 import HW.Main;
+import HW.lang.Language;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.Week;
@@ -63,6 +64,13 @@ public class MainViewController {
 	private Button topButton;
 	@FXML
 	private Button bottomButton;
+	@FXML
+	private Button addButton;
+	@FXML
+	private Button editButton;
+	@FXML
+	private Button deleteButton;
+	
 	
 	@FXML
 	private Label dayName;	
@@ -81,6 +89,7 @@ public class MainViewController {
 	
 	@FXML
 	VBox vb1;
+	@FXML
 	VBox vb2;
 		
 	@FXML
@@ -94,6 +103,7 @@ public class MainViewController {
 	@FXML
 	private JFXTimePicker fifthTimePicker;
 	
+
 	@FXML
 	private void initialize() {
 		init();
@@ -103,7 +113,7 @@ public class MainViewController {
 		editHomeworkListener();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
-		applyProperties();
+		applyProperties(properties);
 	}
 
 	@FXML
@@ -190,18 +200,20 @@ public class MainViewController {
 	private void openProperties() throws IOException {
 		Boolean saveClicked = main.initPropertiesDialog(properties);
 		if (saveClicked) {
-			
+			applyProperties(properties);
 		}
 		
 	}
 	
-	private void applyProperties() {
-		
+	private void applyProperties(PropertiesContainer properties) {
+		this.properties = properties;
+		setLanguage(this.properties.getLanguage());
 	}
 	
 	private void displayTimePickers(Boolean value) {
 
 	}
+	
 	@FXML
 	private void inputLabelTime(KeyEvent event) {
 		enterPressCounter++;
@@ -358,5 +370,18 @@ public class MainViewController {
 	
 	public String getDay(int count) {
 		return getWeekNum().getDay(count).getName();
+	}
+	
+
+	private void setLanguage(Language lang) {
+		topButton.setText(lang.getMainViewLang().getTopButton());
+		bottomButton.setText(lang.getMainViewLang().getBottomButton());
+		editButton.setText(lang.getMainViewLang().getEditButton());
+		addButton.setText(lang.getMainViewLang().getAddButton());
+		deleteButton.setText(lang.getMainViewLang().getDeleteButton());
+		firstWeek.setText(lang.getMainViewLang().getFirstWeek());
+		secondWeek.setText(lang.getMainViewLang().getSecondWeek());
+		colLecture.setText(lang.getMainViewLang().getColLecture());
+		colSubject.setText(lang.getMainViewLang().getColSubject());
 	}
 }

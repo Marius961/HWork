@@ -1,21 +1,36 @@
 package HW.models;
 
-
+import HW.controllers.EditDialogController;
+import HW.controllers.MainViewController;
+import HW.lang.Language;
+import HW.lang.LanguageList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.SelectionModel;
 
 public class PropertiesContainer {
-	
-	String language = "English";
+	LanguageList langList = new LanguageList();
+	Language lang = langList.getLanguage("English");
 	String Theme = "";
+	
+	
 	
 	int weeks = 2;
 	boolean displayTimePickers = true;
 	
-	public String getLanguage() {
-		return language;
+	public void applyLanguage(String language) {
+
+		
 	}
-	public void setLanguage(String language) {
-		this.language = language;
+	public Language getLanguage() {
+		return lang;
 	}
+	
+	public void setLanguage(Language lang) {
+		this.lang = lang;
+	}
+	
 	public String getTheme() {
 		return Theme;
 	}
@@ -35,6 +50,12 @@ public class PropertiesContainer {
 	public void setWeeks(int weeks) {
 		this.weeks = weeks;
 	}
+	
+	public void setLanguage() {
+		
+		
+	}
+
 	
 	
 }
