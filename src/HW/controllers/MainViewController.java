@@ -274,14 +274,10 @@ public class MainViewController {
 	}
 
 	private int getCurrentDay() {
-		if ((calendar.get(Calendar.DAY_OF_WEEK) - 2) < 0) {
+		if ((calendar.get(Calendar.DAY_OF_WEEK) - 2) < 0 || (calendar.get(Calendar.DAY_OF_WEEK) - 2) > 4) {
 			return 0;
-		}
-		if ((calendar.get(Calendar.DAY_OF_WEEK) - 2) > 4) {
-			System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
-			return 4;
 		} else
-			return calendar.get(Calendar.DAY_OF_WEEK) - 2;
+			return (calendar.get(Calendar.DAY_OF_WEEK) - 2);
 	}
 
 	private void handleEditHomework(Subject subject) throws IOException {
