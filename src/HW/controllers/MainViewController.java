@@ -194,33 +194,11 @@ public class MainViewController {
 	}
 
 	@FXML
-	private void setFirstLabelTime() {
-		tempLabelTime = firstLabelTime;
-		openTimePicker();
-	}
-
-	@FXML
-	private void setSecondLabelTime() {
-		tempLabelTime = secondLabelTime;
-		openTimePicker();
-	}
-
-	@FXML
-	private void setThirdLabelTime() {
-		tempLabelTime = thirdLabelTime;
-		openTimePicker();
-	}
-
-	@FXML
-	private void setFourthLabelTime() {
-		tempLabelTime = fourthLabelTime;
-		openTimePicker();
-	}
-
-	@FXML
-	private void setFifthLabelTime() {
-		tempLabelTime = fifthLabelTime;
-		openTimePicker();
+	private void labelClicked(MouseEvent mouseEvent) {
+		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+			tempLabelTime = (Label) mouseEvent.getSource();
+			openTimePicker();
+		}
 	}
 
 	private void closeOtherTimePickers() {

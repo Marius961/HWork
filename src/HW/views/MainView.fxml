@@ -38,11 +38,11 @@
       <Button layoutX="316.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="38.0" prefWidth="61.0" text="Add" />
       <VBox layoutX="13.0" layoutY="106.0" prefHeight="117.0" prefWidth="68.0" spacing="8.0">
          <children>
-            <Label fx:id="firstLabelTime" onMouseClicked="#setFirstLabelTime" text="Input time" />
-            <Label fx:id="secondLabelTime" onMouseClicked="#setSecondLabelTime" text="Label" />
-            <Label fx:id="thirdLabelTime" onMouseClicked="#setThirdLabelTime" text="Label" />
-            <Label fx:id="fourthLabelTime" onMouseClicked="#setFourthLabelTime" text="Label" />
-            <Label fx:id="fifthLabelTime" onMouseClicked="#setFifthLabelTime" text="Label" />
+            <Label fx:id="firstLabelTime" onMouseClicked="#labelClicked" text="Input time" />
+            <Label fx:id="secondLabelTime" onMouseClicked="#labelClicked" text="Label" />
+            <Label fx:id="thirdLabelTime" onMouseClicked="#labelClicked" text="Label" />
+            <Label fx:id="fourthLabelTime" onMouseClicked="#labelClicked" text="Label" />
+            <Label fx:id="fifthLabelTime" onMouseClicked="#labelClicked" text="Label" />
          </children>
       </VBox>
       <VBox layoutX="8.0" layoutY="99.0" pickOnBounds="false" prefHeight="150.0" prefWidth="80.0" spacing="2.0">
