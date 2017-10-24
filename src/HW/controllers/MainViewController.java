@@ -19,51 +19,51 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class MainViewController {
-	
+
 	Calendar calendar = Calendar.getInstance();
-	
+
 	private Week week1 = new Week();
 	private Week week2 = new Week();
-	
+
 	private int enterPressCounter = 0;
 	private int dayCounter = getCurrentDay();
-	
-	
-	
+
 	private boolean isSecondWeek = false;
 
 	private ToggleGroup rBWeeks = new ToggleGroup();
-	
-	private  Main main = new Main();
-	
+
+	private Main main = new Main();
+
 	@FXML
 	private TableView<Subject> subjectTable;
-	
+
 	@FXML
 	private TableColumn<Subject, Integer> colTime;
 	@FXML
 	private TableColumn<Subject, String> colSubject;
 	@FXML
 	private TableColumn<Subject, String> colLecture;
-	
+
 	@FXML
 	private RadioButton secondWeek;
 	@FXML
 	private RadioButton firstWeek;
-	
+
 	@FXML
 	AnchorPane pane;
-	
+
 	@FXML
 	private Button topButton;
 	@FXML
 	private Button bottomButton;
-	
+
 	@FXML
-	private Label dayName;	
+	private Label dayName;
 	@FXML
 	private Label firstLabelTime;
 	@FXML
@@ -76,7 +76,7 @@ public class MainViewController {
 	private Label fifthLabelTime;
 	@FXML
 	private Label tempLabelTime;
-	
+
 	@FXML
 	private JFXTimePicker firstTimePicker;
 	@FXML
@@ -87,16 +87,18 @@ public class MainViewController {
 	private JFXTimePicker fourthTimePicker;
 	@FXML
 	private JFXTimePicker fifthTimePicker;
-	
+	Subject listenedSubject;
+
 	@FXML
 	private void initialize() {
 		init();
 		setToggleGroup();
 		firstWeek.setSelected(true);
 		setTableProperty();
-		editHomeworkListener();
+		// editHomeworkListener();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
+		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
 	}
 
 	@FXML
@@ -118,21 +120,17 @@ public class MainViewController {
 			subjectTable.refresh();
 		}
 	}
-	
+
 	@FXML
-	private void editHomeworkListener() {
-		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			try {
-				handleEditHomework(newValue);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		});
+	private void openHomeWork(MouseEvent mouseEvent) throws IOException {
+		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+			handleEditHomework(listenedSubject);
+		}
 	}
-	
+
 	@FXML
 	public void handleDelete() {
-		
+
 		int selectedIndex = subjectTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			subjectTable.getItems().remove(selectedIndex);
@@ -148,7 +146,7 @@ public class MainViewController {
 			dayName.setText(getDay(dayCounter));
 		}
 	}
-	
+
 	@FXML
 	private void handleDown() {
 		if (dayCounter <= 3) {
@@ -171,7 +169,7 @@ public class MainViewController {
 		subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 
 	}
-	
+
 	@FXML
 	private void openTimePicker() {
 		tempLabelTime.setVisible(false);
@@ -225,8 +223,6 @@ public class MainViewController {
 		openTimePicker();
 	}
 
-	
-
 	private void closeOtherTimePickers() {
 		if (getTimePicker() != firstTimePicker) {
 			firstTimePicker.setVisible(false);
@@ -249,12 +245,12 @@ public class MainViewController {
 			fifthLabelTime.setVisible(true);
 		}
 	}
-		
+
 	private void setToggleGroup() {
 		firstWeek.setToggleGroup(rBWeeks);
 		secondWeek.setToggleGroup(rBWeeks);
 	}
-	
+
 	private void setTableProperty() {
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject, String>("name"));
 		colLecture.setCellValueFactory(new PropertyValueFactory<Subject, String>("lect"));
@@ -270,7 +266,7 @@ public class MainViewController {
 		}
 		return null;
 	}
-	
+
 	private void init() {
 		week1.getDay(0).addSubject("Test subject Mon week 1", "Test lect Mon");
 		week1.getDay(1).addSubject("Test subject Tue week 1", "Test lect Tue");
@@ -283,7 +279,7 @@ public class MainViewController {
 		week2.getDay(3).addSubject("Test subject Thu week 2", "Test lect Thu 2");
 		week2.getDay(4).addSubject("Test subject Fri week 2", "Test lect Fri 2");
 	}
-	
+
 	private void setButtonsNames() {
 		if (dayCounter == 0) {
 			topButton.setText("***");
@@ -310,16 +306,15 @@ public class MainViewController {
 			return calendar.get(Calendar.DAY_OF_WEEK) - 2;
 	}
 
-
 	private void handleEditHomework(Subject subject) throws IOException {
 		if (subject != null) {
 			main.initHomeworkEditDialog(subject);
 			subjectTable.getSelectionModel().getSelectedItem().setHomework(subject.getHomework());
 		}
 	}
-	
-//---------------------------------PUBLIC METHODS-----------------------//
-	
+
+	// ---------------------------------PUBLIC METHODS-----------------------//
+
 	public JFXTimePicker getTimePicker() {
 		if (tempLabelTime == firstLabelTime) {
 			return firstTimePicker;
@@ -332,7 +327,7 @@ public class MainViewController {
 		} else
 			return fifthTimePicker;
 	}
-	
+
 	public String getDay(int count) {
 		return getWeekNum().getDay(count).getName();
 	}
