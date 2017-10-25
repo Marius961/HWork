@@ -36,11 +36,19 @@ public class Main extends Application {
 		return viewContainer.initHomeworkEditDialog(subject);
 	}
 	
-	public boolean initPropertiesDialog(PropertiesContainer container) throws IOException {
-		return viewContainer.initPropertiesDialog(container);
+	public boolean initPropertiesDialog() throws IOException {
+		return viewContainer.initPropertiesDialog();
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public PropertiesContainer getProperties() {
+		return viewContainer.getProperties();
+	}
+	
+	public void setProperties(PropertiesContainer properties) {
+		viewContainer.setPrimaryStage(properties);
 	}
 }

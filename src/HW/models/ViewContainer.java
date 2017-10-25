@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 public class ViewContainer {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	PropertiesContainer properties = new PropertiesContainer();
 	
 	public void initRootLayout() {
 		try {
@@ -95,7 +96,7 @@ public class ViewContainer {
 		}
 	}
 	
-	public boolean initPropertiesDialog(PropertiesContainer container) throws IOException {
+	public boolean initPropertiesDialog() throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/PropertiesDialog.fxml"));
@@ -110,8 +111,9 @@ public class ViewContainer {
 
 			PropertiesDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			controller.setProperties(container);
+			controller.setProperties(properties);
 			dialogStage.showAndWait();
+			setProperties(properties);
 			return controller.isSaveClicked();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -135,6 +137,13 @@ public class ViewContainer {
 		this.rootLayout = rootLayout;
 	}
 	
+	public void setProperties(PropertiesContainer properties) {
+		this.properties = properties;
+	}
+	
+	public PropertiesContainer getProperties() {
+		return properties;
+	}
 	
 }
 

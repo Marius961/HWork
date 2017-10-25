@@ -150,7 +150,6 @@ public class MainViewController {
 
 	@FXML
 	public void handleDelete() {
-
 		int selectedIndex = subjectTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			subjectTable.getItems().remove(selectedIndex);
@@ -199,15 +198,16 @@ public class MainViewController {
 	
 	@FXML
 	private void openProperties() throws IOException {
-		Boolean saveClicked = main.initPropertiesDialog(properties);
+		Boolean saveClicked = main.initPropertiesDialog();
 		if (saveClicked) {
+			this.properties = main.getProperties();
 			applyProperties(properties);
 		}
 		
 	}
 	
 	private void applyProperties(PropertiesContainer properties) {
-		this.properties = properties;
+		
 		setLanguage(this.properties.getLanguage());
 	}
 	
@@ -355,5 +355,9 @@ public class MainViewController {
 		secondWeek.setText(lang.getMainViewLang().getSecondWeek());
 		colLecture.setText(lang.getMainViewLang().getColLecture());
 		colSubject.setText(lang.getMainViewLang().getColSubject());
+	}
+	
+	public void setProperties(PropertiesContainer container) {
+		this.properties = container;
 	}
 }

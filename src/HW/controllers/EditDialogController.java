@@ -5,6 +5,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import HW.Main;
 import HW.lang.Language;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
@@ -38,10 +39,12 @@ public class EditDialogController {
 	private boolean okClicked = false;
 	
 	PropertiesContainer properties;
+	Main main = new Main();
 	
 	@FXML
 	private void initialize() {
-
+		this.properties = main.getProperties();
+		setLanguage(properties.getLanguage());
 	}
 	
 	@FXML
@@ -86,7 +89,6 @@ public class EditDialogController {
 	}
 
 	public void setSubject(Subject subject) {
-		
 		this.subject = subject;
 		subjectField.setText(subject.getName());
 		lectureField.setText(subject.getLect());
@@ -97,6 +99,7 @@ public class EditDialogController {
 	}
 	
 	private void setLanguage(Language lang) {
+			System.out.println(lang.getEditDialog().getLectureLabel());
 			cancelButton.setText(lang.getEditDialog().getCancelButton());
 			lectureLabel.setText(lang.getEditDialog().getLectureLabel());
 			okButton.setText(lang.getEditDialog().getOkButton());
