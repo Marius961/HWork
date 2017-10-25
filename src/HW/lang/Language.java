@@ -2,13 +2,12 @@ package HW.lang;
 
 
 public class Language {
-	private String name;
+	private int langId = 0;
 	MainViewLang mainViewLang = new MainViewLang();
 	EditDialog editDialog = new EditDialog();
+	HomeworkEditDialogLang HomeworkEditDialog = new HomeworkEditDialogLang();
+	PropertiesDialogLang propertiesDialog = new PropertiesDialogLang();
 	
-	public Language(String name) {
-		this.name = name;
-	}
 
 	public MainViewLang getMainViewLang() {
 		return mainViewLang;
@@ -18,9 +17,6 @@ public class Language {
 		this.mainViewLang = mainViewLang;
 	}
 
-	public String getName() {
-		return name;
-	}
 
 	public EditDialog getEditDialog() {
 		return editDialog;
@@ -29,5 +25,32 @@ public class Language {
 	public void setEditDialog(EditDialog editDialog) {
 		this.editDialog = editDialog;
 	}
+
+	public HomeworkEditDialogLang getHomeworkEditDialog() {
+		return HomeworkEditDialog;
+	}
+
+	public void setHomeworkEditDialog(HomeworkEditDialogLang homeworkEditDialog) {
+		HomeworkEditDialog = homeworkEditDialog;
+	}
+
+	public PropertiesDialogLang getPropertiesDialog() {
+		return propertiesDialog;
+	}
+
+	public void setPropertiesDialog(PropertiesDialogLang propertiesDialog) {
+		this.propertiesDialog = propertiesDialog;
+	}
+
+	public int getLangId() {
+		return langId;
+	}
+
+	public void setLangId(int langId) {
+		this.langId = langId;
+	}
+
+
+	
 	
 }

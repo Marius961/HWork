@@ -10,18 +10,18 @@
    <children>
       <CheckBox fx:id="displayTimePickers" layoutX="31.0" layoutY="244.0" mnemonicParsing="false" text="display time" />
       <ChoiceBox fx:id="cBLanguages" layoutX="137.0" layoutY="40.0" prefWidth="150.0" />
-      <Label layoutX="27.0" layoutY="14.0" text="General:" />
-      <Label layoutX="26.0" layoutY="40.0" prefHeight="38.0" prefWidth="95.0" text="Language:" />
-      <Label layoutX="27.0" layoutY="149.0" text="Appearance:" />
+      <Label fx:id="generalLabel" layoutX="27.0" layoutY="14.0" text="General:" />
+      <Label fx:id="languageLabel" layoutX="26.0" layoutY="40.0" prefHeight="38.0" prefWidth="95.0" text="Language:" />
+      <Label fx:id="appearanceLabel" layoutX="27.0" layoutY="149.0" text="Appearance:" />
       <ChoiceBox fx:id="cBThemes" layoutX="137.0" layoutY="184.0" prefHeight="38.0" prefWidth="107.0" />
-      <Label layoutX="31.0" layoutY="184.0" prefHeight="38.0" prefWidth="55.0" text="Theme:" />
-      <Label layoutX="26.0" layoutY="98.0" text="2 weeks/1 week shedule:" />
+      <Label fx:id="themeLabel" layoutX="31.0" layoutY="184.0" prefHeight="38.0" prefWidth="55.0" text="Theme:" />
+      <Label fx:id="weeksLabel" layoutX="26.0" layoutY="98.0" text="2 weeks/1 week shedule:" />
       <ChoiceBox fx:id="cBWeeks" layoutX="229.0" layoutY="92.0" prefHeight="38.0" prefWidth="62.0" />
-      <Button layoutX="117.0" layoutY="369.0" mnemonicParsing="false" text="Import" />
-      <Button layoutX="200.0" layoutY="369.0" mnemonicParsing="false" text="Export" />
-      <Label layoutX="17.0" layoutY="337.0" prefHeight="26.0" prefWidth="204.0" text="Import or export settings:" />
-      <Button layoutX="244.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
-      <Button layoutX="312.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
-      <Button layoutX="19.0" layoutY="448.0" mnemonicParsing="false" text="Default" />
+      <Button fx:id="importButton" layoutX="117.0" layoutY="369.0" mnemonicParsing="false" text="Import" />
+      <Button fx:id="exportButton" layoutX="200.0" layoutY="369.0" mnemonicParsing="false" text="Export" />
+      <Label fx:id="ieLabel" layoutX="17.0" layoutY="337.0" prefHeight="26.0" prefWidth="204.0" text="Import or export settings:" />
+      <Button fx:id="saveButton" layoutX="244.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+      <Button fx:id="cancelButton" layoutX="312.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <Button fx:id="defaultButton" layoutX="19.0" layoutY="448.0" mnemonicParsing="false" text="Default" />
    </children>
 </AnchorPane>

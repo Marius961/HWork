@@ -7,15 +7,14 @@ public class LanguageList {
 	ObservableList<Language> langList = FXCollections.observableArrayList();
 	
 	public LanguageList() {
-		langList.add(new Language("English"));
-		langList.add(new Language("Ukrainian"));
+		langList.add(new Language());
+		langList.add(new Language());
 		initUkrainianLang();
 		initEnglishLang();
 	}
 
-	private void initUkrainianLang() {		
-		langList.get(1).getMainViewLang().setTopButton("Вверх");
-		langList.get(1).getMainViewLang().setBottomButton("Вниз");				
+	private void initUkrainianLang() {	
+		langList.get(1).getMainViewLang().dayAdd("Пн","Вт","Ср","Чт","Пт");
 		langList.get(1).getMainViewLang().setEditButton("Редагувати");
 		langList.get(1).getMainViewLang().setAddButton("Додати");				
 		langList.get(1).getMainViewLang().setDeleteButton("Видалити");	
@@ -38,10 +37,28 @@ public class LanguageList {
 		langList.get(1).getEditDialog().setOkButton("OK");
 		langList.get(1).getEditDialog().setSubjectLabel("Предмет");
 		
+		langList.get(1).getHomeworkEditDialog().setCancelButton("Скасувати");
+		langList.get(1).getHomeworkEditDialog().setCleanButton("Очистити");
+		langList.get(1).getHomeworkEditDialog().setHomeworkLabel("Домашнє завдання:");
+		langList.get(1).getHomeworkEditDialog().setSaveButton("Зберегти");
+		
+		langList.get(1).getPropertiesDialog().setAppearanceLabel("Відображення:");
+		langList.get(1).getPropertiesDialog().setCancelButton("Скасувати");
+		langList.get(1).getPropertiesDialog().setDefaultButton("За замовчуванням");
+		langList.get(1).getPropertiesDialog().setDisplayTimePickers("Показувати час");
+		langList.get(1).getPropertiesDialog().setExportButton("Експорт");
+		langList.get(1).getPropertiesDialog().setGeneral("Основне:");
+		langList.get(1).getPropertiesDialog().setIeLabel("Імпорт або експорт налаштувань:");
+		langList.get(1).getPropertiesDialog().setImportButton("Імпорт");
+		langList.get(1).getPropertiesDialog().setLanguageLabel("Мова:");
+		langList.get(1).getPropertiesDialog().setSaveButton("Зберегти");
+		langList.get(1).getPropertiesDialog().setThemeLabel("Тема:");
+		langList.get(1).getPropertiesDialog().setWeeksLabel("2 тижневий/1 тижневий розклад:");
+		langList.get(1).getPropertiesDialog().setLanguage1("Англійська");
+		langList.get(1).getPropertiesDialog().setLanguage2("Україньська");
 	}
 	private void initEnglishLang() {
-		langList.get(0).getMainViewLang().setTopButton("Up");
-		langList.get(0).getMainViewLang().setBottomButton("Down");				
+		langList.get(0).getMainViewLang().dayAdd("Mn","Tu","We","Th","Fr");
 		langList.get(0).getMainViewLang().setEditButton("Edit");
 		langList.get(0).getMainViewLang().setAddButton("Add");				
 		langList.get(0).getMainViewLang().setDeleteButton("Delete");	
@@ -63,6 +80,26 @@ public class LanguageList {
 		langList.get(0).getEditDialog().setLectureLabel("Lecture");
 		langList.get(0).getEditDialog().setOkButton("OK");
 		langList.get(0).getEditDialog().setSubjectLabel("Subject");
+		
+		langList.get(0).getHomeworkEditDialog().setCancelButton("Cancel");
+		langList.get(0).getHomeworkEditDialog().setCleanButton("Clean");
+		langList.get(0).getHomeworkEditDialog().setHomeworkLabel("Homework:");
+		langList.get(0).getHomeworkEditDialog().setSaveButton("Save");
+		
+		langList.get(0).getPropertiesDialog().setAppearanceLabel("Appearance");
+		langList.get(0).getPropertiesDialog().setCancelButton("Cancel");
+		langList.get(0).getPropertiesDialog().setDefaultButton("Default");
+		langList.get(0).getPropertiesDialog().setDisplayTimePickers("DisplayTime");
+		langList.get(0).getPropertiesDialog().setExportButton("Export");
+		langList.get(0).getPropertiesDialog().setGeneral("General");
+		langList.get(0).getPropertiesDialog().setIeLabel("Import or export settings:");
+		langList.get(0).getPropertiesDialog().setImportButton("Import");
+		langList.get(0).getPropertiesDialog().setLanguageLabel("Language:");
+		langList.get(0).getPropertiesDialog().setSaveButton("Save");
+		langList.get(0).getPropertiesDialog().setThemeLabel("Theme:");
+		langList.get(0).getPropertiesDialog().setWeeksLabel("2 weeks/1 week shedule:");
+		langList.get(0).getPropertiesDialog().setLanguage2("Ukrainian");
+		langList.get(0).getPropertiesDialog().setLanguage1("English");
 	}
 	
 	

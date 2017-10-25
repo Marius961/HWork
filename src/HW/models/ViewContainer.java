@@ -50,6 +50,7 @@ public class ViewContainer {
 
 			EditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
+			controller.applyProperties(properties);
 			controller.setSubject(subject);
 			dialogStage.showAndWait();
 			return controller.isOkClicked();
@@ -87,6 +88,7 @@ public class ViewContainer {
 
 			HomeworkEditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
+			controller.applyProperties(properties);
 			controller.setSubject(subject);
 			dialogStage.showAndWait();
 			return controller.isSaveClicked();
@@ -111,9 +113,10 @@ public class ViewContainer {
 
 			PropertiesDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			controller.setProperties(properties);
-			dialogStage.showAndWait();
+			controller.applyProperties(properties);
 			setProperties(properties);
+			dialogStage.showAndWait();
+
 			return controller.isSaveClicked();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -137,7 +140,7 @@ public class ViewContainer {
 		this.rootLayout = rootLayout;
 	}
 	
-	public void setProperties(PropertiesContainer properties) {
+	public void setProperties(PropertiesContainer properties) {		
 		this.properties = properties;
 	}
 	

@@ -1,11 +1,11 @@
 package HW.lang;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class MainViewLang {
 	
 //  BUTTONS
-	private String topButton;
-	private String bottomButton;
 	private String addButton;
 	private String editButton;
 	private String deleteButton;
@@ -26,17 +26,13 @@ public class MainViewLang {
 	private String fourthLabelTime;
 	private String fifthLabelTime;
 	
-	public String getTopButton() {
-		return topButton;
+	ObservableList<String> days = FXCollections.observableArrayList();
+	
+	public void dayAdd(String day0, String day1 ,String day2 , String day3, String day4) {
+		days.addAll(day0, day1, day2, day3, day4);
 	}
-	public void setTopButton(String topButton) {
-		this.topButton = topButton;
-	}
-	public String getBottomButton() {
-		return bottomButton;
-	}
-	public void setBottomButton(String bottomButton) {
-		this.bottomButton = bottomButton;
+	public String getDay(int ind) {
+		return days.get(ind);
 	}
 	public String getAddButton() {
 		return addButton;

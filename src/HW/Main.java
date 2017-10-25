@@ -49,6 +49,6 @@ public class Main extends Application {
 	}
 	
 	public void setProperties(PropertiesContainer properties) {
-		viewContainer.setPrimaryStage(properties);
+		viewContainer.setProperties(properties);
 	}
 }

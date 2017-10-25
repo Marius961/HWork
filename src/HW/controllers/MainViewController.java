@@ -199,16 +199,18 @@ public class MainViewController {
 	@FXML
 	private void openProperties() throws IOException {
 		Boolean saveClicked = main.initPropertiesDialog();
-		if (saveClicked) {
-			this.properties = main.getProperties();
-			applyProperties(properties);
+		if (saveClicked) {			
+			applyProperties(main.getProperties());
 		}
 		
 	}
 	
 	private void applyProperties(PropertiesContainer properties) {
-		
+		if (this.properties != properties) {
+			this.properties = properties;						
+		}
 		setLanguage(this.properties.getLanguage());
+		setButtonsNames();
 	}
 	
 	private void displayTimePickers(Boolean value) {
@@ -341,13 +343,11 @@ public class MainViewController {
 	}
 
 	public String getDay(int count) {
-		return getWeekNum().getDay(count).getName();
+		return properties.getLanguage().getMainViewLang().getDay(count);
 	}
 	
 
 	private void setLanguage(Language lang) {
-		topButton.setText(lang.getMainViewLang().getTopButton());
-		bottomButton.setText(lang.getMainViewLang().getBottomButton());
 		editButton.setText(lang.getMainViewLang().getEditButton());
 		addButton.setText(lang.getMainViewLang().getAddButton());
 		deleteButton.setText(lang.getMainViewLang().getDeleteButton());
