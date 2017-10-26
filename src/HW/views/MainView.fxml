@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="pane" prefHeight="300.0" prefWidth="600.0" stylesheets="@../styles/MainViewStyles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.MainViewController">
    <children>
-      <TableView fx:id="subjectTable" layoutX="88.0" layoutY="80.0" onMouseClicked="#openHomeWork" prefHeight="156.0" prefWidth="436.0" stylesheets="@../styles/MainViewStyles.css">
+      <TableView fx:id="subjectTable" focusTraversable="false" layoutX="88.0" layoutY="80.0" onMouseClicked="#openHomeWork" prefHeight="156.0" prefWidth="436.0" stylesheets="@../styles/MainViewStyles.css">
         <columns>
           <TableColumn fx:id="colSubject" prefWidth="244.0" text="Subject" />
           <TableColumn fx:id="colLecture" prefWidth="178.0" text="Lecture" />
@@ -36,22 +36,22 @@
       <Button layoutX="462.0" layoutY="239.0" maxWidth="79.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="38.0" prefWidth="68.0" text="Edit" />
       <Button layoutX="392.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="38.0" prefWidth="61.0" text="Del" />
       <Button layoutX="316.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="38.0" prefWidth="61.0" text="Add" />
-      <VBox layoutX="13.0" layoutY="106.0" prefHeight="117.0" prefWidth="68.0" spacing="8.0">
+      <VBox layoutX="32.0" layoutY="110.0" prefHeight="117.0" prefWidth="68.0" spacing="8.0">
          <children>
-            <Label fx:id="firstLabelTime" onMouseClicked="#labelClicked" text="Input time" />
-            <Label fx:id="secondLabelTime" onMouseClicked="#labelClicked" text="Label" />
-            <Label fx:id="thirdLabelTime" onMouseClicked="#labelClicked" text="Label" />
-            <Label fx:id="fourthLabelTime" onMouseClicked="#labelClicked" text="Label" />
-            <Label fx:id="fifthLabelTime" onMouseClicked="#labelClicked" text="Label" />
+            <Label fx:id="firstLabelTime" text="Input time" />
+            <Label fx:id="secondLabelTime" text="Label" />
+            <Label fx:id="thirdLabelTime" text="Label" />
+            <Label fx:id="fourthLabelTime" text="Label" />
+            <Label fx:id="fifthLabelTime" text="Label" />
          </children>
       </VBox>
-      <VBox layoutX="8.0" layoutY="99.0" pickOnBounds="false" prefHeight="150.0" prefWidth="80.0" spacing="2.0">
+      <VBox layoutX="-4.0" layoutY="106.0" pickOnBounds="false" prefHeight="117.0" prefWidth="36.0">
          <children>
-            <JFXTimePicker fx:id="firstTimePicker" onKeyPressed="#inputLabelTime" prefHeight="0.0" prefWidth="85.0" visible="false" />
-            <JFXTimePicker fx:id="secondTimePicker" onKeyPressed="#inputLabelTime" prefHeight="1.0" prefWidth="85.0" visible="false" />
-            <JFXTimePicker fx:id="thirdTimePicker" onKeyPressed="#inputLabelTime" prefHeight="0.0" prefWidth="85.0" visible="false" />
-            <JFXTimePicker fx:id="fourthTimePicker" onKeyPressed="#inputLabelTime" prefHeight="0.0" prefWidth="85.0" visible="false" />
-            <JFXTimePicker fx:id="fifthTimePicker" onKeyPressed="#inputLabelTime" prefHeight="0.0" prefWidth="85.0" visible="false" />
+            <JFXTimePicker fx:id="firstTimePicker" onMouseClicked="#getTimePicker" prefHeight="0.0" prefWidth="0.0" />
+            <JFXTimePicker fx:id="secondTimePicker" onMouseClicked="#getTimePicker" prefHeight="0.0" prefWidth="0.0" />
+            <JFXTimePicker fx:id="thirdTimePicker" onMouseClicked="#getTimePicker" prefHeight="0.0" prefWidth="0.0" />
+            <JFXTimePicker fx:id="fourthTimePicker" onMouseClicked="#getTimePicker" prefHeight="0.0" prefWidth="0.0" />
+            <JFXTimePicker fx:id="fifthTimePicker" onMouseClicked="#getTimePicker" prefHeight="0.0" prefWidth="0.0" />
          </children>
       </VBox>
    </children>

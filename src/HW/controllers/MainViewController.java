@@ -17,8 +17,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -87,6 +85,7 @@ public class MainViewController {
 	private JFXTimePicker fourthTimePicker;
 	@FXML
 	private JFXTimePicker fifthTimePicker;
+	private JFXTimePicker tempTimePicker;
 	Subject listenedSubject;
 
 	@FXML
@@ -95,7 +94,6 @@ public class MainViewController {
 		setToggleGroup();
 		firstWeek.setSelected(true);
 		setTableProperty();
-		// editHomeworkListener();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
 		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
@@ -172,55 +170,14 @@ public class MainViewController {
 
 	@FXML
 	private void openTimePicker() {
-		tempLabelTime.setVisible(false);
-		getTimePicker().setVisible(true);
-		closeOtherTimePickers();
+		tempTimePicker.setIs24HourView(true);
 	}
 
-	@FXML
-	private void inputLabelTime(KeyEvent event) {
-		enterPressCounter++;
-		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 1) {
-			LocalTime time = getTimePicker().getValue();
-			tempLabelTime.setText(time + "-");
-		}
-		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 2) {
-			LocalTime time = getTimePicker().getValue();
-			tempLabelTime.setText(tempLabelTime.getText() + time);
-			getTimePicker().setVisible(false);
-			tempLabelTime.setVisible(true);
-			enterPressCounter = 0;
-		}
-	}
-
-	@FXML
-	private void labelClicked(MouseEvent mouseEvent) {
-		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
-			tempLabelTime = (Label) mouseEvent.getSource();
-			openTimePicker();
-		}
-	}
-
-	private void closeOtherTimePickers() {
-		if (getTimePicker() != firstTimePicker) {
-			firstTimePicker.setVisible(false);
-			firstLabelTime.setVisible(true);
-		}
-		if (getTimePicker() != secondTimePicker) {
-			secondTimePicker.setVisible(false);
-			secondLabelTime.setVisible(true);
-		}
-		if (getTimePicker() != thirdTimePicker) {
-			thirdTimePicker.setVisible(false);
-			thirdLabelTime.setVisible(true);
-		}
-		if (getTimePicker() != fourthTimePicker) {
-			fourthTimePicker.setVisible(false);
-			fourthLabelTime.setVisible(true);
-		}
-		if (getTimePicker() != fifthTimePicker) {
-			fifthTimePicker.setVisible(false);
-			fifthLabelTime.setVisible(true);
+	private void setClickedLabel() {
+		if (tempTimePicker == firstTimePicker) {
+			tempLabelTime = firstLabelTime;
+		} else if (tempTimePicker == secondTimePicker) {
+			tempLabelTime = secondLabelTime;
 		}
 	}
 
@@ -289,17 +246,20 @@ public class MainViewController {
 
 	// ---------------------------------PUBLIC METHODS-----------------------//
 
-	public JFXTimePicker getTimePicker() {
-		if (tempLabelTime == firstLabelTime) {
-			return firstTimePicker;
-		} else if (tempLabelTime == secondLabelTime) {
-			return secondTimePicker;
-		} else if (tempLabelTime == thirdLabelTime) {
-			return thirdTimePicker;
-		} else if (tempLabelTime == fourthLabelTime) {
-			return fourthTimePicker;
-		} else
-			return fifthTimePicker;
+	public void getTimePicker(MouseEvent mouseEvent) {
+		if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+			tempTimePicker = (JFXTimePicker) mouseEvent.getSource();
+			setClickedLabel();
+		}
+		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+			LocalTime time = tempTimePicker.getValue();
+			tempLabelTime.setText(time + "-");
+		}
+		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+			LocalTime time = tempTimePicker.getValue();
+			tempLabelTime.setText(tempLabelTime.getText() + time);
+			enterPressCounter = 0;
+		}
 	}
 
 	public String getDay(int count) {
