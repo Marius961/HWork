@@ -1,13 +1,7 @@
 package HW.models;
 
-import HW.controllers.EditDialogController;
-import HW.controllers.MainViewController;
 import HW.lang.Language;
 import HW.lang.LanguageList;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.SelectionModel;
 
 public class PropertiesContainer {
 	private LanguageList langList = new LanguageList();

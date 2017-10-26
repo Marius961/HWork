@@ -1,21 +1,16 @@
 package HW.controllers;
 
 
-import HW.Main;
 import HW.lang.Language;
 import HW.lang.LanguageList;
 import HW.models.PropertiesContainer;
-import HW.models.Subject;
-import HW.models.ViewContainer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class PropertiesDialogController {
@@ -27,7 +22,6 @@ public class PropertiesDialogController {
 	private PropertiesContainer properties = new PropertiesContainer();
 	
 	private ObservableList<String> themes = FXCollections.observableArrayList("Classic", "Dark");
-	private ObservableList<String> weeks = FXCollections.observableArrayList("1" , "2");
 	private ObservableList<String> languages = FXCollections.observableArrayList();
 	
 	@FXML
