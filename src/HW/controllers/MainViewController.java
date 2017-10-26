@@ -19,6 +19,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +32,6 @@ public class MainViewController {
 	private Week week1 = new Week();
 	private Week week2 = new Week();
 
-	private int enterPressCounter = 0;
 	private int dayCounter = getCurrentDay();
 
 	private PropertiesContainer properties = new PropertiesContainer();
@@ -97,7 +98,7 @@ public class MainViewController {
 	private JFXTimePicker fourthTimePicker;
 	@FXML
 	private JFXTimePicker fifthTimePicker;
-	private JFXTimePicker tempTimePicker;
+	private int enterPressCounter = 0;
 
 	@FXML
 	private void initialize() {
@@ -188,24 +189,64 @@ public class MainViewController {
 	}
 
 	@FXML
-	private void openTimePicker() {
-		tempTimePicker.setIs24HourView(true);
-	}
-
-	private void setClickedLabel() {
-		if (tempTimePicker == firstTimePicker) {
-			tempLabelTime = firstLabelTime;
-		} else if (tempTimePicker == secondTimePicker) {
-			tempLabelTime = secondLabelTime;
+	private void labelClicked(MouseEvent mouseEvent) {
+		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+			tempLabelTime = (Label) mouseEvent.getSource();
+			getTimePicker().setVisible(true);
+			getTimePicker().setIs24HourView(true);
+			closeOtherTimePickers();
 		}
 	}
 
 	@FXML
-	private void labelClicked(MouseEvent mouseEvent) {
-		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
-			tempLabelTime = (Label) mouseEvent.getSource();
-			openTimePicker();
+	private void inputLabelTime(KeyEvent event) {
+		enterPressCounter++;
+		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 1) {
+			LocalTime time = getTimePicker().getValue();
+			tempLabelTime.setText(time + "-");
 		}
+		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 2) {
+			LocalTime time = getTimePicker().getValue();
+			tempLabelTime.setText(tempLabelTime.getText() + time);
+			getTimePicker().setVisible(false);
+			enterPressCounter = 0;
+		}
+	}
+
+	private void closeOtherTimePickers() {
+		if (getTimePicker() != firstTimePicker) {
+			firstTimePicker.setVisible(false);
+			firstLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != secondTimePicker) {
+			secondTimePicker.setVisible(false);
+			secondLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != thirdTimePicker) {
+			thirdTimePicker.setVisible(false);
+			thirdLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != fourthTimePicker) {
+			fourthTimePicker.setVisible(false);
+			fourthLabelTime.setVisible(true);
+		}
+		if (getTimePicker() != fifthTimePicker) {
+			fifthTimePicker.setVisible(false);
+			fifthLabelTime.setVisible(true);
+		}
+	}
+
+	public JFXTimePicker getTimePicker() {
+		if (tempLabelTime == firstLabelTime) {
+			return firstTimePicker;
+		} else if (tempLabelTime == secondLabelTime) {
+			return secondTimePicker;
+		} else if (tempLabelTime == thirdLabelTime) {
+			return thirdTimePicker;
+		} else if (tempLabelTime == fourthLabelTime) {
+			return fourthTimePicker;
+		} else
+			return fifthTimePicker;
 	}
 
 	private void setProperties(PropertiesContainer properties) {
@@ -295,24 +336,6 @@ public class MainViewController {
 		if (subject != null) {
 			main.initHomeworkEditDialog(subject);
 			subjectTable.getSelectionModel().getSelectedItem().setHomework(subject.getHomework());
-		}
-	}
-
-	// ---------------------------------PUBLIC METHODS-----------------------//
-
-	public void getTimePicker(MouseEvent mouseEvent) {
-		if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-			tempTimePicker = (JFXTimePicker) mouseEvent.getSource();
-			setClickedLabel();
-		}
-		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
-			LocalTime time = tempTimePicker.getValue();
-			tempLabelTime.setText(time + "-");
-		}
-		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
-			LocalTime time = tempTimePicker.getValue();
-			tempLabelTime.setText(tempLabelTime.getText() + time);
-			enterPressCounter = 0;
 		}
 	}
 
