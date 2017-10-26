@@ -22,6 +22,9 @@ public class PropertiesDialogController {
 	
 	@FXML
 	CheckBox displayTimePickers;
+	
+	@FXML
+	CheckBox twoWeeksShedule;
 	@FXML
 	TextField tf;
 	@FXML
@@ -64,7 +67,6 @@ public class PropertiesDialogController {
 	@FXML
 	private void initialize() {
 		cBLanguages.setItems(languages);
-		cBWeeks.setItems(weeks);
 		cBThemes.setItems(themes);	
 	}
 	
@@ -89,16 +91,33 @@ public class PropertiesDialogController {
 		return saveClicked;
 	}
 	
-	public void applyProperties(PropertiesContainer properties) {		
+	public void setTwoWeeksShedule() {
+		properties.setTwoWeeksShedule(twoWeeksShedule.isSelected());
+	}
+	
+	public void setProperties(PropertiesContainer properties) {		
 		if (this.properties != properties) {
 			this.properties = properties;
-			setLanguage(this.properties.getLanguage());
-			cBLanguages.getSelectionModel().select(this.properties.getLanguage().getLangId());
+			applyProperties();
 		}
+	}
+	
+	private void applyProperties() {
+		displayTimePickers.setSelected(properties.isDisplayTimePickers());
+		twoWeeksShedule.setSelected(this.properties.isTwoWeeksShedule());
+		setLanguage(this.properties.getLanguage());
+		cBLanguages.getSelectionModel().select(this.properties.getLanguage().getLangId());
+		
 	}
 	private void saveProperties() {
 		setLanguage();
-//		properties.setDisplayTimePickers(displayTimePickers.isSelected());
+		setDisplayTimePickers();
+		setTwoWeeksShedule();
+//		
+	}
+	
+	public void setDisplayTimePickers() {
+		properties.setDisplayTimePickers(displayTimePickers.isSelected());
 	}
 	
 	private void setLanguage() {
@@ -123,7 +142,6 @@ public class PropertiesDialogController {
 		languageLabel.setText(lang.getPropertiesDialog().getLanguageLabel());
 		appearanceLabel.setText(lang.getPropertiesDialog().getAppearanceLabel());
 		themeLabel.setText(lang.getPropertiesDialog().getThemeLabel());
-		weeksLabel.setText(lang.getPropertiesDialog().getWeeksLabel());
 		importButton.setText(lang.getPropertiesDialog().getImportButton());
 		exportButton.setText(lang.getPropertiesDialog().getExportButton());
 		ieLabel.setText(lang.getPropertiesDialog().getIeLabel());

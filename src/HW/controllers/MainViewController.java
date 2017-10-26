@@ -103,9 +103,10 @@ public class MainViewController {
 	private JFXTimePicker fourthTimePicker;
 	@FXML
 	private JFXTimePicker fifthTimePicker;
-
+	boolean displayTimePickers;
+	boolean twoWeeksShedule;
 	Subject listenedSubject;
-
+	
 
 	@FXML
 	private void initialize() {
@@ -116,7 +117,7 @@ public class MainViewController {
 		// editHomeworkListener();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
-		applyProperties(properties);
+		setProperties(properties);
 		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
 
 	}
@@ -200,23 +201,34 @@ public class MainViewController {
 	private void openProperties() throws IOException {
 		Boolean saveClicked = main.initPropertiesDialog();
 		if (saveClicked) {			
-			applyProperties(main.getProperties());
+			setProperties(main.getProperties());
 		}		
 	}
 	
-	private void applyProperties(PropertiesContainer properties) {
+	private void setProperties(PropertiesContainer properties) {
 		if (this.properties != properties) {
-			this.properties = properties;						
+			System.out.println("no");
+			this.properties = properties;			
 		}
-		setLanguage(this.properties.getLanguage());
+		applyProperties();
+	}
+	
+	public void applyProperties() {
+		setDisplayTwoWeeks();
+		setDisplayTimePickers();
 		setButtonsNames();
 		dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
+		setLanguage(properties.getLanguage());
 	}
 	
-	private void displayTimePickers(Boolean value) {
-
+	private void setDisplayTimePickers() {
+		
 	}
 	
+	private void setDisplayTwoWeeks() {
+		firstWeek.setVisible(properties.isTwoWeeksShedule());
+		secondWeek.setVisible(properties.isTwoWeeksShedule());
+	}
 	@FXML
 	private void inputLabelTime(KeyEvent event) {
 		enterPressCounter++;
@@ -357,7 +369,4 @@ public class MainViewController {
 		colSubject.setText(lang.getMainViewLang().getColSubject());
 	}
 	
-	public void setProperties(PropertiesContainer container) {
-		this.properties = container;
-	}
 }

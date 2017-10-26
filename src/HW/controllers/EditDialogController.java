@@ -93,12 +93,18 @@ public class EditDialogController {
 		subjectField.setText(subject.getName());
 		lectureField.setText(subject.getLect());
 	}
-	public void applyProperties(PropertiesContainer properties) {
+	public void setProperties(PropertiesContainer properties) {
 		if (this.properties != properties) {
 			this.properties = properties;
+			applyProperties();
 		}
-		setLanguage(this.properties.getLanguage());
+		
 	}
+	
+	public void applyProperties() {
+		setLanguage(properties.getLanguage());
+	}
+	
 	public boolean isOkClicked() {
 		return okClicked;
 	}

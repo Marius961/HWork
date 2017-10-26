@@ -4,7 +4,6 @@ public class PropertiesDialogLang {
 	
 	String general;
 	String languageLabel;
-	String weeksLabel;
 	String appearanceLabel;
 	String themeLabel;
 	String displayTimePickers;
@@ -16,6 +15,7 @@ public class PropertiesDialogLang {
 	String cancelButton;
 	String language1;
 	String language2;
+	String twoWeeksShedule;
 	public String getGeneral() {
 		return general;
 	}
@@ -27,12 +27,6 @@ public class PropertiesDialogLang {
 	}
 	public void setLanguageLabel(String languageLabel) {
 		this.languageLabel = languageLabel;
-	}
-	public String getWeeksLabel() {
-		return weeksLabel;
-	}
-	public void setWeeksLabel(String weeksLabel) {
-		this.weeksLabel = weeksLabel;
 	}
 	public String getAppearanceLabel() {
 		return appearanceLabel;
@@ -99,6 +93,12 @@ public class PropertiesDialogLang {
 	}
 	public void setLanguage2(String language2) {
 		this.language2 = language2;
+	}
+	public String getTwoWeeksShedule() {
+		return twoWeeksShedule;
+	}
+	public void setTwoWeeksShedule(String twoWeeksShedule) {
+		this.twoWeeksShedule = twoWeeksShedule;
 	}
 	
 	

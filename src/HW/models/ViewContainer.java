@@ -50,7 +50,7 @@ public class ViewContainer {
 
 			EditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			controller.applyProperties(properties);
+			controller.setProperties(properties);
 			controller.setSubject(subject);
 			dialogStage.showAndWait();
 			return controller.isOkClicked();
@@ -88,7 +88,7 @@ public class ViewContainer {
 
 			HomeworkEditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			controller.applyProperties(properties);
+			controller.setProperties(properties);
 			controller.setSubject(subject);
 			dialogStage.showAndWait();
 			return controller.isSaveClicked();
@@ -113,7 +113,7 @@ public class ViewContainer {
 
 			PropertiesDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			controller.applyProperties(properties);
+			controller.setProperties(properties);
 			setProperties(properties);
 			dialogStage.showAndWait();
 

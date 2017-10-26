@@ -53,9 +53,9 @@ public class LanguageList {
 		langList.get(1).getPropertiesDialog().setLanguageLabel("Мова:");
 		langList.get(1).getPropertiesDialog().setSaveButton("Зберегти");
 		langList.get(1).getPropertiesDialog().setThemeLabel("Тема:");
-		langList.get(1).getPropertiesDialog().setWeeksLabel("2 тижневий/1 тижневий розклад:");
 		langList.get(1).getPropertiesDialog().setLanguage1("Англійська");
 		langList.get(1).getPropertiesDialog().setLanguage2("Україньська");
+		langList.get(1).getPropertiesDialog().setTwoWeeksShedule("two weeks shedule");
 	}
 	private void initEnglishLang() {
 		langList.get(0).getMainViewLang().dayAdd("Mn","Tu","We","Th","Fr");
@@ -97,9 +97,9 @@ public class LanguageList {
 		langList.get(0).getPropertiesDialog().setLanguageLabel("Language:");
 		langList.get(0).getPropertiesDialog().setSaveButton("Save");
 		langList.get(0).getPropertiesDialog().setThemeLabel("Theme:");
-		langList.get(0).getPropertiesDialog().setWeeksLabel("2 weeks/1 week shedule:");
 		langList.get(0).getPropertiesDialog().setLanguage2("Ukrainian");
 		langList.get(0).getPropertiesDialog().setLanguage1("English");
+		langList.get(1).getPropertiesDialog().setTwoWeeksShedule("2 тижневий розклад");
 	}
 	
 	

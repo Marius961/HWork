@@ -13,6 +13,7 @@ public class PropertiesContainer {
 	LanguageList langList = new LanguageList();
 	Language lang = langList.getLanguage("English");
 	String Theme = "";
+	boolean twoWeeksShedule = true;
 	
 	
 	
@@ -55,7 +56,13 @@ public class PropertiesContainer {
 		
 		
 	}
-
+	public boolean isTwoWeeksShedule() {
+		return twoWeeksShedule;
+	}
+	public void setTwoWeeksShedule(boolean twoWeeksShedule) {
+		this.twoWeeksShedule = twoWeeksShedule;
+	}
+	
 	
 	
 }

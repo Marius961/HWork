@@ -63,11 +63,14 @@ public class HomeworkEditDialogController {
 		return saveClicked;
 	}
 	
-	public void applyProperties(PropertiesContainer properties) {
+	public void setProperties(PropertiesContainer properties) {
 		if (this.properties != properties) {
 			this.properties = properties;			
-			setLanguage(this.properties.getLanguage());
 		}		
+	}
+	
+	public void applyProperties() {
+		setLanguage(properties.getLanguage());
 	}
 	
 	private void setLanguage(Language lang) {
