@@ -162,7 +162,7 @@ public class MainViewController {
 			dayCounter--;
 			subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 			setButtonsNames();
-			dayName.setText(getDay(dayCounter));
+			dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
 		}
 	}
 
@@ -179,7 +179,7 @@ public class MainViewController {
 	@FXML
 	private void handleFirstWeekRB() {
 		isSecondWeek = false;
-		subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
+		dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
 	}
 
 	@FXML
@@ -201,8 +201,7 @@ public class MainViewController {
 		Boolean saveClicked = main.initPropertiesDialog();
 		if (saveClicked) {			
 			applyProperties(main.getProperties());
-		}
-		
+		}		
 	}
 	
 	private void applyProperties(PropertiesContainer properties) {
@@ -211,6 +210,7 @@ public class MainViewController {
 		}
 		setLanguage(this.properties.getLanguage());
 		setButtonsNames();
+		dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
 	}
 	
 	private void displayTimePickers(Boolean value) {
