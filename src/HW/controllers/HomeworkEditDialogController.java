@@ -11,23 +11,26 @@ import javafx.stage.Stage;
 
 public class HomeworkEditDialogController {
 	
-	@FXML
-	private TextArea homeworkField;	
-	@FXML
-	Label homeworkLabel;
-	@FXML
-	Button saveButton;
-	@FXML
-	Button cancelButton;
-	@FXML
-	Button cleanButton;
-		
 	private Stage dialogStage;
-	PropertiesContainer properties;
+	
+	private PropertiesContainer properties;
+	
 	private Subject subject;
 	
 	private boolean saveClicked = false;
 	
+	@FXML
+	private Button saveButton;
+	@FXML
+	private Button cancelButton;
+	@FXML
+	private Button cleanButton;
+	
+	@FXML
+	private TextArea homeworkField;	
+	@FXML
+	private Label homeworkLabel;
+			
 	@FXML
 	private void initialize() {
 		homeworkField.setWrapText(true);
@@ -45,13 +48,20 @@ public class HomeworkEditDialogController {
 		dialogStage.close();
 	}
 	
-	public void setDialogStage(Stage dialogStage) {
-		this.dialogStage = dialogStage;
+	@FXML
+	private void handleClean() {
+		homeworkField.setText("");
 	}
 	
-	@FXML
-	public void handleClean() {
-		homeworkField.setText("");
+	private void setLanguage(Language lang) {
+		homeworkLabel.setText(lang.getHomeworkEditDialog().getHomeworkLabel());
+		cancelButton.setText(lang.getHomeworkEditDialog().getCancelButton());
+		saveButton.setText(lang.getHomeworkEditDialog().getSaveButton());
+		cleanButton.setText(lang.getHomeworkEditDialog().getCleanButton());
+	}
+	
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
 	}
 	
 	public void setSubject(Subject subject) {
@@ -71,12 +81,5 @@ public class HomeworkEditDialogController {
 	
 	public void applyProperties() {
 		setLanguage(properties.getLanguage());
-	}
-	
-	private void setLanguage(Language lang) {
-		homeworkLabel.setText(lang.getHomeworkEditDialog().getHomeworkLabel());
-		cancelButton.setText(lang.getHomeworkEditDialog().getCancelButton());
-		saveButton.setText(lang.getHomeworkEditDialog().getSaveButton());
-		cleanButton.setText(lang.getHomeworkEditDialog().getCleanButton());
 	}
 }

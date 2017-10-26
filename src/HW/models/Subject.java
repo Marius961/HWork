@@ -36,6 +36,5 @@ public class Subject {
 
 	public void setHomework(String homework) {
 		this.homework = homework;
-	}
-	
+	}	
 }

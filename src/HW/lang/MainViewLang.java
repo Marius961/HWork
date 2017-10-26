@@ -26,7 +26,7 @@ public class MainViewLang {
 	private String fourthLabelTime;
 	private String fifthLabelTime;
 	
-	ObservableList<String> days = FXCollections.observableArrayList();
+	private ObservableList<String> days = FXCollections.observableArrayList();
 	
 	public void dayAdd(String day0, String day1 ,String day2 , String day3, String day4) {
 		days.addAll(day0, day1, day2, day3, day4);

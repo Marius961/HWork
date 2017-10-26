@@ -10,20 +10,18 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.SelectionModel;
 
 public class PropertiesContainer {
-	LanguageList langList = new LanguageList();
-	Language lang = langList.getLanguage("English");
-	String Theme = "";
-	boolean twoWeeksShedule = true;
+	private LanguageList langList = new LanguageList();
 	
+	private Language lang = langList.getLanguage("English");
 	
+	private String Theme = "";
 	
-	int weeks = 2;
-	boolean displayTimePickers = true;
-	
-	public void applyLanguage(String language) {
+	private boolean twoWeeksShedule = true;
 
-		
-	}
+	private int weeks = 2;
+	
+	private boolean displayTimePickers = true;
+	
 	public Language getLanguage() {
 		return lang;
 	}
@@ -35,6 +33,7 @@ public class PropertiesContainer {
 	public String getTheme() {
 		return Theme;
 	}
+	
 	public void setTheme(String theme) {
 		Theme = theme;
 	}
@@ -42,23 +41,23 @@ public class PropertiesContainer {
 	public boolean isDisplayTimePickers() {
 		return displayTimePickers;
 	}
+	
 	public void setDisplayTimePickers(boolean displayTimePickers) {
 		this.displayTimePickers = displayTimePickers;
 	}
+	
 	public int getWeeks() {
 		return weeks;
 	}
+	
 	public void setWeeks(int weeks) {
 		this.weeks = weeks;
 	}
-	
-	public void setLanguage() {
-		
-		
-	}
+
 	public boolean isTwoWeeksShedule() {
 		return twoWeeksShedule;
 	}
+	
 	public void setTwoWeeksShedule(boolean twoWeeksShedule) {
 		this.twoWeeksShedule = twoWeeksShedule;
 	}

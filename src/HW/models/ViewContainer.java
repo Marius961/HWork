@@ -18,8 +18,10 @@ import javafx.stage.Stage;
 
 public class ViewContainer {
 	private Stage primaryStage;
+	
 	private BorderPane rootLayout;
-	PropertiesContainer properties = new PropertiesContainer();
+	
+	private PropertiesContainer properties = new PropertiesContainer();
 	
 	public void initRootLayout() {
 		try {

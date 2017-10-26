@@ -14,33 +14,30 @@ import javafx.stage.Stage;
 
 public class EditDialogController {
 	
-	@FXML
-	Button okButton;
+	private Stage dialogStage;
+
+	private Subject subject;
+
+	private boolean okClicked = false;
+
+	private PropertiesContainer properties;
+	private Main main = new Main();
 	
 	@FXML
-	Button cancelButton;
+	private Button okButton;	
+	@FXML
+	private Button cancelButton;
 	
 	@FXML
-	Label subjectLabel;
-	
+	private Label subjectLabel;	
 	@FXML
-	Label lectureLabel;
-	
-	
+	private Label lectureLabel;
+		
 	@FXML
 	private TextField subjectField;		
 	@FXML
 	private TextField lectureField;
-	
-	private Stage dialogStage;
-	
-	private Subject subject;
-	
-	private boolean okClicked = false;
-	
-	PropertiesContainer properties;
-	Main main = new Main();
-	
+
 	@FXML
 	private void initialize() {
 		this.properties = main.getProperties();
@@ -97,8 +94,7 @@ public class EditDialogController {
 		if (this.properties != properties) {
 			this.properties = properties;
 			applyProperties();
-		}
-		
+		}		
 	}
 	
 	public void applyProperties() {

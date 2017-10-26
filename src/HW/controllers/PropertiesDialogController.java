@@ -20,50 +20,48 @@ import javafx.stage.Stage;
 
 public class PropertiesDialogController {
 	
-	@FXML
-	CheckBox displayTimePickers;
-	
-	@FXML
-	CheckBox twoWeeksShedule;
-	@FXML
-	TextField tf;
-	@FXML
-	ChoiceBox<String> cBLanguages;
-	@FXML
-	ChoiceBox<String> cBWeeks;
-	@FXML
-	ChoiceBox<String> cBThemes;
-	
-	@FXML
-	Label generalLabel;
-	@FXML
-	Label languageLabel;
-	@FXML
-	Label appearanceLabel;
-	@FXML
-	Label themeLabel;
-	@FXML
-	Label weeksLabel;
-	@FXML
-	Button importButton;
-	@FXML
-	Button exportButton;
-	@FXML
-	Label ieLabel;
-	@FXML
-	Button saveButton;
-	@FXML
-	Button cancelButton;
-	@FXML
-	Button defaultButton;
-	
-	ViewContainer vContainer= new ViewContainer();
 	private Stage dialogStage;
+	
 	private boolean saveClicked = false;
-	PropertiesContainer properties = new PropertiesContainer();
-	ObservableList<String> themes = FXCollections.observableArrayList("Classic", "Dark");
-	ObservableList<String> weeks = FXCollections.observableArrayList("1" , "2");
-	ObservableList<String> languages = FXCollections.observableArrayList();
+	
+	private PropertiesContainer properties = new PropertiesContainer();
+	
+	private ObservableList<String> themes = FXCollections.observableArrayList("Classic", "Dark");
+	private ObservableList<String> weeks = FXCollections.observableArrayList("1" , "2");
+	private ObservableList<String> languages = FXCollections.observableArrayList();
+	
+	@FXML
+	private Button saveButton;
+	@FXML
+	private Button importButton;
+	@FXML
+	private Button exportButton;
+	@FXML
+	private Button cancelButton;
+	@FXML
+	private Button defaultButton;
+	
+	@FXML
+	private Label ieLabel;
+	@FXML
+	private Label generalLabel;
+	@FXML
+	private Label languageLabel;
+	@FXML
+	private Label appearanceLabel;
+	@FXML
+	private Label themeLabel;
+	
+	@FXML
+	private CheckBox displayTimePickers;	
+	@FXML
+	private CheckBox twoWeeksShedule;
+	
+	@FXML
+	private ChoiceBox<String> cBLanguages;
+	@FXML
+	private ChoiceBox<String> cBThemes;
+	
 	@FXML
 	private void initialize() {
 		cBLanguages.setItems(languages);
@@ -81,45 +79,7 @@ public class PropertiesDialogController {
 	private void handleCancel() {
 		dialogStage.close();
 	}
-	
-	public void setDialogStage(Stage dialogStage) {
-		this.dialogStage = dialogStage;
-	}
-	
-	
-	public boolean isSaveClicked() {
-		return saveClicked;
-	}
-	
-	public void setTwoWeeksShedule() {
-		properties.setTwoWeeksShedule(twoWeeksShedule.isSelected());
-	}
-	
-	public void setProperties(PropertiesContainer properties) {		
-		if (this.properties != properties) {
-			this.properties = properties;
-			applyProperties();
-		}
-	}
-	
-	private void applyProperties() {
-		displayTimePickers.setSelected(properties.isDisplayTimePickers());
-		twoWeeksShedule.setSelected(this.properties.isTwoWeeksShedule());
-		setLanguage(this.properties.getLanguage());
-		cBLanguages.getSelectionModel().select(this.properties.getLanguage().getLangId());
-		
-	}
-	private void saveProperties() {
-		setLanguage();
-		setDisplayTimePickers();
-		setTwoWeeksShedule();
-//		
-	}
-	
-	public void setDisplayTimePickers() {
-		properties.setDisplayTimePickers(displayTimePickers.isSelected());
-	}
-	
+
 	private void setLanguage() {
 		int ind = cBLanguages.getSelectionModel().getSelectedIndex();
 		LanguageList langList = new LanguageList();
@@ -151,8 +111,41 @@ public class PropertiesDialogController {
 		displayTimePickers.setText(lang.getPropertiesDialog().getDisplayTimePickers());
 	}
 	
+	private void applyProperties() {
+		displayTimePickers.setSelected(properties.isDisplayTimePickers());
+		twoWeeksShedule.setSelected(this.properties.isTwoWeeksShedule());
+		setLanguage(this.properties.getLanguage());
+		cBLanguages.getSelectionModel().select(this.properties.getLanguage().getLangId());		
+	}
 	
+	private void saveProperties() {
+		setLanguage();
+		setDisplayTimePickers();
+		setTwoWeeksShedule();	
+	}
 	
+	public void setDisplayTimePickers() {
+		properties.setDisplayTimePickers(displayTimePickers.isSelected());
+	}
+
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
+	}
+	
+	public boolean isSaveClicked() {
+		return saveClicked;
+	}
+	
+	public void setTwoWeeksShedule() {
+		properties.setTwoWeeksShedule(twoWeeksShedule.isSelected());
+	}
+	
+	public void setProperties(PropertiesContainer properties) {		
+		if (this.properties != properties) {
+			this.properties = properties;
+			applyProperties();
+		}
+	}
 
 	
 

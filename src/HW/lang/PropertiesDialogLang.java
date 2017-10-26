@@ -2,20 +2,28 @@ package HW.lang;
 
 public class PropertiesDialogLang {
 	
-	String general;
-	String languageLabel;
-	String appearanceLabel;
-	String themeLabel;
-	String displayTimePickers;
-	String ieLabel;
-	String importButton;
-	String ExportButton;
-	String defaultButton;
-	String saveButton;
-	String cancelButton;
-	String language1;
-	String language2;
-	String twoWeeksShedule;
+//  BUTTONS	
+	private String importButton;
+	private String ExportButton;
+	private String defaultButton;
+	private String saveButton;
+	private String cancelButton;
+	
+//	LABELS	
+	private String general;
+	private String languageLabel;
+	private String appearanceLabel;
+	private String themeLabel;
+	private String ieLabel;
+	
+//  CHECKBOXES	
+	private String displayTimePickers;
+	private String twoWeeksShedule;
+
+//  OTHER
+	private String language1;
+	private String language2;
+
 	public String getGeneral() {
 		return general;
 	}
