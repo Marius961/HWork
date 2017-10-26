@@ -2,23 +2,47 @@ package HW.controllers;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import HW.Main;
+import HW.lang.Language;
+import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 public class EditDialogController {
 	
+	private Stage dialogStage;
+
+	private Subject subject;
+
+	private boolean okClicked = false;
+
+	private PropertiesContainer properties;
+	private Main main = new Main();
+	
+	@FXML
+	private Button okButton;	
+	@FXML
+	private Button cancelButton;
+	
+	@FXML
+	private Label subjectLabel;	
+	@FXML
+	private Label lectureLabel;
+		
 	@FXML
 	private TextField subjectField;		
 	@FXML
 	private TextField lectureField;
-	
-	private Stage dialogStage;
-	
-	private Subject subject;
-	
-	private boolean okClicked = false;
+
+	@FXML
+	private void initialize() {
+		this.properties = main.getProperties();
+		setLanguage(properties.getLanguage());
+	}
 	
 	@FXML
 	private void handleOk() {
@@ -66,8 +90,26 @@ public class EditDialogController {
 		subjectField.setText(subject.getName());
 		lectureField.setText(subject.getLect());
 	}
-
+	public void setProperties(PropertiesContainer properties) {
+		if (this.properties != properties) {
+			this.properties = properties;
+			applyProperties();
+		}		
+	}
+	
+	public void applyProperties() {
+		setLanguage(properties.getLanguage());
+	}
+	
 	public boolean isOkClicked() {
 		return okClicked;
+	}
+	
+	private void setLanguage(Language lang) {
+			System.out.println(lang.getEditDialog().getLectureLabel());
+			cancelButton.setText(lang.getEditDialog().getCancelButton());
+			lectureLabel.setText(lang.getEditDialog().getLectureLabel());
+			okButton.setText(lang.getEditDialog().getOkButton());
+			subjectLabel.setText(lang.getEditDialog().getSubjectLabel());
 	}
 }

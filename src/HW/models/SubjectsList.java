@@ -30,6 +30,5 @@ public class SubjectsList {
 	
 	public Subject get(int ind) {
 		return subjects.get(ind);
-	}
-	
+	}	
 }

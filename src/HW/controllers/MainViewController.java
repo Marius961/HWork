@@ -7,6 +7,8 @@ import java.util.Calendar;
 import com.jfoenix.controls.JFXTimePicker;
 
 import HW.Main;
+import HW.lang.Language;
+import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.Week;
 import javafx.fxml.FXML;
@@ -23,7 +25,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class MainViewController {
 
-	Calendar calendar = Calendar.getInstance();
+	private Calendar calendar = Calendar.getInstance();
 
 	private Week week1 = new Week();
 	private Week week2 = new Week();
@@ -31,11 +33,15 @@ public class MainViewController {
 	private int enterPressCounter = 0;
 	private int dayCounter = getCurrentDay();
 
+	private PropertiesContainer properties = new PropertiesContainer();
+
 	private boolean isSecondWeek = false;
 
 	private ToggleGroup rBWeeks = new ToggleGroup();
 
 	private Main main = new Main();
+
+	private Subject listenedSubject;
 
 	@FXML
 	private TableView<Subject> subjectTable;
@@ -53,12 +59,18 @@ public class MainViewController {
 	private RadioButton firstWeek;
 
 	@FXML
-	AnchorPane pane;
+	private AnchorPane pane;
 
 	@FXML
 	private Button topButton;
 	@FXML
 	private Button bottomButton;
+	@FXML
+	private Button addButton;
+	@FXML
+	private Button editButton;
+	@FXML
+	private Button deleteButton;
 
 	@FXML
 	private Label dayName;
@@ -86,10 +98,10 @@ public class MainViewController {
 	@FXML
 	private JFXTimePicker fifthTimePicker;
 	private JFXTimePicker tempTimePicker;
-	Subject listenedSubject;
 
 	@FXML
 	private void initialize() {
+		setProperties(properties);
 		init();
 		setToggleGroup();
 		firstWeek.setSelected(true);
@@ -128,10 +140,17 @@ public class MainViewController {
 
 	@FXML
 	public void handleDelete() {
-
 		int selectedIndex = subjectTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			subjectTable.getItems().remove(selectedIndex);
+		}
+	}
+
+	@FXML
+	private void openProperties() throws IOException {
+		Boolean saveClicked = main.initPropertiesDialog();
+		if (saveClicked) {
+			setProperties(main.getProperties());
 		}
 	}
 
@@ -141,7 +160,7 @@ public class MainViewController {
 			dayCounter--;
 			subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 			setButtonsNames();
-			dayName.setText(getDay(dayCounter));
+			dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
 		}
 	}
 
@@ -158,7 +177,7 @@ public class MainViewController {
 	@FXML
 	private void handleFirstWeekRB() {
 		isSecondWeek = false;
-		subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
+		dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
 	}
 
 	@FXML
@@ -181,6 +200,31 @@ public class MainViewController {
 		}
 	}
 
+	@FXML
+	private void labelClicked(MouseEvent mouseEvent) {
+		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+			tempLabelTime = (Label) mouseEvent.getSource();
+			openTimePicker();
+		}
+	}
+
+	private void setProperties(PropertiesContainer properties) {
+		if (this.properties != properties) {
+			System.out.println("no");
+			this.properties = properties;
+		}
+		applyProperties();
+	}
+
+	private void setDisplayTimePickers() {
+
+	}
+
+	private void setDisplayTwoWeeks() {
+		firstWeek.setVisible(properties.isTwoWeeksShedule());
+		secondWeek.setVisible(properties.isTwoWeeksShedule());
+	}
+
 	private void setToggleGroup() {
 		firstWeek.setToggleGroup(rBWeeks);
 		secondWeek.setToggleGroup(rBWeeks);
@@ -200,6 +244,16 @@ public class MainViewController {
 			return week2;
 		}
 		return null;
+	}
+
+	private void setLanguage(Language lang) {
+		editButton.setText(lang.getMainViewLang().getEditButton());
+		addButton.setText(lang.getMainViewLang().getAddButton());
+		deleteButton.setText(lang.getMainViewLang().getDeleteButton());
+		firstWeek.setText(lang.getMainViewLang().getFirstWeek());
+		secondWeek.setText(lang.getMainViewLang().getSecondWeek());
+		colLecture.setText(lang.getMainViewLang().getColLecture());
+		colSubject.setText(lang.getMainViewLang().getColSubject());
 	}
 
 	private void init() {
@@ -263,6 +317,14 @@ public class MainViewController {
 	}
 
 	public String getDay(int count) {
-		return getWeekNum().getDay(count).getName();
+		return properties.getLanguage().getMainViewLang().getDay(count);
+	}
+
+	public void applyProperties() {
+		setDisplayTwoWeeks();
+		setDisplayTimePickers();
+		setButtonsNames();
+		dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
+		setLanguage(properties.getLanguage());
 	}
 }

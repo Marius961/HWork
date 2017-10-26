@@ -3,14 +3,8 @@ package HW.models;
 import javafx.collections.ObservableList;
 
 public class Day {
-	
-	private String name;
-	
+		
 	private SubjectsList subjects = new SubjectsList();
-	
-	public Day(String name) {
-		this.name = name;
-	}
 
 	public void addSubject(String name, String lect) {
 		subjects.add(name, lect);
@@ -35,10 +29,5 @@ public class Day {
 	public int getSize() {
 		return subjects.getSize();
 	}
-	
-	public String getName() {
-		return name;
-	}
 			
-	
 }

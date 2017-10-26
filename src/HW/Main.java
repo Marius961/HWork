@@ -2,6 +2,7 @@ package HW;
 
 import java.io.IOException;
 
+import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.ViewContainer;
 import javafx.application.Application;
@@ -34,8 +35,20 @@ public class Main extends Application {
 	public boolean initHomeworkEditDialog(Subject subject) throws IOException {
 		return viewContainer.initHomeworkEditDialog(subject);
 	}
-
+	
+	public boolean initPropertiesDialog() throws IOException {
+		return viewContainer.initPropertiesDialog();
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public PropertiesContainer getProperties() {
+		return viewContainer.getProperties();
+	}
+	
+	public void setProperties(PropertiesContainer properties) {
+		viewContainer.setProperties(properties);
 	}
 }
