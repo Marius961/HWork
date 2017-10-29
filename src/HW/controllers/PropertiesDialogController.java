@@ -21,7 +21,7 @@ public class PropertiesDialogController {
 	
 	private PropertiesContainer properties = new PropertiesContainer();
 	
-	private ObservableList<String> themes = FXCollections.observableArrayList("Classic", "Dark");
+	private ObservableList<String> themes = FXCollections.observableArrayList();
 	private ObservableList<String> languages = FXCollections.observableArrayList();
 	
 	@FXML
@@ -92,6 +92,8 @@ public class PropertiesDialogController {
 	private void setLanguage(Language lang) {
 		languages.add(lang.getPropertiesDialog().getLanguage1());
 		languages.add(lang.getPropertiesDialog().getLanguage2());
+		themes.add(lang.getPropertiesDialog().getClassicTheme());
+		themes.add(lang.getPropertiesDialog().getDarkTheme());
 		generalLabel.setText(lang.getPropertiesDialog().getGeneral());
 		languageLabel.setText(lang.getPropertiesDialog().getLanguageLabel());
 		appearanceLabel.setText(lang.getPropertiesDialog().getAppearanceLabel());

@@ -69,6 +69,8 @@ public class LanguageList {
 //		other:
 		langList.get(1).getPropertiesDialog().setLanguage1("Англійська");
 		langList.get(1).getPropertiesDialog().setLanguage2("Україньська");
+		langList.get(1).getPropertiesDialog().setClassicTheme("Класична");
+		langList.get(1).getPropertiesDialog().setDarkTheme("Темна");
 
 	}
 	private void initEnglishLang() {
@@ -127,6 +129,8 @@ public class LanguageList {
 //		other:
 		langList.get(0).getPropertiesDialog().setLanguage2("Ukrainian");
 		langList.get(0).getPropertiesDialog().setLanguage1("English");
+		langList.get(0).getPropertiesDialog().setClassicTheme("Classic");
+		langList.get(0).getPropertiesDialog().setDarkTheme("Dark");
 	}
 	
 	public Language getLanguage(String name) {

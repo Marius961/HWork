@@ -23,6 +23,8 @@ public class PropertiesDialogLang {
 //  OTHER
 	private String language1;
 	private String language2;
+	private String classicTheme;
+	private String darkTheme;
 
 	public String getGeneral() {
 		return general;
@@ -107,6 +109,18 @@ public class PropertiesDialogLang {
 	}
 	public void setTwoWeeksShedule(String twoWeeksShedule) {
 		this.twoWeeksShedule = twoWeeksShedule;
+	}
+	public String getClassicTheme() {
+		return classicTheme;
+	}
+	public void setClassicTheme(String classicTheme) {
+		this.classicTheme = classicTheme;
+	}
+	public String getDarkTheme() {
+		return darkTheme;
+	}
+	public void setDarkTheme(String darkTheme) {
+		this.darkTheme = darkTheme;
 	}
 	
 	
