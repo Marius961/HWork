@@ -1,17 +1,21 @@
 package HW.models;
 
 public class Subject {
-	
+
 	private String name;
 	private String lect;
 	private String homework;
-	
+
 	public Subject() {
 	}
-	
+
 	public Subject(String name, String lect) {
 		this.name = name;
 		this.lect = lect;
+	}
+
+	public Subject(String homework) {
+		this.homework = homework;
 	}
 
 	public String getName() {
@@ -36,5 +40,5 @@ public class Subject {
 
 	public void setHomework(String homework) {
 		this.homework = homework;
-	}	
+	}
 }

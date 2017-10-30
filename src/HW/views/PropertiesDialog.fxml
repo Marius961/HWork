@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.PropertiesDialogController">
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.PropertiesDialogController">
    <children>
       <CheckBox fx:id="displayTimePickers" layoutX="31.0" layoutY="244.0" mnemonicParsing="false" text="display time" />
       <ChoiceBox fx:id="cBLanguages" layoutX="137.0" layoutY="40.0" prefWidth="150.0" />

@@ -10,6 +10,7 @@ import HW.Main;
 import HW.lang.Language;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
+import HW.models.ViewContainer;
 import HW.models.Week;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,7 +33,7 @@ public class MainViewController {
 	private Week week1 = new Week();
 	private Week week2 = new Week();
 
-	private int dayCounter = getCurrentDay();
+	public int dayCounter = getCurrentDay();
 
 	private PropertiesContainer properties = new PropertiesContainer();
 
@@ -99,6 +100,7 @@ public class MainViewController {
 	@FXML
 	private JFXTimePicker fifthTimePicker;
 	private int enterPressCounter = 0;
+	ViewContainer container = new ViewContainer();
 
 	@FXML
 	private void initialize() {
@@ -109,7 +111,9 @@ public class MainViewController {
 		setTableProperty();
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
+		container.getPrimaryStage().setResizable(false);
 		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
+
 	}
 
 	@FXML
@@ -192,6 +196,7 @@ public class MainViewController {
 	private void labelClicked(MouseEvent mouseEvent) {
 		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
 			tempLabelTime = (Label) mouseEvent.getSource();
+			getTimePicker().setValue(LocalTime.MIN);
 			getTimePicker().setVisible(true);
 			getTimePicker().setIs24HourView(true);
 			closeOtherTimePickers();
@@ -204,6 +209,7 @@ public class MainViewController {
 		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 1) {
 			LocalTime time = getTimePicker().getValue();
 			tempLabelTime.setText(time + "-");
+
 		}
 		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 2) {
 			LocalTime time = getTimePicker().getValue();
@@ -277,7 +283,7 @@ public class MainViewController {
 		subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
 	}
 
-	private Week getWeekNum() {
+	public Week getWeekNum() {
 		if (isSecondWeek == false) {
 			return week1;
 		}

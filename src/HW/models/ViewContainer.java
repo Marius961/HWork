@@ -6,7 +6,6 @@ import HW.Main;
 import HW.controllers.EditDialogController;
 import HW.controllers.HomeworkEditDialogController;
 import HW.controllers.PropertiesDialogController;
-import HW.models.Subject;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -15,12 +14,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ViewContainer {
-	private Stage primaryStage;
-	
+	private static Stage primaryStage;
+
 	private BorderPane rootLayout;
-	
+
 	private PropertiesContainer properties = new PropertiesContainer();
-	
+
 	public void initRootLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -34,7 +33,7 @@ public class ViewContainer {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean initEditDialog(Subject subject) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -59,20 +58,19 @@ public class ViewContainer {
 			return false;
 		}
 	}
-	
+
 	public void initMainView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/MainView.fxml"));
 			AnchorPane hwOverview = (AnchorPane) loader.load();
 			rootLayout.setCenter(hwOverview);
-			
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean initHomeworkEditDialog(Subject subject) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -97,7 +95,7 @@ public class ViewContainer {
 			return false;
 		}
 	}
-	
+
 	public boolean initPropertiesDialog() throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -122,7 +120,7 @@ public class ViewContainer {
 			e.printStackTrace();
 			return false;
 		}
-	} 
+	}
 
 	public Stage getPrimaryStage() {
 		return primaryStage;
@@ -139,14 +137,13 @@ public class ViewContainer {
 	public void setRootLayout(BorderPane rootLayout) {
 		this.rootLayout = rootLayout;
 	}
-	
-	public void setProperties(PropertiesContainer properties) {		
+
+	public void setProperties(PropertiesContainer properties) {
 		this.properties = properties;
 	}
-	
+
 	public PropertiesContainer getProperties() {
 		return properties;
 	}
-	
-}
 
+}
