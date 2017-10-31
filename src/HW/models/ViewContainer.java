@@ -5,6 +5,7 @@ import java.io.IOException;
 import HW.Main;
 import HW.controllers.EditDialogController;
 import HW.controllers.HomeworkEditDialogController;
+import HW.controllers.MainViewController;
 import HW.controllers.PropertiesDialogController;
 import HW.models.Subject;
 import javafx.fxml.FXMLLoader;
@@ -64,10 +65,8 @@ public class ViewContainer {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/MainView.fxml"));
-			AnchorPane hwOverview = (AnchorPane) loader.load();
-			rootLayout.setCenter(hwOverview);
-			
-
+			AnchorPane mainView = (AnchorPane) loader.load();
+			rootLayout.setCenter(mainView);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

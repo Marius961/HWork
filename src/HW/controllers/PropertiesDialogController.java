@@ -111,17 +111,31 @@ public class PropertiesDialogController {
 		displayTimePickers.setSelected(properties.isDisplayTimePickers());
 		twoWeeksShedule.setSelected(this.properties.isTwoWeeksShedule());
 		setLanguage(this.properties.getLanguage());
-		cBLanguages.getSelectionModel().select(this.properties.getLanguage().getLangId());		
+		cBLanguages.getSelectionModel().select(this.properties.getLanguage().getLangId());	
+		cBThemes.getSelectionModel().select(this.properties.getTheme().getThemeId());
 	}
 	
 	private void saveProperties() {
 		setLanguage();
 		setDisplayTimePickers();
 		setTwoWeeksShedule();	
+		setTheme();
 	}
 	
 	public void setDisplayTimePickers() {
 		properties.setDisplayTimePickers(displayTimePickers.isSelected());
+	}
+	
+	public void setTheme() {
+		int ind = cBThemes.getSelectionModel().getSelectedIndex();
+		if (ind == 0 && properties.getTheme() != properties.getThemeList().get(0)) {
+			properties.setTheme(0);
+			System.out.println("Вибрана тема 1");
+		}
+		if (ind == 1 && properties.getTheme() != properties.getThemeList().get(1)) {
+			properties.setTheme(1);
+			System.out.println("Вибрана тема 2");
+		}
 	}
 
 	public void setDialogStage(Stage dialogStage) {

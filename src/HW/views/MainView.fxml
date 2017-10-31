@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="476.0" maxWidth="840.0" minHeight="204.0" minWidth="360.0" prefHeight="340.0" prefWidth="600.0" stylesheets="@../styles/MainViewStyles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.MainViewController">
+<AnchorPane fx:id="pane" maxHeight="476.0" maxWidth="840.0" minHeight="204.0" minWidth="360.0" prefHeight="340.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.MainViewController">
    <children>
-      <TableView fx:id="subjectTable" layoutX="153.0" layoutY="61.0" maxHeight="280.0" maxWidth="602.0" minHeight="120.0" minWidth="258.0" onMouseClicked="#openHomeWork" prefHeight="200.0" prefWidth="430.0" stylesheets="@../styles/MainViewStyles.css" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="61.0">
+      <TableView fx:id="subjectTable" layoutX="153.0" layoutY="61.0" maxHeight="280.0" maxWidth="602.0" minHeight="120.0" minWidth="258.0" onMouseClicked="#openHomeWork" prefHeight="200.0" prefWidth="430.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="61.0">
         <columns>
           <TableColumn fx:id="colLecture" prefWidth="178.0" text="Lecture" />
           <TableColumn fx:id="colSubject" prefWidth="244.0" text="Subject" />

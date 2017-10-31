@@ -24,6 +24,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class MainViewController {
 
@@ -100,6 +101,7 @@ public class MainViewController {
 	private JFXTimePicker fifthTimePicker;
 	private int enterPressCounter = 0;
 
+	
 	@FXML
 	private void initialize() {
 		setProperties(properties);
@@ -350,4 +352,9 @@ public class MainViewController {
 		dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
 		setLanguage(properties.getLanguage());
 	}
+	
+	public void setPrimaryStage(Stage stage) {
+		this.primaryStage = stage;
+	}
+	
 }
