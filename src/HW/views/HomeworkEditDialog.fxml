@@ -5,15 +5,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.RadialGradient?>
 
-<AnchorPane prefHeight="192.0" prefWidth="357.0" stylesheets="@../styles/MainViewStyles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.HomeworkEditDialogController">
+<AnchorPane prefHeight="203.0" prefWidth="377.0" stylesheets="@styles/MainViewStyles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.HomeworkEditDialogController">
    <children>
       <TextArea fx:id="homeworkField" layoutX="5.0" layoutY="149.0" prefHeight="38.0" prefWidth="295.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" />
-      <JFXButton buttonType="RAISED" ellipsisString="" layoutX="297.0" layoutY="150.0" maxHeight="200.0" maxWidth="212.0" onAction="#handleAdd" prefHeight="38.0" prefWidth="46.0" styleClass="toggle-button" stylesheets="@../styles/MainViewStyles.css" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0">
-         <ripplerFill>
-            <RadialGradient centerX="0.44999999999999996" centerY="0.5" cycleMethod="REFLECT" radius="0.5" />
-         </ripplerFill>
+      <JFXButton fx:id="saveButton" buttonType="RAISED" ellipsisString="" layoutX="302.0" layoutY="150.0" maxHeight="200.0" maxWidth="212.0" onAction="#addButton" prefHeight="38.0" prefWidth="59.0" text="Add" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="9.0">
       </JFXButton>
       <TableView fx:id="taskTable" fixedCellSize="0.0" layoutX="8.0" layoutY="8.0" prefHeight="133.0" prefWidth="343.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0">
         <columns>

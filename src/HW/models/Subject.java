@@ -1,12 +1,17 @@
 package HW.models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Subject {
 
 	private String name;
 	private String lect;
 	private String homework;
+	private ObservableList<Task> taskList = FXCollections.observableArrayList();
 
 	public Subject() {
+
 	}
 
 	public Subject(String name, String lect) {
@@ -41,4 +46,21 @@ public class Subject {
 	public void setHomework(String homework) {
 		this.homework = homework;
 	}
+
+	public void add(String task) {
+		taskList.add(new Task(task));
+	}
+
+	public void remove(int ind) {
+		taskList.remove(ind);
+	}
+
+	public ObservableList<Task> getTaskList() {
+		return taskList;
+	}
+
+	public void setTaskList(ObservableList<Task> taskList) {
+		this.taskList = taskList;
+	}
+
 }

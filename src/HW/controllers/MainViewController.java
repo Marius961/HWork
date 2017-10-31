@@ -341,7 +341,6 @@ public class MainViewController {
 	private void handleEditHomework(Subject subject) throws IOException {
 		if (subject != null) {
 			main.initHomeworkEditDialog(subject);
-			subjectTable.getSelectionModel().getSelectedItem().setHomework(subject.getHomework());
 		}
 	}
 
