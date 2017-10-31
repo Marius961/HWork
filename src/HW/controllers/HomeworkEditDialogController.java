@@ -26,33 +26,19 @@ public class HomeworkEditDialogController {
 	@FXML
 	private Button saveButton;
 
-	
 	@FXML
 	private TextArea homeworkField;	
 			
-
-	
 	@FXML
 	private TableView<Task> taskTable;
 
 	@FXML
 	private TableColumn<Task, String> taskCol;
-	@FXML
-	private void initialize() {
-		
-		taskCol.setCellValueFactory(new PropertyValueFactory<Task, String>("task"));
-		homeworkField.setWrapText(true);
-		taskTable.setItems(this.subject.getTaskList());
-	}
-	@FXML
-	private void handleSave() {
-		saveClicked = true;
-		dialogStage.close();
-	}
 	
 	@FXML
-	private void handleCancel() {
-		dialogStage.close();
+	private void initialize() {
+		taskCol.setCellValueFactory(new PropertyValueFactory<Task, String>("task"));
+		homeworkField.setWrapText(true);
 	}	
 	
 	private void setLanguage(Language lang) {
@@ -65,6 +51,7 @@ public class HomeworkEditDialogController {
 	
 	public void setSubject(Subject subject) {
 		this.subject = subject;
+		taskTable.setItems(this.subject.getTaskList());
 	}
 	
 	@FXML
