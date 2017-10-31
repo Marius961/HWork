@@ -103,7 +103,7 @@ public class MainViewController {
 
 	
 	@FXML
-	private void initialize() {
+	private void initialize() {			
 		setProperties(properties);
 		init();
 		setToggleGroup();
@@ -112,6 +112,7 @@ public class MainViewController {
 		dayName.setText(getDay(dayCounter));
 		setButtonsNames();
 		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
+		
 	}
 
 	@FXML
@@ -168,7 +169,7 @@ public class MainViewController {
 	}
 
 	@FXML
-	private void handleDown() {
+	private void handleDown() {		
 		if (dayCounter <= 3) {
 			dayCounter++;
 			subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
@@ -346,15 +347,17 @@ public class MainViewController {
 	}
 
 	public void applyProperties() {
+		setTheme();
 		setDisplayTwoWeeks();
 		setDisplayTimePickers();
 		setButtonsNames();
+
 		dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
 		setLanguage(properties.getLanguage());
 	}
 	
-	public void setPrimaryStage(Stage stage) {
-		this.primaryStage = stage;
+	private void setTheme() {
+		pane.getStylesheets().clear();
+		pane.getStylesheets().add(getClass().getResource(properties.getTheme().getUrl()).toExternalForm());		
 	}
-	
 }

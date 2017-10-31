@@ -1,3 +1,32 @@
+
 .button {
-	-fx-background-color: black;
+	-fx-font-family: "Segoe UI Light";
+	-fx-background-color: RGB(67, 67, 67);
+	-fx-text-fill: white;
+}
+
+.label {
+	-fx-font-family: "Segoe UI Light";
+	-fx-text-fill: white;
+}
+#pane {
+	-fx-background-color: RGB(67, 67, 67);
+}
+
+.table-view {
+    -fx-base: RGB(50, 50, 50);
+    -fx-control-inner-background: RGB(50, 50, 50);
+    -fx-padding: 5;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.radio-button {
+	-fx-text-fill: white;
 }

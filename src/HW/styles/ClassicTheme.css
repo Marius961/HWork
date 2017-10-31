@@ -1,3 +1,16 @@
+
+
 .button {
-	-fx-background-color: red;
+	-fx-background-color: RGB(220, 252, 255);
 }
+
+#pane {
+	-fx-background-color: RGB(220, 252, 255);
+}
+
+.table-view {
+    -fx-base: RGB(220, 252, 255);
+    -fx-control-inner-background: RGB(220, 252, 255);
+    -fx-padding: 5;
+}
+
