@@ -1,13 +1,18 @@
 package HW.models;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Day {
-		
+	public Day(String name) {
+		this.name = name;
+	}
+	
 	private SubjectsList subjects = new SubjectsList();
+	private String name;
 
-	public void addSubject(String name, String lect) {
-		subjects.add(name, lect);
+	public void addSubject(int id, int weekNum, String name, String lect) {
+		subjects.add(id, weekNum, name, lect);
 	}
 	
 	public void addSubject(Subject subject) {
@@ -15,7 +20,7 @@ public class Day {
 	}
 
 	public ObservableList<Subject> getSubjects() {
-		return subjects.getSubjects();
+		return subjects.get();
 	}
 	
 	public Subject getSubject(int ind) {
@@ -29,5 +34,21 @@ public class Day {
 	public int getSize() {
 		return subjects.getSize();
 	}
+
+	public String getName() {
+		return name;
+	}
+	
+	public ObservableList<Subject> getList(int weekNum) {
+		ObservableList<Subject> tempList = FXCollections.observableArrayList();
+		for (Subject temp : subjects.get()) {
+			if(temp.getWeekNum() == weekNum || temp.getWeekNum() == 0) {
+				tempList.add(temp);
+				System.out.println("added" + temp.getName());
+			} 
+		}
+		return tempList;
+	}
+
 			
 }

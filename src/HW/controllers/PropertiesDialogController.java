@@ -74,7 +74,7 @@ public class PropertiesDialogController {
 		dialogStage.close();
 	}
 
-	private void setLanguage() {
+/*	private void setLanguage() {
 		int ind = cBLanguages.getSelectionModel().getSelectedIndex();
 		LanguageList langList = new LanguageList();
 		Language English = langList.getLanguage(0);
@@ -105,18 +105,18 @@ public class PropertiesDialogController {
 		defaultButton.setText(lang.getPropertiesDialog().getDefaultButton());
 		cancelButton.setText(lang.getPropertiesDialog().getCancelButton());
 		displayTimePickers.setText(lang.getPropertiesDialog().getDisplayTimePickers());
-	}
+	} */
 	
 	private void applyProperties() {
 		displayTimePickers.setSelected(properties.isDisplayTimePickers());
 		twoWeeksShedule.setSelected(this.properties.isTwoWeeksShedule());
-		setLanguage(this.properties.getLanguage());
-		cBLanguages.getSelectionModel().select(this.properties.getLanguage().getLangId());	
+//		setLanguage(this.properties.getLanguage());
+//		cBLanguages.getSelectionModel().select(this.properties.getLanguage().getLangId());	
 		cBThemes.getSelectionModel().select(this.properties.getTheme().getThemeId());
 	}
 	
 	private void saveProperties() {
-		setLanguage();
+//		setLanguage();
 		setDisplayTimePickers();
 		setTwoWeeksShedule();	
 		setTheme();

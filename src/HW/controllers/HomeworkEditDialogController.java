@@ -53,12 +53,12 @@ public class HomeworkEditDialogController {
 		homeworkField.setText("");
 	}
 	
-	private void setLanguage(Language lang) {
+/*	private void setLanguage(Language lang) {
 		homeworkLabel.setText(lang.getHomeworkEditDialog().getHomeworkLabel());
 		cancelButton.setText(lang.getHomeworkEditDialog().getCancelButton());
 		saveButton.setText(lang.getHomeworkEditDialog().getSaveButton());
 		cleanButton.setText(lang.getHomeworkEditDialog().getCleanButton());
-	}
+	} */
 	
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
@@ -76,10 +76,11 @@ public class HomeworkEditDialogController {
 	public void setProperties(PropertiesContainer properties) {
 		if (this.properties != properties) {
 			this.properties = properties;			
-		}		
+		}	
+		applyProperties();
 	}
 	
 	public void applyProperties() {
-		setLanguage(properties.getLanguage());
+//		setLanguage(properties.getLanguage());
 	}
 }

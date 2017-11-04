@@ -12,9 +12,9 @@ import HW.lang.LanguageList;
 import javafx.collections.FXCollections;
 
 public class PropertiesContainer {
-	private LanguageList langList = new LanguageList();
+//	private LanguageList langList = new LanguageList();
 	
-	private Language lang = langList.getLanguage("English");
+//	private Language lang = langList.getLanguage("English");
 	private boolean twoWeeksShedule = true;
 
 	private int weeks = 2;
@@ -22,13 +22,14 @@ public class PropertiesContainer {
 	private Theme theme = themeList.get(0);
 	private boolean displayTimePickers = true;
 	
-	public Language getLanguage() {
+/*	public Language getLanguage() {
 		return lang;
-	}
+	} 
 	
 	public void setLanguage(Language lang) {
 		this.lang = lang;
-	}
+	} 
+*/
 
 	public boolean isDisplayTimePickers() {
 		return displayTimePickers;

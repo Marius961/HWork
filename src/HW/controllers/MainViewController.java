@@ -30,14 +30,15 @@ public class MainViewController {
 
 	private Calendar calendar = Calendar.getInstance();
 
-	private Week week1 = new Week();
-	private Week week2 = new Week();
+	private Week week = new Week();
 
 	private int dayCounter = getCurrentDay();
 
 	private PropertiesContainer properties = new PropertiesContainer();
 
 	private boolean isSecondWeek = false;
+	
+	private int weekNum;
 
 	private ToggleGroup rBWeeks = new ToggleGroup();
 
@@ -103,13 +104,14 @@ public class MainViewController {
 
 	
 	@FXML
-	private void initialize() {			
+	private void initialize() {
+		
 		setProperties(properties);
 		init();
 		setToggleGroup();
 		firstWeek.setSelected(true);
 		setTableProperty();
-		dayName.setText(getDay(dayCounter));
+		dayName.setText(getDayName(dayCounter));
 		setButtonsNames();
 		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
 		
@@ -120,7 +122,7 @@ public class MainViewController {
 		Subject tempSubject = new Subject();
 		boolean okClicked = main.initEditDialog(tempSubject);
 		if (okClicked) {
-			getWeekNum().getDay(dayCounter).addSubject(tempSubject);
+			week.selectDay(dayCounter).addSubject(tempSubject);
 		}
 	}
 
@@ -162,9 +164,9 @@ public class MainViewController {
 	private void handleTop() {
 		if (dayCounter >= 1) {
 			dayCounter--;
-			subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
+			subjectTable.setItems(week.selectDay(dayCounter).getSubjects());
 			setButtonsNames();
-			dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
+			dayName.setText(getDayName(dayCounter));
 		}
 	}
 
@@ -172,23 +174,20 @@ public class MainViewController {
 	private void handleDown() {		
 		if (dayCounter <= 3) {
 			dayCounter++;
-			subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
+			subjectTable.setItems(week.selectDay(dayCounter).getSubjects());
 			setButtonsNames();
-			dayName.setText(getDay(dayCounter));
+			dayName.setText(getDayName(dayCounter));
 		}
 	}
 
 	@FXML
 	private void handleFirstWeekRB() {
-		isSecondWeek = false;
-		dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
+		
 	}
 
 	@FXML
 	private void handleSecondWeekRB() {
-		isSecondWeek = true;
-		subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
-
+		
 	}
 
 	@FXML
@@ -277,20 +276,11 @@ public class MainViewController {
 	private void setTableProperty() {
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject, String>("name"));
 		colLecture.setCellValueFactory(new PropertyValueFactory<Subject, String>("lect"));
-		subjectTable.setItems(getWeekNum().getDay(dayCounter).getSubjects());
+		subjectTable.setItems(week.selectDay(dayCounter).getList(2));
 	}
 
-	private Week getWeekNum() {
-		if (isSecondWeek == false) {
-			return week1;
-		}
-		if (isSecondWeek == true) {
-			return week2;
-		}
-		return null;
-	}
 
-	private void setLanguage(Language lang) {
+/*	private void setLanguage(Language lang) {
 		editButton.setText(lang.getMainViewLang().getEditButton());
 		addButton.setText(lang.getMainViewLang().getAddButton());
 		deleteButton.setText(lang.getMainViewLang().getDeleteButton());
@@ -298,19 +288,12 @@ public class MainViewController {
 		secondWeek.setText(lang.getMainViewLang().getSecondWeek());
 		colLecture.setText(lang.getMainViewLang().getColLecture());
 		colSubject.setText(lang.getMainViewLang().getColSubject());
-	}
+	} */
 
 	private void init() {
-		week1.getDay(0).addSubject("Test subject Mon week 1", "Test lect Mon");
-		week1.getDay(1).addSubject("Test subject Tue week 1", "Test lect Tue");
-		week1.getDay(2).addSubject("Test subject Wed week 1", "Test lect Wed");
-		week1.getDay(3).addSubject("Test subject Thu week 1", "Test lect Thu");
-		week1.getDay(4).addSubject("Test subject Fri week 1", "Test lect Fri");
-		week2.getDay(0).addSubject("Test subject Mon week 2", "Test lect Mon 2");
-		week2.getDay(1).addSubject("Test subject Tue week 2", "Test lect Tue 2");
-		week2.getDay(2).addSubject("Test subject Wed week 2", "Test lect Wed 2");
-		week2.getDay(3).addSubject("Test subject Thu week 2", "Test lect Thu 2");
-		week2.getDay(4).addSubject("Test subject Fri week 2", "Test lect Fri 2");
+		week.selectDay(0).addSubject(1, 0, "Організація комп'ютерних мереж", "Солонець Д. М.");
+		week.selectDay(0).addSubject(2, 2, "Комп'ютерна схемотехніка", "Ващищак С. П.");
+		week.selectDay(0).addSubject(2, 1, "Основи електроніки та електротехніки", "Ващищак С. П.");
 	}
 
 	private void setButtonsNames() {
@@ -318,13 +301,13 @@ public class MainViewController {
 			topButton.setText("***");
 		} else {
 			int topName = dayCounter - 1;
-			topButton.setText(getDay(topName));
+			topButton.setText(getDayName(topName));
 		}
 		if (dayCounter == 4) {
 			bottomButton.setText("***");
 		} else {
 			int bottomName = dayCounter + 1;
-			bottomButton.setText(getDay(bottomName));
+			bottomButton.setText(getDayName(bottomName));
 		}
 	}
 
@@ -342,8 +325,8 @@ public class MainViewController {
 		}
 	}
 
-	public String getDay(int count) {
-		return properties.getLanguage().getMainViewLang().getDay(count);
+	public String getDayName(int count) {
+		return week.selectDay(count).getName();
 	}
 
 	public void applyProperties() {
@@ -351,9 +334,7 @@ public class MainViewController {
 		setDisplayTwoWeeks();
 		setDisplayTimePickers();
 		setButtonsNames();
-
-		dayName.setText(properties.getLanguage().getMainViewLang().getDay(dayCounter));
-		setLanguage(properties.getLanguage());
+//		setLanguage(properties.getLanguage());
 	}
 	
 	private void setTheme() {

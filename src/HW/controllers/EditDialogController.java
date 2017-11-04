@@ -90,6 +90,7 @@ public class EditDialogController {
 		subjectField.setText(subject.getName());
 		lectureField.setText(subject.getLect());
 	}
+	
 	public void setProperties(PropertiesContainer properties) {
 		if (this.properties != properties) {
 			this.properties = properties;
@@ -98,18 +99,18 @@ public class EditDialogController {
 	}
 	
 	public void applyProperties() {
-		setLanguage(properties.getLanguage());
+//		setLanguage(properties.getLanguage());
 	}
 	
 	public boolean isOkClicked() {
 		return okClicked;
 	}
 	
-	private void setLanguage(Language lang) {
+/*	private void setLanguage(Language lang) {
 			System.out.println(lang.getEditDialog().getLectureLabel());
 			cancelButton.setText(lang.getEditDialog().getCancelButton());
 			lectureLabel.setText(lang.getEditDialog().getLectureLabel());
 			okButton.setText(lang.getEditDialog().getOkButton());
 			subjectLabel.setText(lang.getEditDialog().getSubjectLabel());
-	}
+	} */
 }

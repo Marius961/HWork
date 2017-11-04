@@ -8,23 +8,14 @@ public class Week {
 	private ObservableList<Day> week = FXCollections.observableArrayList();
 	
 	public Week() {		
-		week.add(new Day());
-		week.add(new Day());
-		week.add(new Day());
-		week.add(new Day());
-		week.add(new Day());
-		week.add(new Day());
-	}
+		week.add(new Day("Mo"));
+		week.add(new Day("Tu"));
+		week.add(new Day("We"));
+		week.add(new Day("Th"));
+		week.add(new Day("Fr"));
+	}	
 	
-	public String getHomework(int day,int subject) {
-		return getDay(day).getSubject(subject).getHomework();
-	}
-	
-	public void setHomework(int day, int subject, String homework) {
-		getDay(day).getSubject(subject).setHomework(homework);
-	}
-	
-	public Day getDay(int ind) {
+	public Day selectDay(int ind) {
 		return week.get(ind);
 	}
 
