@@ -120,7 +120,7 @@ public class MainViewController {
 	@FXML
 	private void handleAdd() throws IOException {
 		Subject tempSubject = new Subject();
-		boolean okClicked = main.initEditDialog(tempSubject);
+		boolean okClicked = main.initEditDialog();
 		if (okClicked) {
 			week.selectDay(dayCounter).addSubject(tempSubject);
 		}
