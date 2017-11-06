@@ -2,6 +2,7 @@ package HW;
 
 import java.io.IOException;
 
+import HW.models.Day;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.ViewContainer;
@@ -24,8 +25,8 @@ public class Main extends Application {
 		viewContainer.initRootLayout();
 	}
 
-	public boolean initEditDialog(Subject subject) throws IOException {
-		return viewContainer.initEditDialog(subject);
+	public boolean initEditDialog(Day day, int id) throws IOException {
+		return viewContainer.initEditDialog(day, id);
 	}
 
 	public void initMainView() {

@@ -7,8 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import HW.Main;
 import HW.lang.Language;
+import HW.models.Day;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
+import HW.models.Week;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
@@ -17,6 +19,7 @@ public class EditDialogController {
 	private Stage dialogStage;
 
 	private Subject subject;
+	private Day day;
 
 	private boolean okClicked = false;
 
@@ -37,23 +40,38 @@ public class EditDialogController {
 	private TextField subjectField;		
 	@FXML
 	private TextField lectureField;
+	@FXML
+	private TextField idField;
+	@FXML
+	private TextField weekNumField;
 
 	@FXML
 	private void initialize() {
 		this.properties = main.getProperties();
-		setLanguage(properties.getLanguage());
+//		setLanguage(properties.getLanguage());
 	}
+	
+	
 	
 	@FXML
 	private void handleOk() {
 		if (isInputValid()) {
-			subject.setName(subjectField.getText());
-			subject.setLect(lectureField.getText());
+			setFields();
 			okClicked = true;
 			dialogStage.close();
 		}
 	}
 	
+	private void setFields() {
+
+			int id = Integer.parseInt(idField.getText());
+			int weekNum = Integer.parseInt(weekNumField.getText());						
+			subject.setName(subjectField.getText());
+			subject.setLect(lectureField.getText());
+			subject.setId(id);
+			subject.setWeeknum(weekNum);
+
+	}
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
@@ -61,12 +79,21 @@ public class EditDialogController {
 	
 	private boolean isInputValid() {
 		String errorMessage = "";
-
+		int id = Integer.parseInt(idField.getText());
+		int weekNum = Integer.parseInt(weekNumField.getText());
 		if (subjectField.getText() == null || subjectField.getText().length() == 0) {
 			errorMessage += "No valid Subject!\n";
 		}
 		if (lectureField.getText() == null || lectureField.getText().length() == 0) {
 			errorMessage += "No valid Lecturer!\n";
+		}
+		if (weekNum > 2) {
+			errorMessage += "No valid number of week!\n";
+		}
+		for (int tempid : day.getIdList()) {
+			if (tempid == id) {
+				errorMessage += "No valid id of subject! ID:" + id + "Alrady added!\n";				
+			} 
 		}
 		if (errorMessage.length() == 0) {
 			return true;
@@ -85,10 +112,15 @@ public class EditDialogController {
 		this.dialogStage = dialogStage;
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setDay(Day day, int subjId) {
+
+		this.day = day;
+		this.subject = this.day.getSubject(subjId);
 		subjectField.setText(subject.getName());
 		lectureField.setText(subject.getLect());
+		idField.setText(Integer.toString(subject.getId()));
+		weekNumField.setText(Integer.toString(subject.getWeekNum()));
+		
 	}
 	
 	public void setProperties(PropertiesContainer properties) {

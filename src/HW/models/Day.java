@@ -49,6 +49,16 @@ public class Day {
 		}
 		return tempList;
 	}
+	
+	public ObservableList<Integer> getIdList() {
+		ObservableList<Integer> tempList = FXCollections.observableArrayList();
+		for (Subject temp : subjects.get()) {
+			tempList.add(temp.getId());
+		}
+		return tempList;
+	}
+	
+
 
 			
 }

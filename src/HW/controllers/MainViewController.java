@@ -30,7 +30,7 @@ public class MainViewController {
 
 	private Calendar calendar = Calendar.getInstance();
 
-	private Week week = new Week();
+	private static Week week = new Week();
 
 	private int dayCounter = getCurrentDay();
 
@@ -128,13 +128,10 @@ public class MainViewController {
 
 	@FXML
 	private void handleEdit() throws IOException {
-		Subject selectedSubject = subjectTable.getSelectionModel().getSelectedItem();
-		if (selectedSubject != null) {
-			main.initEditDialog(selectedSubject);
-			subjectTable.getSelectionModel().getSelectedItem().setName(selectedSubject.getName());
-			subjectTable.getSelectionModel().getSelectedItem().setLect(selectedSubject.getLect());
-			subjectTable.refresh();
-		}
+		int selectedId = subjectTable.getSelectionModel().getSelectedIndex();
+		main.initEditDialog(week.selectDay(dayCounter) , selectedId);	
+		setTableItems();
+		
 	}
 
 	@FXML
@@ -276,6 +273,10 @@ public class MainViewController {
 	private void setTableProperty() {
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject, String>("name"));
 		colLecture.setCellValueFactory(new PropertyValueFactory<Subject, String>("lect"));
+		setTableItems();
+	}
+	
+	public void setTableItems() {
 		subjectTable.setItems(week.selectDay(dayCounter).getList(2));
 	}
 
@@ -317,7 +318,6 @@ public class MainViewController {
 		} else
 			return (calendar.get(Calendar.DAY_OF_WEEK) - 2);
 	}
-
 	private void handleEditHomework(Subject subject) throws IOException {
 		if (subject != null) {
 			main.initHomeworkEditDialog(subject);

@@ -36,7 +36,7 @@ public class ViewContainer {
 		}
 	}
 	
-	public boolean initEditDialog(Subject subject) throws IOException {
+	public boolean initEditDialog(Day day, int id) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/EditDialog.fxml"));
@@ -52,7 +52,7 @@ public class ViewContainer {
 			EditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setProperties(properties);
-			controller.setSubject(subject);
+			controller.setDay(day, id);
 			dialogStage.showAndWait();
 			return controller.isOkClicked();
 		} catch (IOException e) {

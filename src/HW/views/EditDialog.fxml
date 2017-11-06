@@ -5,13 +5,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="200.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.EditDialogController">
+<AnchorPane prefHeight="268.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.EditDialogController">
    <children>
-      <Button fx:id="okButton" layoutX="328.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
-      <Button fx:id="cancelButton" layoutX="396.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
-      <Label fx:id="subjectLabel" layoutX="30.0" layoutY="24.0" prefHeight="38.0" prefWidth="70.0" text="Subject" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="24.0" />
-      <Label fx:id="lectureLabel" layoutX="30.0" layoutY="86.0" prefHeight="38.0" prefWidth="70.0" text="Lecture" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="86.0" />
-      <TextField fx:id="subjectField" layoutX="117.0" layoutY="24.0" prefHeight="38.0" prefWidth="365.0" AnchorPane.rightAnchor="30.0" />
-      <TextField fx:id="lectureField" layoutX="134.0" layoutY="81.0" prefHeight="38.0" prefWidth="365.0" AnchorPane.rightAnchor="30.0" />
+      <Button fx:id="okButton" layoutX="338.0" layoutY="203.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+      <Button fx:id="cancelButton" layoutX="403.0" layoutY="203.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <Label fx:id="subjectLabel" layoutX="23.0" layoutY="96.0" prefHeight="38.0" prefWidth="70.0" text="Subject" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="96.0" />
+      <Label fx:id="lectureLabel" layoutX="23.0" layoutY="152.0" prefHeight="38.0" prefWidth="70.0" text="Lecture" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="152.0" />
+      <TextField fx:id="subjectField" layoutX="100.0" layoutY="96.0" prefHeight="38.0" prefWidth="365.0" AnchorPane.rightAnchor="35.0" />
+      <TextField fx:id="lectureField" layoutX="100.0" layoutY="152.0" prefHeight="38.0" prefWidth="365.0" AnchorPane.rightAnchor="35.0" />
+      <TextField fx:id="idField" layoutX="131.0" layoutY="44.0" prefHeight="38.0" prefWidth="45.0" />
+      <TextField fx:id="weekNumField" layoutX="316.0" layoutY="44.0" prefHeight="38.0" prefWidth="45.0" />
+      <Label layoutX="195.0" layoutY="50.0" text="Week number:" />
+      <Label layoutX="100.0" layoutY="50.0" text="№" />
    </children>
 </AnchorPane>
