@@ -31,6 +31,10 @@ public class Day {
 		subjects.remove(ind);
 	}
 	
+	public void remove(Subject subject) {
+		subjects.remove(subject);
+	}
+	
 	public int getSize() {
 		return subjects.getSize();
 	}
@@ -39,23 +43,30 @@ public class Day {
 		return name;
 	}
 	
-	public ObservableList<Subject> getList(int weekNum) {
-		ObservableList<Subject> tempList = FXCollections.observableArrayList();
-		for (Subject temp : subjects.get()) {
-			if(temp.getWeekNum() == weekNum || temp.getWeekNum() == 0) {
-				tempList.add(temp);
-				System.out.println("added" + temp.getName());
-			} 
-		}
-		return tempList;
-	}
-	
 	public ObservableList<Integer> getIdList() {
 		ObservableList<Integer> tempList = FXCollections.observableArrayList();
 		for (Subject temp : subjects.get()) {
 			tempList.add(temp.getId());
 		}
 		return tempList;
+	}
+	
+	public boolean contains(int id) {
+		for(Subject temp : subjects.get()) {
+			if(temp.getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public int getFreeId() {
+		for(int i = 1;i<subjects.getSize()+2; i++) {
+			if(contains(i) == false) {
+				return i;
+			}
+		}
+		return 20;
 	}
 	
 

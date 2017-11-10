@@ -24,6 +24,10 @@ public class SubjectsList {
 		subjects.remove(ind);
 	}
 	
+	public void remove(Subject subject) {
+		subjects.remove(subject);
+	}
+	
 	public int getSize() {
 		return subjects.size();
 	}

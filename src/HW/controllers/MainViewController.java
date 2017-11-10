@@ -8,9 +8,12 @@ import com.jfoenix.controls.JFXTimePicker;
 
 import HW.Main;
 import HW.lang.Language;
+import HW.models.Day;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.Week;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,7 +33,7 @@ public class MainViewController {
 
 	private Calendar calendar = Calendar.getInstance();
 
-	private static Week week = new Week();
+	private Week week = new Week();
 
 	private int dayCounter = getCurrentDay();
 
@@ -38,7 +41,7 @@ public class MainViewController {
 
 	private boolean isSecondWeek = false;
 	
-	private int weekNum;
+	private int weekNum = 1;
 
 	private ToggleGroup rBWeeks = new ToggleGroup();
 
@@ -104,8 +107,7 @@ public class MainViewController {
 
 	
 	@FXML
-	private void initialize() {
-		
+	private void initialize() {		
 		setProperties(properties);
 		init();
 		setToggleGroup();
@@ -120,18 +122,26 @@ public class MainViewController {
 	@FXML
 	private void handleAdd() throws IOException {
 		Subject tempSubject = new Subject();
-		boolean okClicked = main.initEditDialog();
-		if (okClicked) {
+		tempSubject.setId(week.selectDay(dayCounter).getFreeId());
+		boolean okclicked = main.initEditDialog(tempSubject);
+		if (okclicked) {
 			week.selectDay(dayCounter).addSubject(tempSubject);
+			setTableItems();
 		}
 	}
 
 	@FXML
 	private void handleEdit() throws IOException {
-		int selectedId = subjectTable.getSelectionModel().getSelectedIndex();
-		main.initEditDialog(week.selectDay(dayCounter) , selectedId);	
-		setTableItems();
-		
+		Subject selectedSubject = subjectTable.getSelectionModel().getSelectedItem();	
+		if (selectedSubject != null) {
+			boolean okclicked = main.initEditDialog(selectedSubject);
+			if (okclicked) {
+				if(subjectTable.getSelectionModel().getSelectedItem().getId() != selectedSubject.getId() && week.selectDay(dayCounter).contains(selectedSubject.getId())) {
+					selectedSubject.setId(week.selectDay(dayCounter).getFreeId());
+				}
+				subjectTable.getItems().set(subjectTable.getSelectionModel().getSelectedIndex(), selectedSubject);
+			}
+		}
 	}
 
 	@FXML
@@ -143,10 +153,8 @@ public class MainViewController {
 
 	@FXML
 	public void handleDelete() {
-		int selectedIndex = subjectTable.getSelectionModel().getSelectedIndex();
-		if (selectedIndex >= 0) {
-			subjectTable.getItems().remove(selectedIndex);
-		}
+		week.selectDay(dayCounter).remove(subjectTable.getSelectionModel().getSelectedItem());
+		setTableItems();
 	}
 
 	@FXML
@@ -161,7 +169,7 @@ public class MainViewController {
 	private void handleTop() {
 		if (dayCounter >= 1) {
 			dayCounter--;
-			subjectTable.setItems(week.selectDay(dayCounter).getSubjects());
+			setTableItems();
 			setButtonsNames();
 			dayName.setText(getDayName(dayCounter));
 		}
@@ -171,7 +179,7 @@ public class MainViewController {
 	private void handleDown() {		
 		if (dayCounter <= 3) {
 			dayCounter++;
-			subjectTable.setItems(week.selectDay(dayCounter).getSubjects());
+			setTableItems();
 			setButtonsNames();
 			dayName.setText(getDayName(dayCounter));
 		}
@@ -179,12 +187,15 @@ public class MainViewController {
 
 	@FXML
 	private void handleFirstWeekRB() {
-		
+
+		weekNum = 1;
+		setTableItems();
 	}
 
 	@FXML
 	private void handleSecondWeekRB() {
-		
+		weekNum = 2;
+		setTableItems();
 	}
 
 	@FXML
@@ -276,11 +287,6 @@ public class MainViewController {
 		setTableItems();
 	}
 	
-	public void setTableItems() {
-		subjectTable.setItems(week.selectDay(dayCounter).getList(2));
-	}
-
-
 /*	private void setLanguage(Language lang) {
 		editButton.setText(lang.getMainViewLang().getEditButton());
 		addButton.setText(lang.getMainViewLang().getAddButton());
@@ -294,7 +300,18 @@ public class MainViewController {
 	private void init() {
 		week.selectDay(0).addSubject(1, 0, "Організація комп'ютерних мереж", "Солонець Д. М.");
 		week.selectDay(0).addSubject(2, 2, "Комп'ютерна схемотехніка", "Ващищак С. П.");
-		week.selectDay(0).addSubject(2, 1, "Основи електроніки та електротехніки", "Ващищак С. П.");
+		week.selectDay(0).addSubject(3, 1, "Основи електроніки та електротехніки", "Ващищак С. П.");
+	}
+	
+	public void setTableItems() {
+		subjectTable.getItems().clear();
+		for (Subject temp : week.selectDay(dayCounter).getSubjects()) {
+			if(temp.getWeekNum() == weekNum || temp.getWeekNum() == 0) {
+				subjectTable.getItems().add(temp);
+				
+				System.out.println("added: " + temp.getName() + " with id " +temp.getId() + " and weenk num: " + weekNum);
+			} 
+		}
 	}
 
 	private void setButtonsNames() {

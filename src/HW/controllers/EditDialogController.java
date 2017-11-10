@@ -19,7 +19,6 @@ public class EditDialogController {
 	private Stage dialogStage;
 
 	private Subject subject;
-	private Day day;
 
 	private boolean okClicked = false;
 
@@ -63,14 +62,12 @@ public class EditDialogController {
 	}
 	
 	private void setFields() {
-
 			int id = Integer.parseInt(idField.getText());
 			int weekNum = Integer.parseInt(weekNumField.getText());						
 			subject.setName(subjectField.getText());
 			subject.setLect(lectureField.getText());
 			subject.setId(id);
 			subject.setWeeknum(weekNum);
-
 	}
 	@FXML
 	private void handleCancel() {
@@ -89,12 +86,7 @@ public class EditDialogController {
 		}
 		if (weekNum > 2) {
 			errorMessage += "No valid number of week!\n";
-		}
-		for (int tempid : day.getIdList()) {
-			if (tempid == id) {
-				errorMessage += "No valid id of subject! ID:" + id + "Alrady added!\n";				
-			} 
-		}
+		}		
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {
@@ -112,10 +104,8 @@ public class EditDialogController {
 		this.dialogStage = dialogStage;
 	}
 
-	public void setDay(Day day, int subjId) {
-
-		this.day = day;
-		this.subject = this.day.getSubject(subjId);
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 		subjectField.setText(subject.getName());
 		lectureField.setText(subject.getLect());
 		idField.setText(Integer.toString(subject.getId()));

@@ -25,8 +25,8 @@ public class Main extends Application {
 		viewContainer.initRootLayout();
 	}
 
-	public boolean initEditDialog(Day day, int id) throws IOException {
-		return viewContainer.initEditDialog(day, id);
+	public boolean initEditDialog(Subject subject) throws IOException {
+		return viewContainer.initEditDialog(subject);
 	}
 
 	public void initMainView() {
