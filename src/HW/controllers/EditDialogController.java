@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import HW.Main;
 import HW.lang.Language;
 import HW.models.Day;
+import HW.models.InputValidator;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.Week;
@@ -43,63 +44,36 @@ public class EditDialogController {
 	private TextField idField;
 	@FXML
 	private TextField weekNumField;
-
+	InputValidator validator = new InputValidator();
+	
 	@FXML
 	private void initialize() {
 		this.properties = main.getProperties();
-//		setLanguage(properties.getLanguage());
 	}
-	
-	
 	
 	@FXML
 	private void handleOk() {
-		if (isInputValid()) {
-			setFields();
-			okClicked = true;
-			dialogStage.close();
-		}
+		setFields();
+		okClicked = true;
+		dialogStage.close();
+
 	}
 	
 	private void setFields() {
+		if (validator.isInputValid(dialogStage, subjectField, lectureField, weekNumField)) {
 			int id = Integer.parseInt(idField.getText());
 			int weekNum = Integer.parseInt(weekNumField.getText());						
 			subject.setName(subjectField.getText());
 			subject.setLect(lectureField.getText());
 			subject.setId(id);
 			subject.setWeeknum(weekNum);
+		}
 	}
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
 	}
-	
-	private boolean isInputValid() {
-		String errorMessage = "";
-		int id = Integer.parseInt(idField.getText());
-		int weekNum = Integer.parseInt(weekNumField.getText());
-		if (subjectField.getText() == null || subjectField.getText().length() == 0) {
-			errorMessage += "No valid Subject!\n";
-		}
-		if (lectureField.getText() == null || lectureField.getText().length() == 0) {
-			errorMessage += "No valid Lecturer!\n";
-		}
-		if (weekNum > 2) {
-			errorMessage += "No valid number of week!\n";
-		}		
-		if (errorMessage.length() == 0) {
-			return true;
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.initOwner(dialogStage);
-			alert.setTitle("Invalid Fields");
-			alert.setHeaderText("Please correct invalid fields");
-			alert.setContentText(errorMessage);
-			alert.showAndWait();
-			return false;
-		}
-	}
-	
+		
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
@@ -121,18 +95,10 @@ public class EditDialogController {
 	}
 	
 	public void applyProperties() {
-//		setLanguage(properties.getLanguage());
 	}
 	
 	public boolean isOkClicked() {
 		return okClicked;
 	}
 	
-/*	private void setLanguage(Language lang) {
-			System.out.println(lang.getEditDialog().getLectureLabel());
-			cancelButton.setText(lang.getEditDialog().getCancelButton());
-			lectureLabel.setText(lang.getEditDialog().getLectureLabel());
-			okButton.setText(lang.getEditDialog().getOkButton());
-			subjectLabel.setText(lang.getEditDialog().getSubjectLabel());
-	} */
 }
