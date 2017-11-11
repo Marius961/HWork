@@ -58,7 +58,9 @@ public class MainViewController {
 	private TableColumn<Subject, String> colSubject;
 	@FXML
 	private TableColumn<Subject, String> colLecture;
-
+	@FXML
+	private TableColumn<Button, String> colButton;
+	
 	@FXML
 	private RadioButton secondWeek;
 	@FXML
@@ -135,10 +137,8 @@ public class MainViewController {
 		if (selectedSubject != null) {
 			boolean okclicked = main.initEditDialog(selectedSubject, week.selectDay(dayCounter).getIdList());
 			if (okclicked) {
-				if(subjectTable.getSelectionModel().getSelectedItem().getId() != selectedSubject.getId() && week.selectDay(dayCounter).contains(selectedSubject.getId())) {
-					selectedSubject.setId(week.selectDay(dayCounter).getFreeId());
-				}
 				subjectTable.getItems().set(subjectTable.getSelectionModel().getSelectedIndex(), selectedSubject);
+				setTableItems();
 			}
 		}
 	}
@@ -286,16 +286,6 @@ public class MainViewController {
 		setTableItems();
 	}
 	
-/*	private void setLanguage(Language lang) {
-		editButton.setText(lang.getMainViewLang().getEditButton());
-		addButton.setText(lang.getMainViewLang().getAddButton());
-		deleteButton.setText(lang.getMainViewLang().getDeleteButton());
-		firstWeek.setText(lang.getMainViewLang().getFirstWeek());
-		secondWeek.setText(lang.getMainViewLang().getSecondWeek());
-		colLecture.setText(lang.getMainViewLang().getColLecture());
-		colSubject.setText(lang.getMainViewLang().getColSubject());
-	} */
-
 	private void init() {
 		week.selectDay(0).add(1, 0, "Організація комп'ютерних мереж", "Солонець Д. М.");
 		week.selectDay(0).add(2, 2, "Комп'ютерна схемотехніка", "Ващищак С. П.");
@@ -350,7 +340,6 @@ public class MainViewController {
 		setDisplayTwoWeeks();
 		setDisplayTimePickers();
 		setButtonsNames();
-//		setLanguage(properties.getLanguage());
 	}
 	
 	private void setTheme() {

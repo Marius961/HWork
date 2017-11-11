@@ -18,7 +18,7 @@ public class InputValidator {
 		if (lectureField.getText() == null || lectureField.getText().length() == 0) {
 			errorMessage += "No valid Lecturer!\n";
 		}
-		if (weekNum > 2) {
+		if (weekNum > 2 || weekNum < 0) {
 			errorMessage += "No valid number of week!\n";
 		}
 		if (beforeId != id  && idList.contains(id)) {
