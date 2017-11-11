@@ -7,6 +7,7 @@ import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.ViewContainer;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -25,8 +26,8 @@ public class Main extends Application {
 		viewContainer.initRootLayout();
 	}
 
-	public boolean initEditDialog(Subject subject) throws IOException {
-		return viewContainer.initEditDialog(subject);
+	public boolean initEditDialog(Subject subject, ObservableList<Integer> idList) throws IOException {
+		return viewContainer.initEditDialog(subject, idList);
 	}
 
 	public void initMainView() {

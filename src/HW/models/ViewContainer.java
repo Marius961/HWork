@@ -8,6 +8,7 @@ import HW.controllers.HomeworkEditDialogController;
 import HW.controllers.MainViewController;
 import HW.controllers.PropertiesDialogController;
 import HW.models.Subject;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -36,7 +37,7 @@ public class ViewContainer {
 		}
 	}
 	
-	public boolean initEditDialog(Subject subject) throws IOException {
+	public boolean initEditDialog(Subject subject, ObservableList<Integer> idList) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/EditDialog.fxml"));
@@ -53,6 +54,7 @@ public class ViewContainer {
 			controller.setDialogStage(dialogStage);
 			controller.setProperties(properties);
 			controller.setSubject(subject);
+			controller.setIdList(idList);
 			dialogStage.showAndWait();
 			return controller.isOkClicked();
 		} catch (IOException e) {

@@ -12,6 +12,7 @@ import HW.models.InputValidator;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.Week;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
@@ -25,7 +26,8 @@ public class EditDialogController {
 
 	private PropertiesContainer properties;
 	private Main main = new Main();
-	
+	private ObservableList<Integer> idList;
+	private int beforeId;
 	@FXML
 	private Button okButton;	
 	@FXML
@@ -53,21 +55,25 @@ public class EditDialogController {
 	
 	@FXML
 	private void handleOk() {
-		setFields();
-		okClicked = true;
-		dialogStage.close();
+		if (setFields()) {
+			okClicked = true;
+			dialogStage.close();
+		}
+		
 
 	}
 	
-	private void setFields() {
-		if (validator.isInputValid(dialogStage, subjectField, lectureField, weekNumField)) {
+	private boolean setFields() {
+		if (validator.isInputValid(dialogStage, idList, subjectField, lectureField, weekNumField, idField, beforeId)) {
 			int id = Integer.parseInt(idField.getText());
 			int weekNum = Integer.parseInt(weekNumField.getText());						
 			subject.setName(subjectField.getText());
 			subject.setLect(lectureField.getText());
 			subject.setId(id);
 			subject.setWeeknum(weekNum);
-		}
+			return true;
+		} 
+		return false;
 	}
 	@FXML
 	private void handleCancel() {
@@ -80,6 +86,7 @@ public class EditDialogController {
 
 	public void setSubject(Subject subject) {
 		this.subject = subject;
+		beforeId = subject.getId();
 		subjectField.setText(subject.getName());
 		lectureField.setText(subject.getLect());
 		idField.setText(Integer.toString(subject.getId()));
@@ -92,6 +99,10 @@ public class EditDialogController {
 			this.properties = properties;
 			applyProperties();
 		}		
+	}
+	
+	public void setIdList(ObservableList<Integer> idList) {
+		this.idList = idList;
 	}
 	
 	public void applyProperties() {

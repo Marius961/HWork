@@ -115,15 +115,14 @@ public class MainViewController {
 		setTableProperty();
 		dayName.setText(getDayName(dayCounter));
 		setButtonsNames();
-		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
-		
+		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);		
 	}
 
 	@FXML
 	private void handleAdd() throws IOException {
 		Subject tempSubject = new Subject();
 		tempSubject.setId(week.selectDay(dayCounter).getFreeId());
-		boolean okclicked = main.initEditDialog(tempSubject);
+		boolean okclicked = main.initEditDialog(tempSubject,week.selectDay(dayCounter).getIdList());
 		if (okclicked) {
 			week.selectDay(dayCounter).add(tempSubject);
 			setTableItems();
@@ -134,7 +133,7 @@ public class MainViewController {
 	private void handleEdit() throws IOException {
 		Subject selectedSubject = subjectTable.getSelectionModel().getSelectedItem();	
 		if (selectedSubject != null) {
-			boolean okclicked = main.initEditDialog(selectedSubject);
+			boolean okclicked = main.initEditDialog(selectedSubject, week.selectDay(dayCounter).getIdList());
 			if (okclicked) {
 				if(subjectTable.getSelectionModel().getSelectedItem().getId() != selectedSubject.getId() && week.selectDay(dayCounter).contains(selectedSubject.getId())) {
 					selectedSubject.setId(week.selectDay(dayCounter).getFreeId());

@@ -1,5 +1,6 @@
 package HW.models;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
@@ -7,9 +8,10 @@ import javafx.stage.Stage;
 
 public class InputValidator {
 	
-	public boolean isInputValid(Stage owner, TextField subjectField,TextField lectureField,TextField weekNumField) {
+	public boolean isInputValid(Stage owner,ObservableList<Integer> idList, TextField subjectField,TextField lectureField,TextField weekNumField, TextField idField, int beforeId) {
 		String errorMessage = "";
 		int weekNum = Integer.parseInt(weekNumField.getText());
+		int id = Integer.parseInt(idField.getText());
 		if (subjectField.getText() == null || subjectField.getText().length() == 0) {
 			errorMessage += "No valid Subject!\n";
 		}
@@ -18,7 +20,10 @@ public class InputValidator {
 		}
 		if (weekNum > 2) {
 			errorMessage += "No valid number of week!\n";
-		}		
+		}
+		if (beforeId != id  && idList.contains(id)) {
+			errorMessage += "Id: " + id + " Contains in this day!\n";
+		}
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {

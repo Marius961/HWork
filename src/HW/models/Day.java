@@ -17,6 +17,7 @@ public class Day extends SubjectsList{
 	public ObservableList<Integer> getIdList() {
 		ObservableList<Integer> tempList = FXCollections.observableArrayList();
 		for (Subject temp : get()) {
+			System.out.println(temp.getId());
 			tempList.add(temp.getId());
 		}
 		return tempList;
