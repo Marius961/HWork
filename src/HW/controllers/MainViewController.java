@@ -125,7 +125,7 @@ public class MainViewController {
 		tempSubject.setId(week.selectDay(dayCounter).getFreeId());
 		boolean okclicked = main.initEditDialog(tempSubject);
 		if (okclicked) {
-			week.selectDay(dayCounter).addSubject(tempSubject);
+			week.selectDay(dayCounter).add(tempSubject);
 			setTableItems();
 		}
 	}
@@ -298,14 +298,14 @@ public class MainViewController {
 	} */
 
 	private void init() {
-		week.selectDay(0).addSubject(1, 0, "Організація комп'ютерних мереж", "Солонець Д. М.");
-		week.selectDay(0).addSubject(2, 2, "Комп'ютерна схемотехніка", "Ващищак С. П.");
-		week.selectDay(0).addSubject(3, 1, "Основи електроніки та електротехніки", "Ващищак С. П.");
+		week.selectDay(0).add(1, 0, "Організація комп'ютерних мереж", "Солонець Д. М.");
+		week.selectDay(0).add(2, 2, "Комп'ютерна схемотехніка", "Ващищак С. П.");
+		week.selectDay(0).add(3, 1, "Основи електроніки та електротехніки", "Ващищак С. П.");
 	}
 	
 	public void setTableItems() {
 		subjectTable.getItems().clear();
-		for (Subject temp : week.selectDay(dayCounter).getSubjects()) {
+		for (Subject temp : week.selectDay(dayCounter).get()) {
 			if(temp.getWeekNum() == weekNum || temp.getWeekNum() == 0) {
 				subjectTable.getItems().add(temp);
 				

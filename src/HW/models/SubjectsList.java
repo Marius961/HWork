@@ -12,8 +12,7 @@ public class SubjectsList {
 	}
 	
 	public void add(int id, int weekNum,String name, String lect) {
-		Subject temp = new Subject(id, weekNum, name , lect);
-		subjects.add(temp);
+		subjects.add(new Subject(id, weekNum, name , lect));
 	}
 
 	public void add(Subject subject) {
