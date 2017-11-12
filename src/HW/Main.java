@@ -26,8 +26,8 @@ public class Main extends Application {
 		viewContainer.initRootLayout();
 	}
 
-	public boolean initEditDialog(Subject subject, ObservableList<Integer> idList) throws IOException {
-		return viewContainer.initEditDialog(subject, idList);
+	public boolean initEditDialog(Subject subject, ObservableList<Integer> idList1, ObservableList<Integer> idList2) throws IOException {
+		return viewContainer.initEditDialog(subject, idList1, idList2);
 	}
 
 	public void initMainView() {

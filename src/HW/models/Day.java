@@ -14,11 +14,13 @@ public class Day extends SubjectsList{
 		return name;
 	}
 	
-	public ObservableList<Integer> getIdList() {
+	public ObservableList<Integer> getIdList(int weekNum) {
 		ObservableList<Integer> tempList = FXCollections.observableArrayList();
 		for (Subject temp : get()) {
-			System.out.println(temp.getId());
-			tempList.add(temp.getId());
+			if (temp.getWeekNum() == weekNum) {
+				System.out.println(temp.getId());
+				tempList.add(temp.getId());
+			}
 		}
 		return tempList;
 	}

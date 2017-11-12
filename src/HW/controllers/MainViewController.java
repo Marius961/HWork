@@ -124,7 +124,7 @@ public class MainViewController {
 	private void handleAdd() throws IOException {
 		Subject tempSubject = new Subject();
 		tempSubject.setId(week.selectDay(dayCounter).getFreeId());
-		boolean okclicked = main.initEditDialog(tempSubject,week.selectDay(dayCounter).getIdList());
+		boolean okclicked = main.initEditDialog(tempSubject,week.selectDay(dayCounter).getIdList(weekNum),week.selectDay(1).getIdList(2));
 		if (okclicked) {
 			week.selectDay(dayCounter).add(tempSubject);
 			setTableItems();
@@ -135,7 +135,7 @@ public class MainViewController {
 	private void handleEdit() throws IOException {
 		Subject selectedSubject = subjectTable.getSelectionModel().getSelectedItem();	
 		if (selectedSubject != null) {
-			boolean okclicked = main.initEditDialog(selectedSubject, week.selectDay(dayCounter).getIdList());
+			boolean okclicked = main.initEditDialog(selectedSubject, week.selectDay(dayCounter).getIdList(1), week.selectDay(dayCounter).getIdList(2));
 			if (okclicked) {
 				subjectTable.getItems().set(subjectTable.getSelectionModel().getSelectedIndex(), selectedSubject);
 				setTableItems();

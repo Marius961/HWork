@@ -26,7 +26,8 @@ public class EditDialogController {
 
 	private PropertiesContainer properties;
 	private Main main = new Main();
-	private ObservableList<Integer> idList;
+	private ObservableList<Integer> idList1;
+	private ObservableList<Integer> idList2;
 	private int beforeId;
 	@FXML
 	private Button okButton;	
@@ -64,7 +65,7 @@ public class EditDialogController {
 	}
 	
 	private boolean setFields() {
-		if (validator.isInputValid(dialogStage, idList, subjectField, lectureField, weekNumField, idField, beforeId)) {
+		if (validator.isInputValid(dialogStage, idList1, idList2, subjectField, lectureField, weekNumField, idField, beforeId)) {
 			int id = Integer.parseInt(idField.getText());
 			int weekNum = Integer.parseInt(weekNumField.getText());						
 			subject.setName(subjectField.getText());
@@ -101,8 +102,9 @@ public class EditDialogController {
 		}		
 	}
 	
-	public void setIdList(ObservableList<Integer> idList) {
-		this.idList = idList;
+	public void setIdList(ObservableList<Integer> idList1, ObservableList<Integer> idList2) {
+		this.idList1 = idList1;
+		this.idList2 = idList2;
 	}
 	
 	public void applyProperties() {

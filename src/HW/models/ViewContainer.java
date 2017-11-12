@@ -37,7 +37,7 @@ public class ViewContainer {
 		}
 	}
 	
-	public boolean initEditDialog(Subject subject, ObservableList<Integer> idList) throws IOException {
+	public boolean initEditDialog(Subject subject, ObservableList<Integer> idList1, ObservableList<Integer> idList2) throws IOException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/EditDialog.fxml"));
@@ -54,7 +54,7 @@ public class ViewContainer {
 			controller.setDialogStage(dialogStage);
 			controller.setProperties(properties);
 			controller.setSubject(subject);
-			controller.setIdList(idList);
+			controller.setIdList(idList1,idList2);
 			dialogStage.showAndWait();
 			return controller.isOkClicked();
 		} catch (IOException e) {
