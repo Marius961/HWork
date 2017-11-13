@@ -21,7 +21,7 @@ public class PropertiesDialogController {
 	
 	private PropertiesContainer properties = new PropertiesContainer();
 	
-	private ObservableList<String> themes = FXCollections.observableArrayList();
+	private ObservableList<String> themes = FXCollections.observableArrayList("Classic","Dark");
 	private ObservableList<String> languages = FXCollections.observableArrayList();
 	
 	@FXML
