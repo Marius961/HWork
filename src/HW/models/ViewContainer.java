@@ -45,11 +45,10 @@ public class ViewContainer {
 
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Add Subject");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(primaryStage);
+			dialogStage.initModality(Modality.APPLICATION_MODAL);
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
-
+			
 			EditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setProperties(properties);
@@ -82,8 +81,7 @@ public class ViewContainer {
 
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle(subject.getName());
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(primaryStage);
+			dialogStage.initModality(Modality.APPLICATION_MODAL);
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
 
@@ -107,8 +105,7 @@ public class ViewContainer {
 
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Properties");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(primaryStage);
+			dialogStage.initModality(Modality.APPLICATION_MODAL);
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
 
