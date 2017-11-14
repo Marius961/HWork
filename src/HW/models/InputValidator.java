@@ -1,3 +1,4 @@
+
 package HW.models;
 
 import javafx.collections.ObservableList;
@@ -8,7 +9,7 @@ import javafx.stage.Stage;
 
 public class InputValidator {
 	
-	public boolean isInputValid(Stage owner,ObservableList<Integer> idList1, ObservableList<Integer> idList2,  TextField subjectField,TextField lectureField,TextField weekNumField, TextField idField, int beforeId) {
+	public boolean isInputValid(Stage owner,ObservableList<Integer> idList1, ObservableList<Integer> idList2,  TextField subjectField,TextField lectureField,TextField weekNumField, TextField idField, int beforeId, boolean isOnPosition) {
 		String errorMessage = "";
 		int weekNum = Integer.parseInt(weekNumField.getText());
 		int id = Integer.parseInt(idField.getText());
@@ -21,10 +22,10 @@ public class InputValidator {
 		if (weekNum > 2 || weekNum < 0) {
 			errorMessage += "No valid number of week!\n";
 		}
-		if (beforeId != id  && idList1.contains(id) && !idList1.contains(id)) {
+		if (weekNum == 1 && isOnPosition == false && idList1.contains(id)) {
 			errorMessage += "e1 Id: " + id + " Contains in this day!\n";
 		}
-		if (beforeId != id  && idList2.contains(id) && !idList2.contains(id)) {
+		if (weekNum == 2 && isOnPosition == false && idList2.contains(id)) {
 			errorMessage += "e2 Id: " + id + " Contains in this day!\n";
 		}
 		if (errorMessage.length() == 0) {

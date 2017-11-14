@@ -29,6 +29,7 @@ public class EditDialogController {
 	private ObservableList<Integer> idList1;
 	private ObservableList<Integer> idList2;
 	private int beforeId;
+	private int beforeWeek;
 	@FXML
 	private Button okButton;	
 	@FXML
@@ -60,12 +61,10 @@ public class EditDialogController {
 			okClicked = true;
 			dialogStage.close();
 		}
-		
-
 	}
 	
 	private boolean setFields() {
-		if (validator.isInputValid(dialogStage, idList1, idList2, subjectField, lectureField, weekNumField, idField, beforeId)) {
+		if (validator.isInputValid(dialogStage, idList1, idList2, subjectField, lectureField, weekNumField, idField, beforeId, isOnposition())) {
 			int id = Integer.parseInt(idField.getText());
 			int weekNum = Integer.parseInt(weekNumField.getText());						
 			subject.setName(subjectField.getText());
@@ -74,6 +73,15 @@ public class EditDialogController {
 			subject.setWeeknum(weekNum);
 			return true;
 		} 
+		return false;
+	}
+	
+	private boolean isOnposition() {
+		int id = Integer.parseInt(idField.getText());
+		int weekNum = Integer.parseInt(weekNumField.getText());		
+		if (beforeId == id && beforeWeek == weekNum) {
+			return true;
+		}
 		return false;
 	}
 	@FXML
@@ -88,6 +96,7 @@ public class EditDialogController {
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 		beforeId = subject.getId();
+		beforeWeek = subject.getWeekNum();
 		subjectField.setText(subject.getName());
 		lectureField.setText(subject.getLect());
 		idField.setText(Integer.toString(subject.getId()));
