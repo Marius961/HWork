@@ -22,10 +22,11 @@ public class InputValidator {
 		if (weekNum > 2 || weekNum < 0) {
 			errorMessage += "No valid number of week!\n";
 		}
-		if (weekNum == 1 && isOnPosition == false && idList1.contains(id)) {
+		System.out.println(id + " " + isOnPosition);
+		if (weekNum == 1 &&idList1.contains(id) && isOnPosition == false) {
 			errorMessage += "e1 Id: " + id + " Contains in this day!\n";
 		}
-		if (weekNum == 2 && isOnPosition == false && idList2.contains(id)) {
+		if (weekNum == 2 && idList2.contains(id) && isOnPosition == false) {
 			errorMessage += "e2 Id: " + id + " Contains in this day!\n";
 		}
 		if (errorMessage.length() == 0) {

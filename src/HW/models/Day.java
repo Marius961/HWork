@@ -17,7 +17,7 @@ public class Day extends SubjectsList{
 	public ObservableList<Integer> getIdList(int weekNum) {
 		ObservableList<Integer> tempList = FXCollections.observableArrayList();
 		for (Subject temp : get()) {
-			if (temp.getWeekNum() == weekNum) {
+			if (temp.getWeekNum() == weekNum || temp.getWeekNum() == 0) {
 				System.out.println(temp.getId());
 				tempList.add(temp.getId());
 			}
@@ -25,22 +25,22 @@ public class Day extends SubjectsList{
 		return tempList;
 	}
 	
-	public boolean contains(int id) {
+	public boolean contains(int id, int weekNum) {
 		for(Subject temp : get()) {
-			if(temp.getId() == id) {
+			if(temp.getId() == id && (temp.getWeekNum() == weekNum || temp.getWeekNum() == 0)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public int getFreeId() {
+	public int getFreeId(int weekNum) {
 		for(int i = 1;i<getSize()+2; i++) {
-			if(contains(i) == false) {
+			if(contains(i, weekNum) == false) {
 				return i;
 			}
 		}
-		return 20;
+		return 0;
 	}
 	
 

@@ -80,6 +80,7 @@ public class EditDialogController {
 		int id = Integer.parseInt(idField.getText());
 		int weekNum = Integer.parseInt(weekNumField.getText());		
 		if (beforeId == id && beforeWeek == weekNum) {
+			System.out.println("on position");
 			return true;
 		}
 		return false;

@@ -123,7 +123,8 @@ public class MainViewController {
 	@FXML
 	private void handleAdd() throws IOException {
 		Subject tempSubject = new Subject();
-		tempSubject.setId(week.selectDay(dayCounter).getFreeId());
+		tempSubject.setId(week.selectDay(dayCounter).getFreeId(weekNum));
+		tempSubject.setWeeknum(weekNum);
 		boolean okclicked = main.initEditDialog(tempSubject,week.selectDay(dayCounter).getIdList(weekNum),week.selectDay(1).getIdList(2));
 		if (okclicked) {
 			week.selectDay(dayCounter).add(tempSubject);
