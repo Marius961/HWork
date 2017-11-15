@@ -1,10 +1,10 @@
 package HW.models;
 
 import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 
 public class Week {
-	
 	private ObservableList<Day> week = FXCollections.observableArrayList();
 	
 	public Week() {		

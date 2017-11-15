@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTimePicker;
 
 import HW.Main;
 import HW.lang.Language;
+import HW.models.Converter;
 import HW.models.Day;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
@@ -106,10 +107,9 @@ public class MainViewController {
 	@FXML
 	private JFXTimePicker fifthTimePicker;
 	private int enterPressCounter = 0;
-
 	
 	@FXML
-	private void initialize() {		
+	private void initialize() throws IOException {		
 		setProperties(properties);
 		init();
 		setToggleGroup();
@@ -117,7 +117,7 @@ public class MainViewController {
 		setTableProperty();
 		dayName.setText(getDayName(dayCounter));
 		setButtonsNames();
-		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);		
+		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
 	}
 
 	@FXML
