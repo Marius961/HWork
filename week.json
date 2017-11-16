@@ -1,1 +1,25 @@
-{"Week":[{"name":"Mo","size":3},{"name":"Tu","size":0},{"name":"We","size":0},{"name":"Th","size":0},{"name":"Fr","size":0}]}
+[ [ {
+  "name" : "test",
+  "lect" : "Солонець Д. М.",
+  "homework" : null,
+  "weekNum" : 0,
+  "id" : 1
+}, {
+  "name" : "Комп'ютерна схемотехніка",
+  "lect" : "Ващищак С. П.",
+  "homework" : null,
+  "weekNum" : 2,
+  "id" : 2
+}, {
+  "name" : "1",
+  "lect" : "1",
+  "homework" : null,
+  "weekNum" : 1,
+  "id" : 2
+} ], [ ], [ ], [ ], [ {
+  "name" : "asdasd312312312asdas",
+  "lect" : "asdasdas12312asdasd",
+  "homework" : null,
+  "weekNum" : 1,
+  "id" : 1
+} ] ]

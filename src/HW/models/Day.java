@@ -1,11 +1,19 @@
 package HW.models;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Day extends SubjectsList{
 	
 	public Day(String name) {
+		this.name = name;
+	}
+	
+	public Day(List<Subject> list,String name) {
+		super.set(list);
 		this.name = name;
 	}
 	private String name;	

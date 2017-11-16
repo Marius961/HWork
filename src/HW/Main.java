@@ -53,4 +53,6 @@ public class Main extends Application {
 	public void setProperties(PropertiesContainer properties) {
 		viewContainer.setProperties(properties);
 	}
+	
+	
 }

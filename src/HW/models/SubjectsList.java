@@ -1,5 +1,7 @@
 package HW.models;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -34,4 +36,8 @@ public class SubjectsList {
 	public Subject get(int ind) {
 		return subjects.get(ind);
 	}	
+	
+	public void set(List<Subject> list) {
+		this.subjects = FXCollections.observableArrayList(list);
+	}
 }

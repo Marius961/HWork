@@ -3,6 +3,7 @@ package HW.controllers;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.List;
 
 import com.jfoenix.controls.JFXTimePicker;
 
@@ -109,9 +110,9 @@ public class MainViewController {
 	private int enterPressCounter = 0;
 	
 	@FXML
-	private void initialize() throws IOException {		
+	private void initialize() throws IOException {	
+		week.set(Converter.toJavaObject());
 		setProperties(properties);
-		init();
 		setToggleGroup();
 		firstWeek.setSelected(true);
 		setTableProperty();
@@ -346,5 +347,9 @@ public class MainViewController {
 	private void setTheme() {
 		pane.getStylesheets().clear();
 		pane.getStylesheets().add(getClass().getResource(properties.getTheme().getUrl()).toExternalForm());		
+	}
+	
+	public Week getWeek() {
+		return week;
 	}
 }

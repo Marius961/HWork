@@ -9,12 +9,14 @@ import HW.controllers.MainViewController;
 import HW.controllers.PropertiesDialogController;
 import HW.models.Subject;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class ViewContainer {
 	private Stage primaryStage;
@@ -32,6 +34,7 @@ public class ViewContainer {
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -68,6 +71,16 @@ public class ViewContainer {
 			loader.setLocation(Main.class.getResource("views/MainView.fxml"));
 			AnchorPane mainView = (AnchorPane) loader.load();
 			rootLayout.setCenter(mainView);
+			MainViewController controller = loader.getController();
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+		          public void handle(WindowEvent we) {
+		              try {
+						Converter.toJSON(controller.getWeek());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+		          }
+		      }); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -121,7 +134,7 @@ public class ViewContainer {
 			return false;
 		}
 	} 
-
+	
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
