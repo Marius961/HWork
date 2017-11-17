@@ -13,6 +13,7 @@ import HW.models.Converter;
 import HW.models.Day;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
+import HW.models.ThemeList;
 import HW.models.Week;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -111,7 +112,7 @@ public class MainViewController {
 	
 	@FXML
 	private void initialize() throws IOException {	
-		week.set(Converter.toJavaObject());
+		week.set(Converter.dataToJavaObject());
 		setProperties(properties);
 		setToggleGroup();
 		firstWeek.setSelected(true);
@@ -260,7 +261,7 @@ public class MainViewController {
 			return fifthTimePicker;
 	}
 
-	private void setProperties(PropertiesContainer properties) {
+	public void setProperties(PropertiesContainer properties) {
 		if (this.properties != properties) {
 			System.out.println("no");
 			this.properties = properties;
@@ -287,13 +288,7 @@ public class MainViewController {
 		colLecture.setCellValueFactory(new PropertyValueFactory<Subject, String>("lect"));
 		setTableItems();
 	}
-	
-	private void init() {
-		week.selectDay(0).add(1, 0, "Організація комп'ютерних мереж", "Солонець Д. М.");
-		week.selectDay(0).add(2, 2, "Комп'ютерна схемотехніка", "Ващищак С. П.");
-		week.selectDay(0).add(3, 1, "Основи електроніки та електротехніки", "Ващищак С. П.");
-	}
-	
+		
 	public void setTableItems() {
 		subjectTable.getItems().clear();
 		for (Subject temp : week.selectDay(dayCounter).get()) {
@@ -352,4 +347,5 @@ public class MainViewController {
 	public Week getWeek() {
 		return week;
 	}
+	
 }

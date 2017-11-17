@@ -1,8 +1,13 @@
 package HW.models;
 
+import java.io.IOException;
+
 import javax.swing.text.StyleConstants;
 import javax.swing.text.html.CSS;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.sun.javafx.css.Style;
 import com.sun.javafx.css.StyleClassSet;
 import com.sun.javafx.css.Stylesheet;
@@ -12,24 +17,20 @@ import HW.lang.LanguageList;
 import javafx.collections.FXCollections;
 
 public class PropertiesContainer {
-//	private LanguageList langList = new LanguageList();
-	
-//	private Language lang = langList.getLanguage("English");
+	private Theme theme = new Theme();
 	private boolean twoWeeksShedule = true;
-
 	private int weeks = 2;
-	private ThemeList themeList = new ThemeList();
-	private Theme theme = themeList.get(0);
-	private boolean displayTimePickers = true;
+	private boolean displayTimePickers = true;	
 	
-/*	public Language getLanguage() {
-		return lang;
-	} 
+	public PropertiesContainer() {
+	}
 	
-	public void setLanguage(Language lang) {
-		this.lang = lang;
-	} 
-*/
+	public PropertiesContainer(PropertiesContainer container) {
+		this.theme = container.theme;
+		this.twoWeeksShedule = container.twoWeeksShedule;
+		this.weeks = container.weeks;
+		this.displayTimePickers = container.displayTimePickers;
+	}
 
 	public boolean isDisplayTimePickers() {
 		return displayTimePickers;
@@ -55,21 +56,15 @@ public class PropertiesContainer {
 		this.twoWeeksShedule = twoWeeksShedule;
 	}
 
-	public ThemeList getThemeList() {
-		return themeList;
-	}
-
-	public void setThemeList(ThemeList themeList) {
-		this.themeList = themeList;
-	}
-
 	public Theme getTheme() {
 		return theme;
 	}
 
-	public void setTheme(int ind) {
-		this.theme = themeList.get(ind);
+	public void setTheme(Theme theme) {
+		this.theme = theme;
 	}
+
+
 
 	
 

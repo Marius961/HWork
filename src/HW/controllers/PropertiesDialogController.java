@@ -4,6 +4,7 @@ package HW.controllers;
 import HW.lang.Language;
 import HW.lang.LanguageList;
 import HW.models.PropertiesContainer;
+import HW.models.ThemeList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,7 +24,7 @@ public class PropertiesDialogController {
 	
 	private ObservableList<String> themes = FXCollections.observableArrayList("Classic","Dark");
 	private ObservableList<String> languages = FXCollections.observableArrayList();
-	
+	private ThemeList themeList = new ThemeList();
 	@FXML
 	private Button saveButton;
 	@FXML
@@ -128,12 +129,12 @@ public class PropertiesDialogController {
 	
 	public void setTheme() {
 		int ind = cBThemes.getSelectionModel().getSelectedIndex();
-		if (ind == 0 && properties.getTheme() != properties.getThemeList().get(0)) {
-			properties.setTheme(0);
+		if (ind == 0 && properties.getTheme() != themeList.get(0)) {
+			properties.setTheme(themeList.get(0));
 			System.out.println("Вибрана тема 1");
 		}
-		if (ind == 1 && properties.getTheme() != properties.getThemeList().get(1)) {
-			properties.setTheme(1);
+		if (ind == 1 && properties.getTheme() != themeList.get(1)) {
+			properties.setTheme(themeList.get(1));
 			System.out.println("Вибрана тема 2");
 		}
 	}

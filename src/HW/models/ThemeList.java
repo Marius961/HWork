@@ -1,10 +1,13 @@
 package HW.models;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ThemeList {
-	ObservableList<Theme> themes = FXCollections.observableArrayList();
+	private final List<Theme> themes = new LinkedList<>();
 	
 	public ThemeList() {
 		themes.add(new Theme("Classic", "../styles/ClassicTheme.css", 0));

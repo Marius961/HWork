@@ -2,6 +2,9 @@ package HW.models;
 
 import java.io.IOException;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 import HW.Main;
 import HW.controllers.EditDialogController;
 import HW.controllers.HomeworkEditDialogController;
@@ -23,7 +26,7 @@ public class ViewContainer {
 	
 	private BorderPane rootLayout;
 	
-	private PropertiesContainer properties = new PropertiesContainer();
+	private PropertiesContainer properties = Converter.propertiesToJavaObject();
 	
 	public void initRootLayout() {
 		try {
@@ -34,7 +37,7 @@ public class ViewContainer {
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -42,6 +45,7 @@ public class ViewContainer {
 	
 	public boolean initEditDialog(Subject subject, ObservableList<Integer> idList1, ObservableList<Integer> idList2) throws IOException {
 		try {
+
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/EditDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
@@ -72,10 +76,12 @@ public class ViewContainer {
 			AnchorPane mainView = (AnchorPane) loader.load();
 			rootLayout.setCenter(mainView);
 			MainViewController controller = loader.getController();
+			controller.setProperties(properties);
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 		          public void handle(WindowEvent we) {
 		              try {
-						Converter.toJSON(controller.getWeek());
+						Converter.toJson(controller.getWeek());
+						Converter.toJson(properties);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -134,7 +140,7 @@ public class ViewContainer {
 			return false;
 		}
 	} 
-	
+
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
