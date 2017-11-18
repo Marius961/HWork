@@ -1,10 +1,4 @@
 [ [ {
-  "name" : "test",
-  "lect" : "Солонець Д. М.",
-  "homework" : null,
-  "weekNum" : 0,
-  "id" : 1
-}, {
   "name" : "Комп'ютерна схемотехніка",
   "lect" : "Ващищак С. П.",
   "homework" : null,
@@ -15,11 +9,59 @@
   "lect" : "1",
   "homework" : null,
   "weekNum" : 1,
+  "id" : 1
+}, {
+  "name" : "2",
+  "lect" : "2",
+  "homework" : null,
+  "weekNum" : 1,
   "id" : 2
-} ], [ ], [ ], [ ], [ {
+}, {
+  "name" : "3asd",
+  "lect" : "3asdasd",
+  "homework" : null,
+  "weekNum" : 1,
+  "id" : 3
+}, {
+  "name" : "4",
+  "lect" : "4",
+  "homework" : null,
+  "weekNum" : 1,
+  "id" : 4
+} ], [ {
+  "name" : "123123",
+  "lect" : "123123",
+  "homework" : null,
+  "weekNum" : 1,
+  "id" : 1
+} ], [ {
+  "name" : "123123",
+  "lect" : "123123",
+  "homework" : null,
+  "weekNum" : 1,
+  "id" : 1
+} ], [ {
+  "name" : "123123",
+  "lect" : "123123",
+  "homework" : null,
+  "weekNum" : 1,
+  "id" : 1
+} ], [ {
   "name" : "asdasd312312312asdas",
   "lect" : "asdasdas12312asdasd",
   "homework" : null,
   "weekNum" : 1,
   "id" : 1
+}, {
+  "name" : "123",
+  "lect" : "123123",
+  "homework" : null,
+  "weekNum" : 1,
+  "id" : 2
+}, {
+  "name" : "1231",
+  "lect" : "123123",
+  "homework" : null,
+  "weekNum" : 1,
+  "id" : 3
 } ] ]

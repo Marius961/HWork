@@ -1,44 +1,30 @@
 package HW.controllers;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 import HW.Main;
-import HW.lang.Language;
-import HW.models.Day;
+import HW.models.Properties;
 import HW.models.InputValidator;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
-import HW.models.Week;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
-public class EditDialogController {
+public class EditDialogController implements Properties{
 	
 	private Stage dialogStage;
-
 	private Subject subject;
-
 	private boolean okClicked = false;
-
 	private PropertiesContainer properties;
 	private Main main = new Main();
+	
 	private ObservableList<Integer> idList1;
 	private ObservableList<Integer> idList2;
+	
 	private int beforeId;
 	private int beforeWeek;
-	@FXML
-	private Button okButton;	
-	@FXML
-	private Button cancelButton;
 	
-	@FXML
-	private Label subjectLabel;	
-	@FXML
-	private Label lectureLabel;
 		
 	@FXML
 	private TextField subjectField;		
@@ -48,7 +34,9 @@ public class EditDialogController {
 	private TextField idField;
 	@FXML
 	private TextField weekNumField;
-	InputValidator validator = new InputValidator();
+	@FXML
+	AnchorPane pane;
+	private final InputValidator validator = new InputValidator();
 	
 	@FXML
 	private void initialize() {
@@ -57,14 +45,23 @@ public class EditDialogController {
 	
 	@FXML
 	private void handleOk() {
-		if (setFields()) {
+		if (setSubject()) {
 			okClicked = true;
 			dialogStage.close();
 		}
 	}
 	
-	private boolean setFields() {
-		if (validator.isInputValid(dialogStage, idList1, idList2, subjectField, lectureField, weekNumField, idField, beforeId, isOnposition())) {
+	private boolean setSubject() {
+		if (validator.isInputValid(
+				dialogStage, 
+				idList1, 
+				idList2, 
+				subjectField, 
+				lectureField, 
+				weekNumField, 
+				idField, 
+				beforeId, 
+				isOnposition())) {			
 			int id = Integer.parseInt(idField.getText());
 			int weekNum = Integer.parseInt(weekNumField.getText());						
 			subject.setName(subjectField.getText());
@@ -85,6 +82,7 @@ public class EditDialogController {
 		}
 		return false;
 	}
+	
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
@@ -94,17 +92,18 @@ public class EditDialogController {
 		this.dialogStage = dialogStage;
 	}
 
-	public void setSubject(Subject subject) {
+	public void setFields(Subject subject) {
 		this.subject = subject;
-		beforeId = subject.getId();
-		beforeWeek = subject.getWeekNum();
-		subjectField.setText(subject.getName());
-		lectureField.setText(subject.getLect());
-		idField.setText(Integer.toString(subject.getId()));
-		weekNumField.setText(Integer.toString(subject.getWeekNum()));
+		beforeId = this.subject.getId();
+		beforeWeek = this.subject.getWeekNum();
+		subjectField.setText(this.subject.getName());
+		lectureField.setText(this.subject.getLect());
+		idField.setText(Integer.toString(this.subject.getId()));
+		weekNumField.setText(Integer.toString(this.subject.getWeekNum()));
 		
 	}
 	
+	@Override
 	public void setProperties(PropertiesContainer properties) {
 		if (this.properties != properties) {
 			this.properties = properties;
@@ -117,7 +116,14 @@ public class EditDialogController {
 		this.idList2 = idList2;
 	}
 	
+	@Override
 	public void applyProperties() {
+		setTheme();
+	}
+	
+	private void setTheme() {
+		pane.getStylesheets().clear();
+		pane.getStylesheets().add(getClass().getResource(properties.getTheme().getUrl()).toExternalForm());		
 	}
 	
 	public boolean isOkClicked() {

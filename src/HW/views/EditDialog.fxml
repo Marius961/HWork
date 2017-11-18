@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="268.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.EditDialogController">
+<AnchorPane fx:id="pane" prefHeight="268.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.EditDialogController">
    <children>
       <Button fx:id="okButton" layoutX="338.0" layoutY="203.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
       <Button fx:id="cancelButton" layoutX="403.0" layoutY="203.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />

@@ -1,27 +1,11 @@
 package HW.models;
 
-import java.io.IOException;
-
-import javax.swing.text.StyleConstants;
-import javax.swing.text.html.CSS;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.sun.javafx.css.Style;
-import com.sun.javafx.css.StyleClassSet;
-import com.sun.javafx.css.Stylesheet;
-
-import HW.lang.Language;
-import HW.lang.LanguageList;
-import javafx.collections.FXCollections;
-
 public class PropertiesContainer {
 	private Theme theme = new Theme();
 	private boolean twoWeeksShedule = true;
 	private int weeks = 2;
 	private boolean displayTimePickers = true;	
-	
+	private int currentWeekNum;
 	public PropertiesContainer() {
 	}
 	
@@ -63,6 +47,16 @@ public class PropertiesContainer {
 	public void setTheme(Theme theme) {
 		this.theme = theme;
 	}
+
+	public int getCurrentWeekNum() {
+		return currentWeekNum;
+	}
+
+	public void setCurrentWeekNum(int currentWeekNum) {
+		this.currentWeekNum = currentWeekNum;
+	}
+
+
 
 
 

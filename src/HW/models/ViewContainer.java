@@ -2,9 +2,6 @@ package HW.models;
 
 import java.io.IOException;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
 import HW.Main;
 import HW.controllers.EditDialogController;
 import HW.controllers.HomeworkEditDialogController;
@@ -22,19 +19,17 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class ViewContainer {
-	private Stage primaryStage;
-	
+	private Stage primaryStage; 	
 	private BorderPane rootLayout;
-	
 	private PropertiesContainer properties = Converter.propertiesToJavaObject();
-	
+		
 	public void initRootLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
-
 			Scene scene = new Scene(rootLayout);
+//			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
@@ -59,7 +54,7 @@ public class ViewContainer {
 			EditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setProperties(properties);
-			controller.setSubject(subject);
+			controller.setFields(subject);
 			controller.setIdList(idList1,idList2);
 			dialogStage.showAndWait();
 			return controller.isOkClicked();
@@ -80,8 +75,8 @@ public class ViewContainer {
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 		          public void handle(WindowEvent we) {
 		              try {
-						Converter.toJson(controller.getWeek());
-						Converter.toJson(properties);
+		            	Converter.toJson(controller.getWeek());
+		            	Converter.toJson(controller.getProperties());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

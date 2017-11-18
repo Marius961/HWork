@@ -1,6 +1,7 @@
 package HW.controllers;
 
 import java.io.IOException;
+
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.List;
@@ -8,9 +9,9 @@ import java.util.List;
 import com.jfoenix.controls.JFXTimePicker;
 
 import HW.Main;
-import HW.lang.Language;
 import HW.models.Converter;
 import HW.models.Day;
+import HW.models.Properties;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.ThemeList;
@@ -30,26 +31,18 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-public class MainViewController {
+public class MainViewController implements Properties{
 
-	private Calendar calendar = Calendar.getInstance();
+	private Week week = Converter.dataToJavaObject();
+	private int dayCounter = week.getCurrentDay();
 
-	private Week week = new Week();
-
-	private int dayCounter = getCurrentDay();
-
-	private PropertiesContainer properties = new PropertiesContainer();
-
-	private boolean isSecondWeek = false;
-	
-	private int weekNum = 1;
+	private int weekNum;
 
 	private ToggleGroup rBWeeks = new ToggleGroup();
 
 	private Main main = new Main();
-
+	private PropertiesContainer properties = main.getProperties();
 	private Subject listenedSubject;
 
 	@FXML
@@ -111,14 +104,8 @@ public class MainViewController {
 	private int enterPressCounter = 0;
 	
 	@FXML
-	private void initialize() throws IOException {	
-		week.set(Converter.dataToJavaObject());
-		setProperties(properties);
-		setToggleGroup();
-		firstWeek.setSelected(true);
+	private void initialize() throws IOException {			
 		setTableProperty();
-		dayName.setText(getDayName(dayCounter));
-		setButtonsNames();
 		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
 	}
 
@@ -147,7 +134,7 @@ public class MainViewController {
 	}
 
 	@FXML
-	private void openHomeWork(MouseEvent mouseEvent) throws IOException {
+	private void handleEditHomeWorkEvent(MouseEvent mouseEvent) throws IOException {
 		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
 			handleEditHomework(listenedSubject);
 		}
@@ -173,7 +160,6 @@ public class MainViewController {
 			dayCounter--;
 			setTableItems();
 			setButtonsNames();
-			dayName.setText(getDayName(dayCounter));
 		}
 	}
 
@@ -183,20 +169,18 @@ public class MainViewController {
 			dayCounter++;
 			setTableItems();
 			setButtonsNames();
-			dayName.setText(getDayName(dayCounter));
 		}
 	}
 
 	@FXML
 	private void handleFirstWeekRB() {
-
-		weekNum = 1;
+		properties.setCurrentWeekNum(weekNum = 1);
 		setTableItems();
 	}
 
 	@FXML
 	private void handleSecondWeekRB() {
-		weekNum = 2;
+		properties.setCurrentWeekNum(weekNum = 2);
 		setTableItems();
 	}
 
@@ -284,8 +268,9 @@ public class MainViewController {
 	}
 
 	private void setTableProperty() {
+		subjectTable.setFocusTraversable(false);
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject, String>("name"));
-		colLecture.setCellValueFactory(new PropertyValueFactory<Subject, String>("lect"));
+		colLecture.setCellValueFactory(new PropertyValueFactory<Subject, String>("lect"));		
 		setTableItems();
 	}
 		
@@ -293,14 +278,14 @@ public class MainViewController {
 		subjectTable.getItems().clear();
 		for (Subject temp : week.selectDay(dayCounter).get()) {
 			if(temp.getWeekNum() == weekNum || temp.getWeekNum() == 0) {
-				subjectTable.getItems().add(temp);
-				
+				subjectTable.getItems().add(temp);				
 				System.out.println("added: " + temp.getName() + " with id " +temp.getId() + " and weenk num: " + weekNum);
 			} 
 		}
 	}
 
 	private void setButtonsNames() {
+		dayName.setText(getDayName(dayCounter));
 		if (dayCounter == 0) {
 			topButton.setText("***");
 		} else {
@@ -314,13 +299,7 @@ public class MainViewController {
 			bottomButton.setText(getDayName(bottomName));
 		}
 	}
-
-	private int getCurrentDay() {
-		if ((calendar.get(Calendar.DAY_OF_WEEK) - 2) < 0 || (calendar.get(Calendar.DAY_OF_WEEK) - 2) > 4) {
-			return 0;
-		} else
-			return (calendar.get(Calendar.DAY_OF_WEEK) - 2);
-	}
+	
 	private void handleEditHomework(Subject subject) throws IOException {
 		if (subject != null) {
 			main.initHomeworkEditDialog(subject);
@@ -337,8 +316,20 @@ public class MainViewController {
 		setDisplayTwoWeeks();
 		setDisplayTimePickers();
 		setButtonsNames();
+		setToggleGroup();
+		setCurrentWeekNum();
 	}
 	
+	public void setCurrentWeekNum() {
+		this.weekNum = properties.getCurrentWeekNum();
+		if (weekNum == 1) {
+			firstWeek.setSelected(true);
+		} if (weekNum == 2) {
+			secondWeek.setSelected(true);
+		} else {
+			firstWeek.setSelected(true);
+		}
+	}
 	private void setTheme() {
 		pane.getStylesheets().clear();
 		pane.getStylesheets().add(getClass().getResource(properties.getTheme().getUrl()).toExternalForm());		
@@ -348,4 +339,7 @@ public class MainViewController {
 		return week;
 	}
 	
+	public PropertiesContainer getProperties() {
+		return this.properties;
+	}		
 }

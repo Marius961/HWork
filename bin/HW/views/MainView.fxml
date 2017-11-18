@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="pane" maxHeight="476.0" maxWidth="840.0" minHeight="204.0" minWidth="360.0" prefHeight="340.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.MainViewController">
    <children>
-      <TableView fx:id="subjectTable" layoutX="153.0" layoutY="61.0" maxHeight="280.0" maxWidth="602.0" minHeight="120.0" minWidth="258.0" onMouseClicked="#openHomeWork" prefHeight="200.0" prefWidth="430.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="61.0">
+      <TableView fx:id="subjectTable" layoutX="153.0" layoutY="61.0" maxHeight="280.0" maxWidth="602.0" minHeight="120.0" minWidth="258.0" onMouseClicked="#handleEditHomeWorkEvent" prefHeight="200.0" prefWidth="430.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="61.0">
         <columns>
           <TableColumn fx:id="colSubject" prefWidth="244.0" text="Subject" />
           <TableColumn fx:id="colLecture" prefWidth="178.0" text="Lecture" />
@@ -30,7 +30,7 @@
          </font>
       </Label>
       <Button fx:id="propertiesButton" cache="true" graphicTextGap="0.0" layoutX="380.0" layoutY="269.0" maxHeight="56.0" maxWidth="56.0" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" onAction="#openProperties" prefHeight="40.0" prefWidth="40.0" text="⚙" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="365.0" AnchorPane.rightAnchor="195.0" AnchorPane.topAnchor="267.0" />
-      <RadioButton fx:id="secondWeek" layoutX="469.0" layoutY="295.0" maxHeight="28.0" maxWidth="126.0" minHeight="12.0" minWidth="54.0" mnemonicParsing="false" onAction="#handleSecondWeekRB" prefHeight="20.0" prefWidth="90.0" text="2 week" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="469.0" AnchorPane.topAnchor="305.0" />
+      <RadioButton fx:id="secondWeek" layoutX="469.0" layoutY="295.0" maxHeight="28.0" maxWidth="126.0" minHeight="12.0" minWidth="54.0" mnemonicParsing="false" onAction="#handleSecondWeekRB" prefHeight="20.0" prefWidth="90.0" text="2 week" />
       <RadioButton fx:id="firstWeek" layoutX="469.0" layoutY="267.0" maxHeight="28.0" maxWidth="126.0" minHeight="12.0" minWidth="54.0" mnemonicParsing="false" onAction="#handleFirstWeekRB" prefHeight="20.0" prefWidth="90.0" text="1 week" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="469.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="267.0" />
       <Button fx:id="editButton" layoutX="225.0" layoutY="269.0" maxHeight="56.0" maxWidth="84.0" minHeight="24.0" minWidth="36.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="40.0" prefWidth="60.0" text="Edit" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="267.0" />
       <Button fx:id="deleteButton" layoutX="300.0" layoutY="269.0" maxHeight="56.0" maxWidth="84.0" minHeight="24.0" minWidth="36.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="40.0" prefWidth="60.0" text="Del" AnchorPane.leftAnchor="295.0" AnchorPane.topAnchor="267.0" />

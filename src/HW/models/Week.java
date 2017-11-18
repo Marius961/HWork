@@ -1,5 +1,6 @@
 package HW.models;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -9,7 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Week {
-
+	private Calendar calendar = Calendar.getInstance();
 	private ObservableList<Day> week = FXCollections.observableArrayList();
 	
 	public Week() {		
@@ -28,6 +29,12 @@ public class Week {
 		week.add(d4);
 	}
 	
+	public int getCurrentDay() {
+		if ((calendar.get(Calendar.DAY_OF_WEEK) - 2) < 0 || (calendar.get(Calendar.DAY_OF_WEEK) - 2) > 4) {
+			return 0;
+		} else
+			return (calendar.get(Calendar.DAY_OF_WEEK) - 2);
+	}
 	public void set(Week week) {
 		this.week = week.get();
 	}

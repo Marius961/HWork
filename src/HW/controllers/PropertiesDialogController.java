@@ -1,8 +1,8 @@
 package HW.controllers;
 
 
-import HW.lang.Language;
-import HW.lang.LanguageList;
+import HW.Main;
+import HW.models.Properties;
 import HW.models.PropertiesContainer;
 import HW.models.ThemeList;
 import javafx.collections.FXCollections;
@@ -12,15 +12,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class PropertiesDialogController {
+public class PropertiesDialogController implements Properties{
 	
 	private Stage dialogStage;
 	
 	private boolean saveClicked = false;
 	
-	private PropertiesContainer properties = new PropertiesContainer();
+	private PropertiesContainer properties;
 	
 	private ObservableList<String> themes = FXCollections.observableArrayList("Classic","Dark");
 	private ObservableList<String> languages = FXCollections.observableArrayList();
@@ -58,6 +59,8 @@ public class PropertiesDialogController {
 	private ChoiceBox<String> cBThemes;
 	
 	@FXML
+	AnchorPane pane;
+	@FXML
 	private void initialize() {
 		cBLanguages.setItems(languages);
 		cBThemes.setItems(themes);	
@@ -74,50 +77,15 @@ public class PropertiesDialogController {
 	private void handleCancel() {
 		dialogStage.close();
 	}
-
-/*	private void setLanguage() {
-		int ind = cBLanguages.getSelectionModel().getSelectedIndex();
-		LanguageList langList = new LanguageList();
-		Language English = langList.getLanguage(0);
-		Language Ukrainian = langList.getLanguage(1);
-		if (ind == 0 && properties.getLanguage() != English) {
-			English.setLangId(0);
-			properties.setLanguage(English);
-		}
-		if (ind == 1 && properties.getLanguage() != Ukrainian) {
-			Ukrainian.setLangId(1);
-			properties.setLanguage(Ukrainian);
-		}
-	}
 	
-	private void setLanguage(Language lang) {
-		languages.add(lang.getPropertiesDialog().getLanguage1());
-		languages.add(lang.getPropertiesDialog().getLanguage2());
-		themes.add(lang.getPropertiesDialog().getClassicTheme());
-		themes.add(lang.getPropertiesDialog().getDarkTheme());
-		generalLabel.setText(lang.getPropertiesDialog().getGeneral());
-		languageLabel.setText(lang.getPropertiesDialog().getLanguageLabel());
-		appearanceLabel.setText(lang.getPropertiesDialog().getAppearanceLabel());
-		themeLabel.setText(lang.getPropertiesDialog().getThemeLabel());
-		importButton.setText(lang.getPropertiesDialog().getImportButton());
-		exportButton.setText(lang.getPropertiesDialog().getExportButton());
-		ieLabel.setText(lang.getPropertiesDialog().getIeLabel());
-		saveButton.setText(lang.getPropertiesDialog().getSaveButton());
-		defaultButton.setText(lang.getPropertiesDialog().getDefaultButton());
-		cancelButton.setText(lang.getPropertiesDialog().getCancelButton());
-		displayTimePickers.setText(lang.getPropertiesDialog().getDisplayTimePickers());
-	} */
-	
-	private void applyProperties() {
+	public void applyProperties() {
+		applyTheme();
 		displayTimePickers.setSelected(properties.isDisplayTimePickers());
 		twoWeeksShedule.setSelected(this.properties.isTwoWeeksShedule());
-//		setLanguage(this.properties.getLanguage());
-//		cBLanguages.getSelectionModel().select(this.properties.getLanguage().getLangId());	
 		cBThemes.getSelectionModel().select(this.properties.getTheme().getThemeId());
 	}
 	
 	private void saveProperties() {
-//		setLanguage();
 		setDisplayTimePickers();
 		setTwoWeeksShedule();	
 		setTheme();
@@ -156,6 +124,11 @@ public class PropertiesDialogController {
 			this.properties = properties;
 			applyProperties();
 		}
+	}
+	
+	private void applyTheme() {
+		pane.getStylesheets().clear();
+		pane.getStylesheets().add(getClass().getResource(properties.getTheme().getUrl()).toExternalForm());		
 	}
 
 	
