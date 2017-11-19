@@ -36,11 +36,8 @@ public class MainViewController implements Properties{
 
 	private Week week = Converter.dataToJavaObject();
 	private int dayCounter = week.getCurrentDay();
-
 	private int weekNum;
-
 	private ToggleGroup rBWeeks = new ToggleGroup();
-
 	private Main main = new Main();
 	private PropertiesContainer properties = main.getProperties();
 	private Subject listenedSubject;
@@ -254,8 +251,17 @@ public class MainViewController implements Properties{
 	}
 
 	private void setDisplayTimePickers() {
-
-	}
+		firstLabelTime.setVisible(properties.isDisplayTimePickers());		
+		secondLabelTime.setVisible(properties.isDisplayTimePickers());
+		thirdLabelTime.setVisible(properties.isDisplayTimePickers());
+		fourthLabelTime.setVisible(properties.isDisplayTimePickers());
+		fifthLabelTime.setVisible(properties.isDisplayTimePickers());
+		firstTimePicker.setVisible(properties.isDisplayTimePickers());
+		secondTimePicker.setVisible(properties.isDisplayTimePickers());
+		thirdTimePicker.setVisible(properties.isDisplayTimePickers());
+		fourthTimePicker.setVisible(properties.isDisplayTimePickers());
+		fifthTimePicker.setVisible(properties.isDisplayTimePickers());
+	} 
 
 	private void setDisplayTwoWeeks() {
 		firstWeek.setVisible(properties.isTwoWeeksShedule());

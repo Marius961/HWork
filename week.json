@@ -5,29 +5,23 @@
   "weekNum" : 2,
   "id" : 2
 }, {
-  "name" : "1",
-  "lect" : "1",
+  "name" : "Test subject 1",
+  "lect" : "Test lecture name 1",
   "homework" : null,
   "weekNum" : 1,
   "id" : 1
 }, {
-  "name" : "2",
-  "lect" : "2",
+  "name" : "Test subject 2",
+  "lect" : "Test lecture name 2",
   "homework" : null,
   "weekNum" : 1,
   "id" : 2
 }, {
-  "name" : "3asd",
-  "lect" : "3asdasd",
+  "name" : "Test subject 3",
+  "lect" : "Test lecture name 3",
   "homework" : null,
   "weekNum" : 1,
   "id" : 3
-}, {
-  "name" : "4",
-  "lect" : "4",
-  "homework" : null,
-  "weekNum" : 1,
-  "id" : 4
 } ], [ {
   "name" : "123123",
   "lect" : "123123",

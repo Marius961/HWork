@@ -10,26 +10,46 @@ import HW.controllers.PropertiesDialogController;
 import HW.models.Subject;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class ViewContainer {
 	private Stage primaryStage; 	
 	private BorderPane rootLayout;
 	private PropertiesContainer properties = Converter.propertiesToJavaObject();
-		
 	public void initRootLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
 			Scene scene = new Scene(rootLayout);
-//			primaryStage.initStyle(StageStyle.UNDECORATED);
+			
+/*	
+		    private double xOffset = 0;
+		    private double yOffset = 0;
+			primaryStage.initStyle(StageStyle.UNDECORATED);
+			rootLayout.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	            @Override
+	            public void handle(MouseEvent event) {
+	                xOffset = primaryStage.getX() - event.getScreenX();
+	                yOffset = primaryStage.getY() - event.getScreenY();
+	            }
+	        });
+			rootLayout.setOnMouseDragged(new EventHandler<MouseEvent>() {
+	            @Override
+	            public void handle(MouseEvent event) {
+	                primaryStage.setX(event.getScreenX() + xOffset);
+	                primaryStage.setY(event.getScreenY() + yOffset);
+	            }
+	        });
+*/      	primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
@@ -44,7 +64,7 @@ public class ViewContainer {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/EditDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
-
+			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Add Subject");
 			dialogStage.initModality(Modality.APPLICATION_MODAL);
@@ -56,6 +76,7 @@ public class ViewContainer {
 			controller.setProperties(properties);
 			controller.setFields(subject);
 			controller.setIdList(idList1,idList2);
+			dialogStage.setResizable(false);
 			dialogStage.showAndWait();
 			return controller.isOkClicked();
 		} catch (IOException e) {
@@ -103,6 +124,7 @@ public class ViewContainer {
 			controller.setDialogStage(dialogStage);
 			controller.setProperties(properties);
 			controller.setSubject(subject);
+			dialogStage.setResizable(false);
 			dialogStage.showAndWait();
 			return controller.isSaveClicked();
 		} catch (IOException e) {
@@ -127,8 +149,8 @@ public class ViewContainer {
 			controller.setDialogStage(dialogStage);
 			controller.setProperties(properties);
 			setProperties(properties);
+			dialogStage.setResizable(false);
 			dialogStage.showAndWait();
-
 			return controller.isSaveClicked();
 		} catch (IOException e) {
 			e.printStackTrace();
