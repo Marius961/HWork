@@ -19,43 +19,46 @@ public class Converter {
 	 private static final String dataBaseFile = "week.json";
 	 private static final String propertiesBaseFile = "properties.json";
 	 
-	public static void toJson(Week week) throws IOException {
+	public static void toJson(Week week)  {
 		ObjectMapper objectMapper = new ObjectMapper();
-    	objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-    	List<ObservableList<Subject>> personList = Stream.of(
-				week.selectDay(0).get(),
-				week.selectDay(1).get(),
-				week.selectDay(2).get(),
-				week.selectDay(3).get(),
-				week.selectDay(4).get())
-				.collect(Collectors.toList());   	
-    	objectMapper.writeValue(new File(dataBaseFile), personList);
+		try {
+			objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+	    	List<ObservableList<Subject>> personList = Stream.of(
+					week.selectDay(0).get(),
+					week.selectDay(1).get(),
+					week.selectDay(2).get(),
+					week.selectDay(3).get(),
+					week.selectDay(4).get())
+					.collect(Collectors.toList());   	
+	    	objectMapper.writeValue(new File(dataBaseFile), personList);
+		} catch (IOException e3) {
+			e3.printStackTrace();
+		}
+    	
    }
 	
 	public static void toJson(PropertiesContainer properties) throws JsonGenerationException, JsonMappingException, IOException {
-		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectMapper objectMapper = new ObjectMapper();		
 		objectMapper.writeValue(new File(propertiesBaseFile), properties);
-		System.out.println("Properties saved to JSON!");
-		System.out.println("Properties theme " + properties.getTheme().getName());
 	}
 
    public static Week dataToJavaObject() {
-      ObjectMapper mapper = new ObjectMapper();      
-      try {
-    	  List<List<Subject>> list = mapper.readValue(new File(dataBaseFile),
-                  new TypeReference<List<List<Subject>>>() {});
-          System.out.println("Data loaded");
-    	  return new Week(
-      		  	new Day(list.get(0), "Mn"),
-      		  	new Day(list.get(1), "Tu"),
-      		  	new Day(list.get(2), "We"),
-      		  	new Day(list.get(3), "Th"),
-      		  	new Day(list.get(4), "Fr")
-      		  ); 
-      } catch (IOException e) {
-		e.printStackTrace();
-		return null;
-	}
+	   ObjectMapper mapper = new ObjectMapper();      
+	   try {
+		   List<List<Subject>> list = mapper.readValue(new File(dataBaseFile),
+				   new TypeReference<List<List<Subject>>>() {});
+		   System.out.println("Data loaded");
+		   return new Week(
+				   new Day(list.get(0), "Mn"),
+				   new Day(list.get(1), "Tu"),
+				   new Day(list.get(2), "We"),
+				   new Day(list.get(3), "Th"),
+				   new Day(list.get(4), "Fr")
+				   ); 
+	   } catch (IOException e) {
+		   e.printStackTrace();
+		   return new Week();
+	   }
    }
    public static PropertiesContainer propertiesToJavaObject() {
 	      ObjectMapper mapper = new ObjectMapper();
@@ -63,8 +66,8 @@ public class Converter {
 	    	  return mapper.readValue(new File(propertiesBaseFile), PropertiesContainer.class);
 	      } catch (IOException e) {
 	    	  e.printStackTrace();
-	    	return new PropertiesContainer();			
+	    	  return new PropertiesContainer();			
 	      } 
 
-	   }
+   }
 }
