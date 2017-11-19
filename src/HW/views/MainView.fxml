@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="480.0" maxWidth="840.0" minHeight="204.0" minWidth="360.0" prefHeight="340.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.MainViewController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="370.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HW.controllers.MainViewController">
    <children>
-      <TableView fx:id="subjectTable" layoutX="153.0" layoutY="61.0" maxHeight="280.0" maxWidth="602.0" minHeight="120.0" minWidth="258.0" onMouseClicked="#handleEditHomeWorkEvent" prefHeight="200.0" prefWidth="430.0">
+      <TableView fx:id="subjectTable" layoutX="109.0" layoutY="74.0" maxHeight="280.0" maxWidth="602.0" minHeight="120.0" minWidth="258.0" onMouseClicked="#handleEditHomeWorkEvent" prefHeight="233.0" prefWidth="543.0" AnchorPane.rightAnchor="14.0">
         <columns>
           <TableColumn fx:id="colSubject" prefWidth="244.0" text="Subject" />
           <TableColumn fx:id="colLecture" minWidth="-Infinity" prefWidth="178.0" text="Lecture" />
@@ -21,29 +21,28 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="topButton" layoutX="16.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleTop" prefHeight="40.0" prefWidth="70.0" text="Up" />
-      <Button fx:id="bottomButton" layoutX="13.0" layoutY="267.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDown" prefHeight="40.0" prefWidth="70.0" text="Down" />
-       <Label fx:id="dayName" alignment="CENTER" contentDisplay="CENTER" layoutX="511.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="60.0" text="Day">
+      <Button fx:id="topButton" layoutX="109.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleTop" prefHeight="35.0" prefWidth="543.0" text="Up" />
+      <Button fx:id="bottomButton" layoutX="113.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDown" prefHeight="45.0" prefWidth="322.0" text="Down" AnchorPane.rightAnchor="235.0" />
+       <Label fx:id="dayName" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="522.0" text="Day">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="propertiesButton" cache="true" graphicTextGap="0.0" layoutX="380.0" layoutY="269.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openProperties" prefHeight="40.0" prefWidth="50.0" text="⚙" />
-      <RadioButton fx:id="secondWeek" layoutX="469.0" layoutY="297.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSecondWeekRB" prefHeight="20.0" prefWidth="90.0" text="2 week" />
-      <RadioButton fx:id="firstWeek" layoutX="469.0" layoutY="267.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleFirstWeekRB" prefHeight="20.0" prefWidth="90.0" text="1 week" />
-      <Button fx:id="editButton" layoutX="225.0" layoutY="269.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleEdit" prefHeight="40.0" prefWidth="60.0" text="Edit" />
-      <Button fx:id="deleteButton" layoutX="300.0" layoutY="269.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDelete" prefHeight="40.0" prefWidth="60.0" text="Del" />
-      <Button fx:id="addButton" layoutX="153.0" layoutY="269.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAdd" prefHeight="40.0" prefWidth="60.0" text="Add" />
-      <VBox fx:id="vb1" layoutX="74.0" layoutY="97.0" maxHeight="224.0" maxWidth="161.0" minHeight="96.0" minWidth="69.0" prefHeight="133.0" prefWidth="79.0" spacing="8.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="447.0" AnchorPane.topAnchor="97.0">
+      <Button fx:id="propertiesButton" cache="true" graphicTextGap="0.0" layoutX="611.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openProperties" prefHeight="45.0" prefWidth="45.0" AnchorPane.rightAnchor="14.0" />
+      <RadioButton fx:id="firstWeek" layoutX="14.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleFirstWeekRB" prefHeight="20.0" prefWidth="70.0" text="1 w" />
+      <Button fx:id="editButton" layoutX="425.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleEdit" prefHeight="45.0" prefWidth="45.0" AnchorPane.rightAnchor="178.0" />
+      <Button fx:id="deleteButton" layoutX="520.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDelete" prefHeight="45.0" prefWidth="45.0" AnchorPane.rightAnchor="69.0" />
+      <Button fx:id="addButton" layoutX="497.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAdd" prefHeight="45.0" prefWidth="45.0" AnchorPane.rightAnchor="123.0" />
+      <VBox fx:id="vb1" layoutX="14.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="193.0" prefWidth="79.0" spacing="8.0" AnchorPane.leftAnchor="23.0">
          <children>
-            <Label fx:id="firstLabelTime" onMouseClicked="#labelClicked" text="Input time" />
-            <Label fx:id="secondLabelTime" onMouseClicked="#labelClicked" text="Label" />
-            <Label fx:id="thirdLabelTime" onMouseClicked="#labelClicked" text="Label" />
-            <Label fx:id="fourthLabelTime" onMouseClicked="#labelClicked" text="Label" />
-            <Label fx:id="fifthLabelTime" onMouseClicked="#labelClicked" text="Label" />
+            <Label fx:id="firstLabelTime" onMouseClicked="#labelClicked" text="tine" />
+            <Label fx:id="secondLabelTime" onMouseClicked="#labelClicked" text="time" />
+            <Label fx:id="thirdLabelTime" onMouseClicked="#labelClicked" text="time" />
+            <Label fx:id="fourthLabelTime" onMouseClicked="#labelClicked" text="time" />
+            <Label fx:id="fifthLabelTime" onMouseClicked="#labelClicked" text="time" />
          </children>
       </VBox>
-      <VBox fx:id="vb2" layoutX="29.0" layoutY="90.0" maxHeight="224.0" maxWidth="161.0" minHeight="96.0" minWidth="28.0" pickOnBounds="false" prefHeight="133.0" prefWidth="28.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="538.0" AnchorPane.topAnchor="97.0">
+      <VBox fx:id="vb2" layoutX="23.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="193.0" prefWidth="79.0" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="564.0">
          <children>
             <JFXTimePicker fx:id="firstTimePicker" onKeyPressed="#inputLabelTime" prefHeight="0.0" prefWidth="0.0" visible="false" />
             <JFXTimePicker fx:id="secondTimePicker" onKeyPressed="#inputLabelTime" prefHeight="0.0" prefWidth="0.0" visible="false" />
@@ -52,5 +51,6 @@
             <JFXTimePicker fx:id="fifthTimePicker" onKeyPressed="#inputLabelTime" prefHeight="0.0" prefWidth="0.0" visible="false" />
          </children>
       </VBox>
+      <RadioButton fx:id="secondWeek" layoutX="14.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSecondWeekRB" prefHeight="20.0" prefWidth="63.0" text="2 w" />
    </children>
 </AnchorPane>

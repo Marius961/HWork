@@ -98,3 +98,40 @@
     -fx-background-radius: 15px;
     -fx-padding: 8px;
 }
+
+#propertiesButton {
+	-fx-background-image: url('../source/ic_settings_white_48dp_1x.png');
+	-fx-background-size: 45px;
+    -fx-background-repeat: no-repeat;
+
+}
+
+#deleteButton {
+	-fx-background-image: url('../source/ic_delete_white_48dp_1x.png');
+	-fx-background-size: 45px;
+    -fx-background-repeat: no-repeat;
+}
+
+#addButton {
+	-fx-background-image: url('../source/ic_add_white_48dp_1x.png');
+	-fx-background-size: 45px;
+    -fx-background-repeat: no-repeat;
+}
+
+#editButton {
+	-fx-background-image: url('../source/ic_mode_edit_white_48dp_1x.png');
+	-fx-background-size: 45px;
+    -fx-background-repeat: no-repeat;
+}
+
+#okButton {
+	-fx-background-image: url('../source/ic_done_white_128dp_1x.png');
+	-fx-background-size: 45px;
+    -fx-background-repeat: no-repeat;
+}
+
+#cancelButton {
+	-fx-background-image: url('../source/ic_clear_white_48dp_1x.png');
+	-fx-background-size: 45px;
+    -fx-background-repeat: no-repeat;
+}

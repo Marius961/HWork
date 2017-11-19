@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.swing.JOptionPane;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -56,7 +58,7 @@ public class Converter {
 				   new Day(list.get(4), "Fr")
 				   ); 
 	   } catch (IOException e) {
-		   e.printStackTrace();
+		   JOptionPane.showMessageDialog(null, "Could not open file, created new data file!", "Error", JOptionPane.WARNING_MESSAGE);
 		   return new Week();
 	   }
    }
@@ -65,7 +67,7 @@ public class Converter {
 	      try {		      
 	    	  return mapper.readValue(new File(propertiesBaseFile), PropertiesContainer.class);
 	      } catch (IOException e) {
-	    	  e.printStackTrace();
+	    	  JOptionPane.showMessageDialog(null, "Could not open file, created new properties file!", "Error", JOptionPane.WARNING_MESSAGE);
 	    	  return new PropertiesContainer();			
 	      } 
 

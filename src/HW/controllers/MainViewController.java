@@ -320,7 +320,7 @@ public class MainViewController implements Properties{
 	public void applyProperties() {
 		setTheme();
 		setDisplayTwoWeeks();
-		setDisplayTimePickers();
+//		setDisplayTimePickers();
 		setButtonsNames();
 		setToggleGroup();
 		setCurrentWeekNum();

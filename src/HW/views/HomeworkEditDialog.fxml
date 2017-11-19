@@ -11,7 +11,7 @@
       <Label fx:id="homeworkLabel" layoutX="14.0" layoutY="7.0" prefHeight="31.0" prefWidth="113.0" text="Homework:" />
       <ButtonBar layoutX="286.0" layoutY="348.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+          <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" />
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
         </buttons>
       </ButtonBar>
