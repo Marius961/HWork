@@ -1,51 +1,169 @@
 
-
 .button {
-	-fx-background-color: RGB(220, 252, 255);
+	-fx-background-color: white;
+	-fx-border-color: #0046ad;
+	-fx-font-family: "Segoe UI Semibold";
 }
-
+.label {
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: black;
+}
 #pane {
-	-fx-background-color: RGB(220, 252, 255);
+	-fx-background-color: white;
 }
 
 .table-view {
-    -fx-base: RGB(220, 252, 255);
-    -fx-control-inner-background: RGB(220, 252, 255);
-    -fx-padding: 5;
+    -fx-base: white;
+    -fx-control-inner-background: white;
+
 }
+.table-row-cell:selected {
+   -fx-background-color: #0046ad; 
+}
+.table-row-cell:selected .text {
+   -fx-fill: white;
+
+}
+.table-view .column-header .label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.radio-button {
+	-fx-text-fill: black;
+}
+
+.choice-box  {
+	-fx-background-color: white;
+	-fx-border-color: #0046ad;
+}
+
+.choice-box .context-menu {
+	-fx-background-color: white;
+}
+
+.text-field {
+	-fx-background-color: white;
+	-fx-text-fill: black;
+	-fx-border-color: #0046ad;
+}
+
+ .text-area .content {
+      -fx-background-color: white;
+  }
+  
+ .text-area {
+ 	-fx-text-fill: black;
+ 	-fx-border-color: #0046ad;
+ }
+ 
+.check-box .box {
+	-fx-background-color: RGB(50, 50, 50);
+	-fx-border-color:grey;
+	-fx-border-radius:3px; 
+}
+
+.check-box:selected .mark {
+-fx-background-color: white;
+}
+
+.check-box {
+	-fx-text-fill: white;
+}
+
+.check-box:selected .box {
+-fx-background-color: #28a3f4;
+}
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 4px;
+}
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
+}
+
 #propertiesButton {
-	-fx-background-image: url('../source/ic_settings_black_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_settings_black_36dp_1x.png');
+	-fx-background-size: 34px 34px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 
 }
-
 #deleteButton {
-	-fx-background-image: url('../source/ic_delete_black_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_delete_forever_black_36dp_1x.png');
+	-fx-background-size: 36px 36px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 #addButton {
-	-fx-background-image: url('../source/ic_add_black_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_add_black_36dp_1x.png');
+	-fx-background-size: 40px 40px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 #editButton {
-	-fx-background-image: url('../source/ic_mode_edit_black_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_mode_edit_black_36dp_1x.png');
+	-fx-background-size: 30px 30px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 #okButton {
-	-fx-background-image: url('../source/ic_done_black_128dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_done_black_36dp_1x.png');
+	-fx-background-size: 30px 30px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 #cancelButton {
-	-fx-background-image: url('../source/ic_clear_black_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_clear_black_36dp_1x.png');
+	-fx-background-size: 30px 30px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#topButton {
+	-fx-background-image: url('icons/ic_keyboard_arrow_up_black_48dp_2x.png');
+	-fx-background-size: 64px 64px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+}
+
+#bottomButton {	
+	-fx-background-image: url('icons/ic_keyboard_arrow_down_black_48dp_2x.png');
+	-fx-background-size: 64px 64px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
 }

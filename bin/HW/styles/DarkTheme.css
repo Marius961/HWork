@@ -1,11 +1,11 @@
 
 .button {
-	    -fx-background-color: #ab6b0f;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+	-fx-background-color: #ab6b0f;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 .label {
-	-fx-font-family: "Segoe UI Light";
+	-fx-font-family: "Segoe UI Semibold";
 	-fx-text-fill: white;
 }
 #pane {
@@ -21,7 +21,7 @@
 }
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -100,38 +100,63 @@
 }
 
 #propertiesButton {
-	-fx-background-image: url('../source/ic_settings_white_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_settings_black_36dp_1x.png');
+	-fx-background-size: 34px 34px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 
 }
-
 #deleteButton {
-	-fx-background-image: url('../source/ic_delete_white_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_delete_forever_black_36dp_1x.png');
+	-fx-background-size: 36px 36px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 #addButton {
-	-fx-background-image: url('../source/ic_add_white_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_add_black_36dp_1x.png');
+	-fx-background-size: 40px 40px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 #editButton {
-	-fx-background-image: url('../source/ic_mode_edit_white_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_mode_edit_black_36dp_1x.png');
+	-fx-background-size: 30px 30px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 #okButton {
-	-fx-background-image: url('../source/ic_done_white_128dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_done_black_36dp_1x.png');
+	-fx-background-size: 30px 30px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 #cancelButton {
-	-fx-background-image: url('../source/ic_clear_white_48dp_1x.png');
-	-fx-background-size: 45px;
+	-fx-background-image: url('icons/ic_clear_black_36dp_1x.png');
+	-fx-background-size: 30px 30px;
     -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#topButton {
+	-fx-background-image: url('icons/ic_keyboard_arrow_up_black_48dp_2x.png');
+	-fx-background-size: 64px 64px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+}
+
+#bottomButton {	
+	-fx-background-image: url('icons/ic_keyboard_arrow_down_black_48dp_2x.png');
+	-fx-background-size: 64px 64px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
 }
