@@ -21,8 +21,8 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="topButton" layoutX="109.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleTop" prefHeight="35.0" prefWidth="543.0" text="Up" />
-      <Button fx:id="bottomButton" layoutX="113.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDown" prefHeight="45.0" prefWidth="322.0" text="Down" AnchorPane.rightAnchor="235.0" />
+      <Button fx:id="topButton" layoutX="109.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleTop" prefHeight="35.0" prefWidth="543.0" text="" />
+      <Button fx:id="bottomButton" layoutX="113.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDown" prefHeight="45.0" prefWidth="322.0" text="" AnchorPane.rightAnchor="235.0" />
        <Label fx:id="dayName" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="522.0" text="Day">
          <font>
             <Font name="System Bold" size="14.0" />
