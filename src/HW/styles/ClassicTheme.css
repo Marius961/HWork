@@ -32,11 +32,10 @@
     -fx-opacity: 1;
 }
 
-.radio-button {
-	-fx-text-fill: black;
-}
+
 
 .choice-box  {
+	-fx-font-family: "Segoe UI Semibold";
 	-fx-background-color: white;
 	-fx-border-color: #0046ad;
 }
@@ -71,39 +70,12 @@
 }
 
 .check-box {
-	-fx-text-fill: white;
+	-fx-font-family: "Segoe UI Semibold";
+	-fx-text-fill: black;
 }
 
 .check-box:selected .box {
--fx-background-color: #28a3f4;
-}
-.radio-button .radio {
-    -fx-border-width: 1px;
-    -fx-border-color: #000;
-    -fx-background-color: white;
-    -fx-background-image: null;
-    -fx-border-radius: 15px;
-    -fx-padding: 4px;
-}
-.radio-button .radio:selected {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button -radio:armed {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button -radio:determinate {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button -radio:indeterminate {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button .dot {
-    -fx-background-radius: 15px;
-    -fx-padding: 8px;
+	-fx-background-color: #28a3f4;
 }
 
 #propertiesButton {

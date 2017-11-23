@@ -27,7 +27,7 @@ public class PropertiesDialogController implements Properties{
 	private ObservableList<String> languages = FXCollections.observableArrayList();
 	private ThemeList themeList = new ThemeList();
 	@FXML
-	private Button saveButton;
+	private Button saveButton1;
 	@FXML
 	private Button importButton;
 	@FXML

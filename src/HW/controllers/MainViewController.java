@@ -1,10 +1,7 @@
 package HW.controllers;
 
 import java.io.IOException;
-
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.List;
 
 import com.jfoenix.controls.JFXTimePicker;
 
@@ -16,15 +13,17 @@ import HW.models.PropertiesContainer;
 import HW.models.Subject;
 import HW.models.ThemeList;
 import HW.models.Week;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -37,11 +36,10 @@ public class MainViewController implements Properties{
 	private Week week = Converter.dataToJavaObject();
 	private int dayCounter = week.getCurrentDay();
 	private int weekNum;
-	private ToggleGroup rBWeeks = new ToggleGroup();
 	private Main main = new Main();
 	private PropertiesContainer properties = main.getProperties();
 	private Subject listenedSubject;
-
+	private ObservableList<String> weeks = FXCollections.observableArrayList("1 week","2 week");
 	@FXML
 	private TableView<Subject> subjectTable;
 
@@ -87,7 +85,9 @@ public class MainViewController implements Properties{
 	private Label fifthLabelTime;
 	@FXML
 	private Label tempLabelTime;
-
+	 
+	@FXML
+	ChoiceBox<String> cbweeks;
 	@FXML
 	private JFXTimePicker firstTimePicker;
 	@FXML
@@ -101,7 +101,8 @@ public class MainViewController implements Properties{
 	private int enterPressCounter = 0;
 	
 	@FXML
-	private void initialize() throws IOException {			
+	private void initialize() throws IOException {	
+		setWeekChangeListener();
 		setTableProperty();
 		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
 	}
@@ -170,18 +171,6 @@ public class MainViewController implements Properties{
 	}
 
 	@FXML
-	private void handleFirstWeekRB() {
-		properties.setCurrentWeekNum(weekNum = 1);
-		setTableItems();
-	}
-
-	@FXML
-	private void handleSecondWeekRB() {
-		properties.setCurrentWeekNum(weekNum = 2);
-		setTableItems();
-	}
-
-	@FXML
 	private void labelClicked(MouseEvent mouseEvent) {
 		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
 			tempLabelTime = (Label) mouseEvent.getSource();
@@ -205,7 +194,28 @@ public class MainViewController implements Properties{
 			enterPressCounter = 0;
 		}
 	}
-
+	private void setWeekChangeListener() {
+		cbweeks.setVisible(properties.isTwoWeeksShedule());
+		setCurrentWeekNum();
+		if (properties.isTwoWeeksShedule()) {
+			cbweeks.setItems(weeks);
+			}
+			cbweeks.getSelectionModel().selectedIndexProperty().addListener(
+					new ChangeListener<Number>() {
+						@Override
+						public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+								Number newValue) {
+							if (newValue.intValue() == 0) {
+								properties.setCurrentWeekNum(weekNum = 1);
+								setTableItems();
+							} else {
+								properties.setCurrentWeekNum(weekNum = 2);
+								setTableItems();
+							}
+						}
+					});
+	}
+	
 	private void closeOtherTimePickers() {
 		if (getTimePicker() != firstTimePicker) {
 			firstTimePicker.setVisible(false);
@@ -250,28 +260,6 @@ public class MainViewController implements Properties{
 		applyProperties();
 	}
 
-	private void setDisplayTimePickers() {
-		firstLabelTime.setVisible(properties.isDisplayTimePickers());		
-		secondLabelTime.setVisible(properties.isDisplayTimePickers());
-		thirdLabelTime.setVisible(properties.isDisplayTimePickers());
-		fourthLabelTime.setVisible(properties.isDisplayTimePickers());
-		fifthLabelTime.setVisible(properties.isDisplayTimePickers());
-		firstTimePicker.setVisible(properties.isDisplayTimePickers());
-		secondTimePicker.setVisible(properties.isDisplayTimePickers());
-		thirdTimePicker.setVisible(properties.isDisplayTimePickers());
-		fourthTimePicker.setVisible(properties.isDisplayTimePickers());
-		fifthTimePicker.setVisible(properties.isDisplayTimePickers());
-	} 
-
-	private void setDisplayTwoWeeks() {
-		firstWeek.setVisible(properties.isTwoWeeksShedule());
-		secondWeek.setVisible(properties.isTwoWeeksShedule());
-	}
-
-	private void setToggleGroup() {
-		firstWeek.setToggleGroup(rBWeeks);
-		secondWeek.setToggleGroup(rBWeeks);
-	}
 
 	private void setTableProperty() {
 		subjectTable.setFocusTraversable(false);
@@ -322,18 +310,23 @@ public class MainViewController implements Properties{
 		setDisplayTwoWeeks();
 //		setDisplayTimePickers();
 		setButtonsNames();
-		setToggleGroup();
 		setCurrentWeekNum();
 	}
 	
+	private void setDisplayTwoWeeks() {
+		cbweeks.setVisible(properties.isTwoWeeksShedule());
+	}
+
 	public void setCurrentWeekNum() {
-		this.weekNum = properties.getCurrentWeekNum();
-		if (weekNum == 1) {
-			firstWeek.setSelected(true);
-		} if (weekNum == 2) {
-			secondWeek.setSelected(true);
+		if (properties.isTwoWeeksShedule() == false) {
+			cbweeks.getSelectionModel().select(0);
+			weekNum = 1;
 		} else {
-			firstWeek.setSelected(true);
+			weekNum = properties.getCurrentWeekNum();
+			if (weekNum == 1) 
+				cbweeks.getSelectionModel().select(0);
+			if (weekNum == 2) 
+				cbweeks.getSelectionModel().select(1);
 		}
 	}
 	private void setTheme() {
