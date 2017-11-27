@@ -1,12 +1,15 @@
 package HW.controllers;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import HW.Main;
 import HW.models.Properties;
 import HW.models.InputValidator;
 import HW.models.PropertiesContainer;
 import HW.models.Subject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
@@ -30,16 +33,22 @@ public class EditDialogController implements Properties{
 	private TextField subjectField;		
 	@FXML
 	private TextField lectureField;
+
 	@FXML
-	private TextField idField;
-	@FXML
-	private TextField weekNumField;
+	private ChoiceBox<Integer> idcb;
+	@FXML 
+	private ChoiceBox<Integer> weekNumcb;
+	
+	private ObservableList<Integer> idCBlist = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10);
+	private ObservableList<Integer> weekCBlist = FXCollections.observableArrayList(0,1,2);
 	@FXML
 	AnchorPane pane;
 	private final InputValidator validator = new InputValidator();
 	
 	@FXML
 	private void initialize() {
+		idcb.setItems(idCBlist);
+		weekNumcb.setItems(weekCBlist);
 		this.properties = main.getProperties();
 	}
 	
@@ -58,12 +67,12 @@ public class EditDialogController implements Properties{
 				idList2, 
 				subjectField, 
 				lectureField, 
-				weekNumField, 
-				idField, 
+				weekNumcb, 
+				idcb, 
 				beforeId, 
 				isOnposition())) {			
-			int id = Integer.parseInt(idField.getText());
-			int weekNum = Integer.parseInt(weekNumField.getText());						
+			int id = idcb.getSelectionModel().getSelectedIndex();
+			int weekNum = weekNumcb.getSelectionModel().getSelectedIndex();					
 			subject.setName(subjectField.getText());
 			subject.setLect(lectureField.getText());
 			subject.setId(id);
@@ -74,8 +83,8 @@ public class EditDialogController implements Properties{
 	}
 	
 	private boolean isOnposition() {
-		int id = Integer.parseInt(idField.getText());
-		int weekNum = Integer.parseInt(weekNumField.getText());		
+		int id = idcb.getSelectionModel().getSelectedIndex();
+		int weekNum = weekNumcb.getSelectionModel().getSelectedIndex();			
 		if (beforeId == id && beforeWeek == weekNum) {
 			System.out.println("on position");
 			return true;
@@ -98,8 +107,8 @@ public class EditDialogController implements Properties{
 		beforeWeek = this.subject.getWeekNum();
 		subjectField.setText(this.subject.getName());
 		lectureField.setText(this.subject.getLect());
-		idField.setText(Integer.toString(this.subject.getId()));
-		weekNumField.setText(Integer.toString(this.subject.getWeekNum()));
+		idcb.getSelectionModel().select(this.subject.getId());
+		weekNumcb.getSelectionModel().select(this.subject.getWeekNum());
 		
 	}
 	

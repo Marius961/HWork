@@ -4,15 +4,16 @@ package HW.models;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class InputValidator {
 	
-	public boolean isInputValid(Stage owner,ObservableList<Integer> idList1, ObservableList<Integer> idList2,  TextField subjectField,TextField lectureField,TextField weekNumField, TextField idField, int beforeId, boolean isOnPosition) {
+	public boolean isInputValid(Stage owner,ObservableList<Integer> idList1, ObservableList<Integer> idList2,  TextField subjectField,TextField lectureField,ChoiceBox<Integer> weekNumField, ChoiceBox<Integer> idField, int beforeId, boolean isOnPosition) {
 		String errorMessage = "";
-		int weekNum = Integer.parseInt(weekNumField.getText());
-		int id = Integer.parseInt(idField.getText());
+		int weekNum = weekNumField.getSelectionModel().getSelectedItem();
+		int id = idField.getSelectionModel().getSelectedItem();
 		if (subjectField.getText() == null || subjectField.getText().length() == 0) {
 			errorMessage += "No valid Subject!\n";
 		}
