@@ -3,6 +3,7 @@ package HW.controllers;
 import java.io.IOException;
 import java.time.LocalTime;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTimePicker;
 
 import HW.Main;
@@ -30,6 +31,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class MainViewController implements Properties{
 
@@ -99,6 +101,14 @@ public class MainViewController implements Properties{
 	@FXML
 	private JFXTimePicker fifthTimePicker;
 	private int enterPressCounter = 0;
+	@FXML
+	private JFXButton accpetTimeButtom;
+	@FXML
+	private JFXButton deleteTimeButtom;
+	@FXML
+	private VBox acceptGroup;
+	@FXML
+	private Label currentTime;
 	
 	@FXML
 	private void initialize() throws IOException {	
@@ -172,7 +182,7 @@ public class MainViewController implements Properties{
 
 	@FXML
 	private void labelClicked(MouseEvent mouseEvent) {
-		if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+		if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
 			tempLabelTime = (Label) mouseEvent.getSource();
 			getTimePicker().setVisible(true);
 			getTimePicker().setIs24HourView(true);
@@ -181,19 +191,36 @@ public class MainViewController implements Properties{
 	}
 
 	@FXML
-	private void inputLabelTime(KeyEvent event) {
+	private void inputLabelTime() {
+		acceptGroup.setVisible(true);
+		currentTime.setText(getTimePicker().getValue().toString());
+	}
+	
+	
+	@FXML
+	private void acepttInputting() {
 		enterPressCounter++;
-		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 1) {
+		if (enterPressCounter == 1) {
 			LocalTime time = getTimePicker().getValue();
 			tempLabelTime.setText(time + "-");
+			getTimePicker().show();
 		}
-		if (event.getCode() == KeyCode.ENTER && enterPressCounter == 2) {
+		if (enterPressCounter == 2) {
 			LocalTime time = getTimePicker().getValue();
 			tempLabelTime.setText(tempLabelTime.getText() + time);
 			getTimePicker().setVisible(false);
 			enterPressCounter = 0;
+			acceptGroup.setVisible(false);
 		}
 	}
+	
+	@FXML
+	private void deleteInputting() {
+		tempLabelTime.setText("Click me");
+		getTimePicker().setVisible(false);
+		acceptGroup.setVisible(false);
+	}
+		
 	private void setWeekChangeListener() {
 		cbweeks.setVisible(properties.isTwoWeeksShedule());
 		setCurrentWeekNum();

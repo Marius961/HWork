@@ -1,8 +1,16 @@
-
 .button {
 	-fx-background-color: white;
 	-fx-border-color: #0046ad;
 	-fx-font-family: "Segoe UI Semibold";
+}
+.button-accpet{
+	 -fx-graphic: url('./icons/check.png');
+	 -fx-background-color: transparent;
+}
+
+.button-delete{
+	 -fx-graphic: url('./icons/cross.png');
+	 -fx-background-color: transparent;
 }
 .label {
 	-fx-font-family: "Segoe UI Semibold";
