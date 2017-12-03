@@ -3,6 +3,7 @@ package HW.models;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -11,12 +12,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import HW.controllers.MainViewController;
 import javafx.collections.ObservableList;
 
 public class Converter {
 	
 	 private static final String dataBaseFile = "week.json";
 	 private static final String propertiesBaseFile = "properties.json";
+	 private static final String subjTime = "subjTime.json";
 	 
 	public static void toJson(Week week)  {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -39,6 +42,34 @@ public class Converter {
 	public static void toJson(PropertiesContainer properties) throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();		
 		objectMapper.writeValue(new File(propertiesBaseFile), properties);
+	}
+	
+	public static void timeToJson(MainViewController mainView) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+			List<String> personList = Stream.of(
+					mainView.firstLabelTime.getText(),
+					mainView.secondLabelTime.getText(),
+					mainView.thirdLabelTime.getText(),
+					mainView.fourthLabelTime.getText(),
+					mainView.fifthLabelTime.getText())
+					.collect(Collectors.toList());
+					objectMapper.writeValue(new File(subjTime), personList);
+		}catch (IOException e3) {
+			e3.printStackTrace();
+		}
+	}
+	
+	public static List<String> timeToJava() {
+		 ObjectMapper mapper = new ObjectMapper();
+		 try {
+			 List<String> list = mapper.readValue(new File(subjTime),
+					  new TypeReference<List<String>>() {});
+			 return list;
+		 }catch (IOException e) {
+			 return null;
+		 }
 	}
 
    public static Week dataToJavaObject() {

@@ -98,6 +98,7 @@ public class ViewContainer {
 		              try {
 		            	Converter.toJson(controller.getWeek());
 		            	Converter.toJson(controller.getProperties());
+		            	Converter.timeToJson(controller);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

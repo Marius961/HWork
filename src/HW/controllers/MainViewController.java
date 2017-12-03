@@ -2,6 +2,8 @@ package HW.controllers;
 
 import java.io.IOException;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTimePicker;
@@ -36,6 +38,7 @@ import javafx.scene.layout.VBox;
 public class MainViewController implements Properties{
 
 	private Week week = Converter.dataToJavaObject();
+	private List<String> timeList = Converter.timeToJava();
 	private int dayCounter = week.getCurrentDay();
 	private int weekNum;
 	private Main main = new Main();
@@ -76,15 +79,15 @@ public class MainViewController implements Properties{
 	@FXML
 	private Label dayName;
 	@FXML
-	private Label firstLabelTime;
+	public  Label firstLabelTime;
 	@FXML
-	private Label secondLabelTime;
+	public  Label secondLabelTime;
 	@FXML
-	private Label thirdLabelTime;
+	public  Label thirdLabelTime;
 	@FXML
-	private Label fourthLabelTime;
+	public  Label fourthLabelTime;
 	@FXML
-	private Label fifthLabelTime;
+	public Label fifthLabelTime;
 	@FXML
 	private Label tempLabelTime;
 	 
@@ -115,6 +118,8 @@ public class MainViewController implements Properties{
 		setWeekChangeListener();
 		setTableProperty();
 		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
+		setTime();
+		displayTime();
 	}
 
 	@FXML
@@ -126,6 +131,7 @@ public class MainViewController implements Properties{
 		if (okclicked) {
 			week.selectDay(dayCounter).add(tempSubject);
 			setTableItems();
+			displayTime();
 		}
 	}
 
@@ -152,6 +158,7 @@ public class MainViewController implements Properties{
 	public void handleDelete() {
 		week.selectDay(dayCounter).remove(subjectTable.getSelectionModel().getSelectedItem());
 		setTableItems();
+		displayTime();
 	}
 
 	@FXML
@@ -164,6 +171,9 @@ public class MainViewController implements Properties{
 
 	@FXML
 	private void handleTop() {
+		for(int i=0; i<timeList.size();i++) {
+			System.out.println(timeList.get(i));
+		}
 		if (dayCounter >= 1) {
 			dayCounter--;
 			setTableItems();
@@ -187,6 +197,7 @@ public class MainViewController implements Properties{
 			getTimePicker().setVisible(true);
 			getTimePicker().setIs24HourView(true);
 			closeOtherTimePickers();
+			getTimePicker().show();
 		}
 	}
 
@@ -204,10 +215,12 @@ public class MainViewController implements Properties{
 			LocalTime time = getTimePicker().getValue();
 			tempLabelTime.setText(time + "-");
 			getTimePicker().show();
+			timeList.add("test");
 		}
 		if (enterPressCounter == 2) {
 			LocalTime time = getTimePicker().getValue();
 			tempLabelTime.setText(tempLabelTime.getText() + time);
+			timeList.add("test");
 			getTimePicker().setVisible(false);
 			enterPressCounter = 0;
 			acceptGroup.setVisible(false);
@@ -243,26 +256,22 @@ public class MainViewController implements Properties{
 					});
 	}
 	
+	
 	private void closeOtherTimePickers() {
 		if (getTimePicker() != firstTimePicker) {
 			firstTimePicker.setVisible(false);
-			firstLabelTime.setVisible(true);
 		}
 		if (getTimePicker() != secondTimePicker) {
 			secondTimePicker.setVisible(false);
-			secondLabelTime.setVisible(true);
 		}
 		if (getTimePicker() != thirdTimePicker) {
 			thirdTimePicker.setVisible(false);
-			thirdLabelTime.setVisible(true);
 		}
 		if (getTimePicker() != fourthTimePicker) {
 			fourthTimePicker.setVisible(false);
-			fourthLabelTime.setVisible(true);
 		}
 		if (getTimePicker() != fifthTimePicker) {
 			fifthTimePicker.setVisible(false);
-			fifthLabelTime.setVisible(true);
 		}
 	}
 
@@ -286,8 +295,7 @@ public class MainViewController implements Properties{
 		}
 		applyProperties();
 	}
-
-
+	
 	private void setTableProperty() {
 		subjectTable.setFocusTraversable(false);
 		colSubject.setCellValueFactory(new PropertyValueFactory<Subject, String>("name"));
@@ -319,6 +327,42 @@ public class MainViewController implements Properties{
 			int bottomName = dayCounter + 1;
 			bottomButton.setText(getDayName(bottomName));
 		}
+	}
+	
+	private void setTime() {
+		for(int i=0; i<timeList.size(); i++) {
+			getLabelTimeById(i).setText(timeList.get(i));
+		}
+	}
+	
+	private void displayTime() {
+		int subjCount = week.selectDay(dayCounter).getIdList(weekNum).size();
+		for(int i=0; i<5; i++) {
+			getLabelTimeById(i).setVisible(false);
+		}
+		if(subjCount<6) {
+			for(int i=0;i<subjCount;i++) {
+				getLabelTimeById(i).setVisible(true);
+			}
+		}else {
+			for(int i=0;i<5;i++) {
+				getLabelTimeById(i).setVisible(true);
+			}
+		}
+	}
+	
+	private Label getLabelTimeById(int number) {
+		if(number==0) {
+			return firstLabelTime;
+		}else if(number==1) {
+			return secondLabelTime;	
+		}else if(number==2) {
+			return thirdLabelTime;	
+		}else if(number==3) {
+			return fourthLabelTime;	
+		}else if(number==4) {
+			return fifthLabelTime;	
+		} else return null;
 	}
 	
 	private void handleEditHomework(Subject subject) throws IOException {
@@ -367,5 +411,8 @@ public class MainViewController implements Properties{
 	
 	public PropertiesContainer getProperties() {
 		return this.properties;
-	}		
+	}
+	public List<String> getTimeList() {
+		return timeList;
+	}
 }

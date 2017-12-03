@@ -39,11 +39,11 @@
       <Button fx:id="addButton" layoutX="497.0" layoutY="315.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAdd" prefHeight="45.0" prefWidth="45.0" AnchorPane.rightAnchor="123.0" />
       <VBox fx:id="vb1" layoutX="33.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="128.0" prefWidth="78.0" spacing="8.0" AnchorPane.leftAnchor="33.0">
          <children>
-            <Label fx:id="firstLabelTime" onMouseClicked="#labelClicked" text="Click me" />
-            <Label fx:id="secondLabelTime" onMouseClicked="#labelClicked" text="Click me" />
-            <Label fx:id="thirdLabelTime" onMouseClicked="#labelClicked" text="Click me" />
-            <Label fx:id="fourthLabelTime" onMouseClicked="#labelClicked" text="Click me" />
-            <Label fx:id="fifthLabelTime" onMouseClicked="#labelClicked" text="Click me" />
+            <Label fx:id="firstLabelTime" onMouseClicked="#labelClicked" text="Click me" visible="false" />
+            <Label fx:id="secondLabelTime" onMouseClicked="#labelClicked" text="Click me" visible="false" />
+            <Label fx:id="thirdLabelTime" onMouseClicked="#labelClicked" text="Click me" visible="false" />
+            <Label fx:id="fourthLabelTime" onMouseClicked="#labelClicked" text="Click me" visible="false" />
+            <Label fx:id="fifthLabelTime" onMouseClicked="#labelClicked" text="Click me" visible="false" />
          </children>
       </VBox>
       <VBox fx:id="vb2" layoutX="-1.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="128.0" prefWidth="36.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="635.0">
