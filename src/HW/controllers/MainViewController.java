@@ -118,8 +118,8 @@ public class MainViewController implements Properties{
 		setWeekChangeListener();
 		setTableProperty();
 		subjectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> listenedSubject = newValue);
-		setTime();
 		displayTime();
+		setTime();
 	}
 
 	@FXML
@@ -215,12 +215,10 @@ public class MainViewController implements Properties{
 			LocalTime time = getTimePicker().getValue();
 			tempLabelTime.setText(time + "-");
 			getTimePicker().show();
-			timeList.add("test");
 		}
 		if (enterPressCounter == 2) {
 			LocalTime time = getTimePicker().getValue();
 			tempLabelTime.setText(tempLabelTime.getText() + time);
-			timeList.add("test");
 			getTimePicker().setVisible(false);
 			enterPressCounter = 0;
 			acceptGroup.setVisible(false);
@@ -330,9 +328,11 @@ public class MainViewController implements Properties{
 	}
 	
 	private void setTime() {
-		for(int i=0; i<timeList.size(); i++) {
-			getLabelTimeById(i).setText(timeList.get(i));
-		}
+		if(timeList!=null) {
+			for(int i=0; i<timeList.size(); i++) {
+				getLabelTimeById(i).setText(timeList.get(i));
+			}
+		}		
 	}
 	
 	private void displayTime() {
